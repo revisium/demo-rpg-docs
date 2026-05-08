@@ -40,9 +40,10 @@ The demo is intentionally over-modelled to exercise every Revisium primitive: ne
 |---|---|---|
 | [demo-rpg-docs](https://github.com/revisium/demo-rpg-docs) | Project passport, ADR, specs, BR, skills, playbooks | Markdown |
 | demo-rpg-backend (planned) | NestJS subgraph (CQRS, REST, GraphQL, MCP) | NestJS, Prisma, fork of `template-nestjs-api` |
-| demo-rpg-frontend (planned) | Companion app + landing | Next.js, Apollo Client |
+| demo-rpg-frontend (planned) | Companion app + landing | React Router v7 SSR, MobX, Apollo Client |
+| demo-rpg-supergraph (planned) | Supergraph composition pipeline | Wraps [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) |
 
-External dependencies: [revisium-cli](https://github.com/revisium/revisium-cli), [Revisium Cloud](https://cloud.revisium.io), [Apollo Router](https://www.apollographql.com/docs/router).
+External dependencies: [revisium-cli](https://github.com/revisium/revisium-cli), [revisium/supergraph-builder](https://github.com/revisium/supergraph-builder), [Revisium Cloud](https://cloud.revisium.io), [Apollo Router](https://www.apollographql.com/docs/router).
 
 ## Architecture Overview
 
@@ -54,8 +55,9 @@ flowchart TB
   subgraph demo["Branching Tales"]
     direction TB
 
-    LAND["demo-rpg-frontend<br/>landing + app<br/>Next.js"]
+    LAND["demo-rpg-frontend<br/>landing + app<br/>React Router v7 SSR · MobX"]
     ROUTER["Apollo Router<br/>federated GraphQL"]
+    BUILDER["supergraph-builder<br/>composes SDLs<br/>into supergraph"]
     BE["demo-rpg-backend<br/>NestJS · CQRS<br/>REST · GraphQL · MCP"]
 
     subgraph cloud["cloud.revisium.io"]
@@ -69,17 +71,21 @@ flowchart TB
   LAND --> ROUTER
   ROUTER --> BE
   ROUTER --> DATA
-  LAND --> CMS
+  ROUTER --> CMS
+  BE -.->|SDL| BUILDER
+  DATA -.->|SDL| BUILDER
+  CMS -.->|SDL| BUILDER
+  BUILDER -.->|composed supergraph| ROUTER
 
   classDef container fill:#1168bd,stroke:#0b4884,color:#fff
   classDef external fill:#999,stroke:#666,color:#fff
   classDef person fill:#08427b,stroke:#052a52,color:#fff
-  class LAND,ROUTER,BE container
+  class LAND,ROUTER,BE,BUILDER container
   class DATA,CMS external
   class U person
 ```
 
-**In short:** the frontend talks to Apollo Router; the router federates a NestJS subgraph (`demo-rpg-backend`) with the Revisium-managed game-data subgraph (`demo-rpg-data`). The CMS project (`demo-rpg-cms`) feeds landing content directly. Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is open for read-only exploration.
+**In short:** the frontend (React Router v7 SSR + MobX + Apollo Client) talks to Apollo Router. The router federates **three** subgraphs — a NestJS subgraph (`demo-rpg-backend`) plus the two Revisium-managed subgraphs (`demo-rpg-data`, `demo-rpg-cms`). The supergraph schema is composed by [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder), which fetches each subgraph's SDL and produces the merged schema fed into the router. Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is open for read-only exploration.
 
 ## Operations
 

@@ -9,18 +9,20 @@
 ## Context
 
 <!-- Branching Tales needs two distinct content surfaces:
-1. Game dictionary — items, monsters, quests, factions. Stable schemas, infrequent edits, used by both BE and FE, joined at the API layer.
-2. Marketing content — landing copy, blog posts, hero sections. Iterates often, owned by a different audience, never joined with game data.
+1. Game dictionary — items, monsters, quests, factions. Stable schemas, infrequent edits, joined heavily at the API layer.
+2. Marketing content — landing copy, blog posts, hero sections. Iterates often, owned by a different audience, occasionally cross-references game entities (e.g. blog posts about specific quests).
 
-Combining both in one Revisium project mixes editorial cadences and inflates schema noise for visitors browsing the demo. -->
+Combining both in one Revisium project mixes editorial cadences, makes per-project access policies harder, and inflates schema noise for visitors browsing the demo. Splitting into two projects keeps each project legible and lets each evolve independently. -->
 
 ## Decision
 
-<!-- Run two cloud.revisium.io projects:
-- demo-rpg-data — game dictionary, federated via Apollo Router as a subgraph.
-- demo-rpg-cms — marketing content, consumed directly by demo-rpg-frontend (SSR/ISR), NOT federated.
+<!-- Run two cloud.revisium.io projects, both federated under Apollo Router as subgraphs:
+- demo-rpg-data — game dictionary subgraph.
+- demo-rpg-cms — marketing content subgraph.
 
-Different release cadences, different default branches if needed, different role assignments later. -->
+Both are composed into the supergraph by `revisium/supergraph-builder` together with `demo-rpg-backend`. Different release cadences, different default branches if needed, different role assignments later — but a single API surface for the frontend.
+
+The split is about content domain, not API path. Federation is consistent across all subgraphs (see ADR-0001). -->
 
 ## Alternatives Considered
 
@@ -39,10 +41,13 @@ Different release cadences, different default branches if needed, different role
 - <!-- Each project tells a clean story to demo visitors. -->
 - <!-- Independent branching strategies (e.g. balance branches on data, copy branches on cms). -->
 - <!-- Different access policies if needed. -->
+- <!-- Cross-domain joins remain possible via federation (e.g. blog post → quest). -->
+- <!-- Single API endpoint for the frontend; no fork in the data-fetching story. -->
 
 ### Negative
 
 - <!-- Two projects to set up, document, and keep in sync re. visual design. -->
+- <!-- Composition errors at the supergraph layer if subgraph SDLs drift. Mitigated by supergraph-builder running in CI. -->
 
 ### Neutral
 

@@ -9,9 +9,10 @@ Catalogue of runtime sequences for Branching Tales. Each flow is a `sequenceDiag
 | Flow | Description | Status |
 |---|---|---|
 | <!-- TODO --> | Visitor browses heroes (read path through Apollo Router) | Planned |
-| <!-- TODO --> | Visitor reads a blog post (frontend → CMS direct) | Planned |
+| <!-- TODO --> | Visitor reads a blog post (SSR via Apollo Router → `demo-rpg-cms` subgraph) | Planned |
 | <!-- TODO --> | Editor ships a balance patch via Revisium branching | Planned |
 | <!-- TODO --> | AI agent queries `demo-rpg-data` over MCP | Planned |
+| <!-- TODO --> | CI pipeline composes supergraph with `revisium/supergraph-builder` | Planned |
 
 ## When to add a flow here
 

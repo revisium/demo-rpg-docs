@@ -17,11 +17,17 @@ Alternative considered: BFF that proxies Revisium internally. Rejected because i
 
 ## Decision
 
-<!-- Use Apollo Router (federation v2) with two subgraphs:
+<!-- Use Apollo Router (federation v2) with three subgraphs:
 - demo-rpg-backend (NestJS, Yoga federation v2) — business logic, auth, computed fields not expressible in Revisium formulas.
 - demo-rpg-data (cloud.revisium.io) — game dictionary; SDL exposed by Revisium's GraphQL endpoint with @key directives.
+- demo-rpg-cms (cloud.revisium.io) — marketing content; SDL exposed by Revisium's GraphQL endpoint.
 
-The marketing CMS (demo-rpg-cms) is consumed directly by the frontend, NOT federated, because its content is shaped for SSR/ISR and does not need to join with game data. -->
+The supergraph schema is composed by `revisium/supergraph-builder`: it fetches the SDL of each subgraph, runs federation composition, and produces the supergraph file that Apollo Router serves. The builder runs as part of CI/CD on every subgraph change.
+
+The CMS is federated rather than consumed directly by the frontend because:
+1. The whole demo argues "use Revisium as a federated subgraph" — a direct path for one of the projects undermines the message.
+2. Editorial entities can join with game-data entities later (e.g. "blog posts about specific quests") without re-architecting.
+3. A single API endpoint for the frontend simplifies caching, auth, and observability stories. -->
 
 ## Alternatives Considered
 
@@ -32,6 +38,10 @@ The marketing CMS (demo-rpg-cms) is consumed directly by the frontend, NOT feder
 ### Alternative B: Direct frontend → Revisium GraphQL
 
 <!-- Frontend talks to cloud.revisium.io directly. Rejected: cannot show federation, cannot showcase NestJS subgraph patterns DevRel audience expects. -->
+
+### Alternative C: Federate `demo-rpg-data`, consume `demo-rpg-cms` directly
+
+<!-- Two API paths: federation for game data, direct for CMS. Rejected: weaker demo narrative, two cache stories, and prevents future joins between editorial content and game entities. -->
 
 ## Consequences
 
@@ -52,10 +62,11 @@ The marketing CMS (demo-rpg-cms) is consumed directly by the frontend, NOT feder
 
 ## Implementation Notes
 
-<!-- TODO: Apollo Router config snippet, supergraph composition pipeline, links to demo-rpg-backend wiring. -->
+<!-- TODO: Apollo Router config snippet, supergraph composition pipeline (CI invocation of revisium/supergraph-builder), links to demo-rpg-backend wiring. -->
 
 ## References
 
 - Related spec: [federation-v1.spec.md](../specs/federation-v1.spec.md) <!-- TODO -->
 - Apollo Router: https://www.apollographql.com/docs/router
 - Revisium GraphQL: https://docs.revisium.io
+- Supergraph builder: https://github.com/revisium/supergraph-builder

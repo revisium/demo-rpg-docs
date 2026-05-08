@@ -84,6 +84,7 @@ When creating a **skill** or **playbook**:
 ## Related repositories
 
 - **demo-rpg-backend** (planned) — NestJS subgraph + business logic
-- **demo-rpg-frontend** (planned) — Next.js companion app + landing
+- **demo-rpg-frontend** (planned) — React Router v7 SSR + MobX + Apollo Client companion app and landing
+- **[revisium/supergraph-builder](https://github.com/revisium/supergraph-builder)** — composes SDLs from `demo-rpg-backend`, `demo-rpg-data`, `demo-rpg-cms` into the supergraph served by Apollo Router
 
 Schemas + sample data + migrations live inside `demo-rpg-backend/revisium/` once that repo is bootstrapped, mirrored from the source-of-truth specs in [`architecture/specs/`](architecture/specs/README.md).

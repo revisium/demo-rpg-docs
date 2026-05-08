@@ -24,11 +24,12 @@ See [README § Architecture Overview](../README.md#architecture-overview) for th
 
 | Component | Repo | Role |
 |---|---|---|
-| `demo-rpg-frontend` | <!-- TODO --> | Companion app + landing (Next.js, Apollo Client) |
+| `demo-rpg-frontend` | <!-- TODO --> | Companion app + landing (React Router v7 SSR, MobX, Apollo Client) |
 | `demo-rpg-backend` | <!-- TODO --> | NestJS subgraph: business logic, auth, formulas not expressible in Revisium |
 | Apollo Router | inside backend repo | Federated GraphQL gateway |
-| `demo-rpg-data` | `cloud.revisium.io/revisium/demo-rpg-data` *(planned)* | Game dictionary (15 tables, files, formulas, branching) |
-| `demo-rpg-cms` | `cloud.revisium.io/revisium/demo-rpg-cms` *(planned)* | Landing copy, blog posts, hero content |
+| `supergraph-builder` | [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) | Composes per-subgraph SDLs into the supergraph schema fed to the router |
+| `demo-rpg-data` | `cloud.revisium.io/revisium/demo-rpg-data` *(planned)* | Game dictionary subgraph (15 tables, files, formulas, branching) |
+| `demo-rpg-cms` | `cloud.revisium.io/revisium/demo-rpg-cms` *(planned)* | Marketing content subgraph (landing copy, blog posts, hero content) |
 
 ## Runtime Flows
 

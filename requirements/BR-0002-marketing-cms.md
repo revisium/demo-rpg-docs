@@ -42,7 +42,7 @@ The marketing CMS (`revisium/demo-rpg-cms`) holds all editorial content surround
 
 - 5 tables: `landing_hero`, `landing_features`, `landing_testimonials`, `blog_posts`, `blog_authors`.
 - Markdown content with hero image and SEO metadata in `blog_posts`.
-- Direct frontend → CMS reads (no Apollo Router federation).
+- Federated under Apollo Router as a subgraph alongside `demo-rpg-data` and `demo-rpg-backend` (see [ADR-0001](../architecture/adr/ADR-0001-federation-with-revisium-cloud.md), [ADR-0002](../architecture/adr/ADR-0002-dictionary-vs-cms-split.md)). Supergraph composed by [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder).
 
 ### Out of scope
 
@@ -51,7 +51,7 @@ The marketing CMS (`revisium/demo-rpg-cms`) holds all editorial content surround
 
 ### Assumptions
 
-- Frontend uses Next.js with ISR; CMS reads happen at build / on-demand revalidation.
+- Frontend is React Router v7 SSR + MobX + Apollo Client; CMS reads happen on the server during SSR via Apollo Router.
 
 ## 5. User scenarios
 
@@ -59,11 +59,11 @@ The marketing CMS (`revisium/demo-rpg-cms`) holds all editorial content surround
 
 **As** an editor,
 **I want** to draft a blog post in `demo-rpg-cms`, attach a hero image, and publish it,
-**so that** the landing site picks it up on the next revalidation.
+**so that** the landing site picks it up via Apollo Router on the next render.
 
 **Acceptance:**
 
-- [ ] Given an unpublished post, When the editor commits to head, Then the frontend shows it on next ISR.
+- [ ] Given an unpublished post, When the editor commits the draft to head, Then the next SSR fetch through Apollo Router returns the post.
 
 ### US-2: Visitor reads the blog
 
@@ -82,7 +82,7 @@ The marketing CMS (`revisium/demo-rpg-cms`) holds all editorial content surround
 | 5 CMS tables with documented schemas | Must | Draft | [`specs/schemas.md`](../architecture/specs/schemas.md) |
 | Markdown content type | Must | Draft | `blog_posts.body` |
 | File fields for hero images and avatars | Must | Draft | [`specs/files.md`](../architecture/specs/files.md) |
-| Frontend reads CMS directly (no router) | Must | Draft | [ADR-0001](../architecture/adr/ADR-0001-federation-with-revisium-cloud.md), [ADR-0002](../architecture/adr/ADR-0002-dictionary-vs-cms-split.md) |
+| CMS federated under Apollo Router as a subgraph | Must | Draft | [ADR-0001](../architecture/adr/ADR-0001-federation-with-revisium-cloud.md), [ADR-0002](../architecture/adr/ADR-0002-dictionary-vs-cms-split.md) |
 | Public read access | Must | Draft | Project setting |
 
 ## 7. Business rules and constraints
@@ -103,7 +103,7 @@ The marketing CMS (`revisium/demo-rpg-cms`) holds all editorial content surround
 
 | # | Question | Owner | Due | Status |
 |---|---|---|---|---|
-| 1 | Whether to demo on-demand revalidation via webhook | | | Open |
+| 1 | Whether to demo Revisium webhook → SSR cache invalidation in Apollo Router | | | Open |
 | 2 | Number of seed blog posts | | | Open |
 
 ## 10. Related artefacts
