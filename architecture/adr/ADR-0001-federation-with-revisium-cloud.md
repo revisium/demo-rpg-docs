@@ -22,7 +22,14 @@ Alternative considered: BFF that proxies Revisium internally. Rejected because i
 - demo-rpg-data (cloud.revisium.io) — game dictionary; SDL exposed by Revisium's GraphQL endpoint with @key directives.
 - demo-rpg-cms (cloud.revisium.io) — marketing content; SDL exposed by Revisium's GraphQL endpoint.
 
-The supergraph schema is composed by `revisium/supergraph-builder`: it fetches the SDL of each subgraph, runs federation composition, and produces the supergraph file that Apollo Router serves. The builder runs as part of CI/CD on every subgraph change.
+The supergraph schema is composed by `revisium/supergraph-builder`, which runs as a **long-running service** (not a CI step):
+
+- Each subgraph URL is supplied as an env var (e.g. `SUBGRAPH_DEMO_RPG_DATA=...`).
+- The builder polls every subgraph's GraphQL endpoint at a configurable interval (`POLL_INTERVAL_S`) and runs federation composition.
+- The composed supergraph is served at an HTTP endpoint (e.g. `/supergraph/branching-tales`).
+- Apollo Router runs a curl sidecar that polls that endpoint at its own interval, writes the schema to a shared volume, and the router hot-reloads.
+
+Net effect: schema changes propagate to the running router within one polling interval without CI, image rebuilds, or restarts.
 
 The CMS is federated rather than consumed directly by the frontend because:
 1. The whole demo argues "use Revisium as a federated subgraph" — a direct path for one of the projects undermines the message.
@@ -62,7 +69,12 @@ The CMS is federated rather than consumed directly by the frontend because:
 
 ## Implementation Notes
 
-<!-- TODO: Apollo Router config snippet, supergraph composition pipeline (CI invocation of revisium/supergraph-builder), links to demo-rpg-backend wiring. -->
+<!-- TODO:
+- Apollo Router config snippet (router.yaml).
+- supergraph-builder env-var wiring: one SUBGRAPH_* per subgraph, POLL_INTERVAL_S.
+- Apollo Router curl sidecar definition (initContainer + sidecar loop), shared emptyDir volume mounted at /app, supergraph file path APOLLO_ROUTER_SUPERGRAPH_PATH.
+- demo-rpg-backend Yoga federation v2 wiring.
+-->
 
 ## References
 

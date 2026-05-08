@@ -47,7 +47,7 @@ The split is about content domain, not API path. Federation is consistent across
 ### Negative
 
 - <!-- Two projects to set up, document, and keep in sync re. visual design. -->
-- <!-- Composition errors at the supergraph layer if subgraph SDLs drift. Mitigated by supergraph-builder running in CI. -->
+- <!-- Composition errors at the supergraph layer if subgraph SDLs drift. Mitigated by supergraph-builder polling each subgraph and reporting composition failures via its health endpoint; the previous good supergraph remains served until composition succeeds again. -->
 
 ### Neutral
 

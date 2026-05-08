@@ -56,8 +56,8 @@ flowchart TB
     direction TB
 
     LAND["demo-rpg-frontend<br/>landing + app<br/>React Router v7 SSR · MobX"]
-    ROUTER["Apollo Router<br/>federated GraphQL"]
-    BUILDER["supergraph-builder<br/>composes SDLs<br/>into supergraph"]
+    ROUTER["Apollo Router<br/>+ supergraph-fetcher sidecar"]
+    BUILDER["supergraph-builder<br/>polls subgraphs · composes<br/>serves /supergraph/branching-tales"]
     BE["demo-rpg-backend<br/>NestJS · CQRS<br/>REST · GraphQL · MCP"]
 
     subgraph cloud["cloud.revisium.io"]
@@ -72,10 +72,10 @@ flowchart TB
   ROUTER --> BE
   ROUTER --> DATA
   ROUTER --> CMS
-  BE -.->|SDL| BUILDER
-  DATA -.->|SDL| BUILDER
-  CMS -.->|SDL| BUILDER
-  BUILDER -.->|composed supergraph| ROUTER
+  BUILDER -.->|polls SDL| BE
+  BUILDER -.->|polls SDL| DATA
+  BUILDER -.->|polls SDL| CMS
+  ROUTER -.->|sidecar polls<br/>composed supergraph| BUILDER
 
   classDef container fill:#1168bd,stroke:#0b4884,color:#fff
   classDef external fill:#999,stroke:#666,color:#fff
@@ -85,7 +85,11 @@ flowchart TB
   class U person
 ```
 
-**In short:** the frontend (React Router v7 SSR + MobX + Apollo Client) talks to Apollo Router. The router federates **three** subgraphs — a NestJS subgraph (`demo-rpg-backend`) plus the two Revisium-managed subgraphs (`demo-rpg-data`, `demo-rpg-cms`). The supergraph schema is composed by [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder), which fetches each subgraph's SDL and produces the merged schema fed into the router. Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is open for read-only exploration.
+**In short:** the frontend (React Router v7 SSR + MobX + Apollo Client) talks to Apollo Router. The router federates **three** subgraphs — a NestJS subgraph (`demo-rpg-backend`) plus the two Revisium-managed subgraphs (`demo-rpg-data`, `demo-rpg-cms`).
+
+[`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) is a **long-running service** that periodically polls each subgraph's GraphQL endpoint, composes the merged supergraph schema, and exposes it at an HTTP endpoint. Apollo Router runs a curl sidecar that polls that endpoint, writes the supergraph to a shared volume, and lets the router hot-reload — no CI step, no pushed deployment. Add a subgraph or change a schema and the supergraph reconciles within one polling interval.
+
+Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is open for read-only exploration.
 
 ## Operations
 

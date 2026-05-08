@@ -20,7 +20,7 @@ A spec is a detailed technical document defining the exact structure, types, val
 ## Naming convention
 
 - Evergreen specs (game design, schema catalogue): `{topic}.md`.
-- Versioned component specs: `{component}-v{N}.spec.md` (matches ved/getapi convention). Example: `federation-v1.spec.md`.
+- Versioned component specs: `{component}-v{N}.spec.md`. Example: `federation-v1.spec.md`.
 - Bump the version when the document's structure changes; keep older versions for reference.
 
 ## Versioning
