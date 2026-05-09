@@ -30,13 +30,22 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 function parseArgs(argv) {
   const args = { source: resolve(__dirname, '..', 'data'), host: 'https://cloud.revisium.io' };
+  const takeValue = (k, i) => {
+    const v = argv[i + 1];
+    if (v === undefined || v.startsWith('--')) {
+      console.error(`Missing value for ${k}`);
+      process.exit(2);
+    }
+    return v;
+  };
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i];
-    if (k === '--org') args.org = argv[++i];
-    else if (k === '--project') args.project = argv[++i];
-    else if (k === '--source') args.source = resolve(process.cwd(), argv[++i]);
-    else if (k === '--host') args.host = argv[++i];
-    else if (k === '--branch') args.branch = argv[++i];
+    if (k === '--org') { args.org = takeValue(k, i); i++; }
+    else if (k === '--project') { args.project = takeValue(k, i); i++; }
+    else if (k === '--source') { args.source = resolve(process.cwd(), takeValue(k, i)); i++; }
+    else if (k === '--host') { args.host = takeValue(k, i); i++; }
+    else if (k === '--branch') { args.branch = takeValue(k, i); i++; }
+    else { console.error(`Unknown flag: ${k}`); process.exit(2); }
   }
   if (!args.org || !args.project) {
     console.error('Usage: node apply.mjs --org <org> --project <project> [--source <dir>] [--host <host>]');
@@ -53,14 +62,28 @@ function parseArgs(argv) {
 
 async function api(args, path, init = {}) {
   const url = `${args.host.replace(/\/$/, '')}/api${path}`;
-  const res = await fetch(url, {
-    ...init,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${args.token}`,
-      ...(init.headers ?? {}),
-    },
-  });
+  const controller = new AbortController();
+  const timeoutMs = Number(process.env.REVISIUM_HTTP_TIMEOUT_MS ?? 30000);
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  let res;
+  try {
+    res = await fetch(url, {
+      ...init,
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${args.token}`,
+        ...(init.headers ?? {}),
+      },
+    });
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      throw new Error(`${init.method ?? 'GET'} ${path} timed out after ${timeoutMs}ms (set REVISIUM_HTTP_TIMEOUT_MS to override)`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
   if (!res.ok) {
     const body = await res.text();
     throw new Error(`${init.method ?? 'GET'} ${path} -> ${res.status}: ${body}`);

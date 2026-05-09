@@ -28,9 +28,9 @@
       "default": "strength",
       "enum": ["strength", "dexterity", "intelligence", "wisdom", "constitution", "charisma"]
     },
-    "base_hp": { "type": "number", "default": 0 },
-    "hp_per_level": { "type": "number", "default": 0 },
-    "mp_per_level": { "type": "number", "default": 0 },
+    "base_hp": { "type": "number", "default": 0, "minimum": 0 },
+    "hp_per_level": { "type": "number", "default": 0, "minimum": 0 },
+    "mp_per_level": { "type": "number", "default": 0, "minimum": 0 },
     "starting_ability_ids": {
       "type": "array",
       "items": { "type": "string", "default": "", "foreignKey": "abilities" }

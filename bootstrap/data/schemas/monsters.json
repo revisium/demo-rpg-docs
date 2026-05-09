@@ -30,9 +30,9 @@
       "default": "beast",
       "enum": ["beast", "humanoid", "undead", "aberration", "construct"]
     },
-    "level": { "type": "number", "default": 1 },
-    "hp": { "type": "number", "default": 0 },
-    "base_damage": { "type": "number", "default": 0 },
+    "level": { "type": "number", "default": 1, "minimum": 1 },
+    "hp": { "type": "number", "default": 0, "minimum": 0 },
+    "base_damage": { "type": "number", "default": 0, "minimum": 0 },
     "ability_ids": {
       "type": "array",
       "items": { "type": "string", "default": "", "foreignKey": "abilities" }
@@ -45,9 +45,9 @@
         "additionalProperties": false,
         "properties": {
           "item_id": { "type": "string", "default": "", "foreignKey": "items" },
-          "chance": { "type": "number", "default": 0 },
-          "quantity_min": { "type": "number", "default": 0 },
-          "quantity_max": { "type": "number", "default": 0 }
+          "chance": { "type": "number", "default": 0, "minimum": 0, "maximum": 1 },
+          "quantity_min": { "type": "number", "default": 0, "minimum": 0 },
+          "quantity_max": { "type": "number", "default": 0, "minimum": 0 }
         }
       }
     },

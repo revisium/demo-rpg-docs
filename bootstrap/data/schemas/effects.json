@@ -29,6 +29,6 @@
       "default": "buff",
       "enum": ["buff", "debuff", "damage_over_time", "crowd_control"]
     },
-    "default_duration": { "type": "number", "default": 0 }
+    "default_duration": { "type": "number", "default": 0, "minimum": 0 }
   }
 }

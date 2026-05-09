@@ -24,9 +24,9 @@
         "zh": { "type": "string", "default": "" }
       }
     },
-    "level": { "type": "number", "default": 1 },
-    "constitution": { "type": "number", "default": 10 },
-    "gold": { "type": "number", "default": 0 },
+    "level": { "type": "number", "default": 1, "minimum": 1 },
+    "constitution": { "type": "number", "default": 10, "minimum": 0 },
+    "gold": { "type": "number", "default": 0, "minimum": 0 },
     "portrait": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
     "ability_ids": {
       "type": "array",

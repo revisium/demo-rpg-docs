@@ -30,9 +30,9 @@
       "default": "common",
       "enum": ["common", "uncommon", "rare", "epic", "legendary"]
     },
-    "rarity_multiplier": { "type": "number", "default": 1 },
-    "base_value": { "type": "number", "default": 0 },
-    "weight": { "type": "number", "default": 0 },
+    "rarity_multiplier": { "type": "number", "default": 1, "minimum": 0 },
+    "base_value": { "type": "number", "default": 0, "minimum": 0 },
+    "weight": { "type": "number", "default": 0, "minimum": 0 },
     "modifiers": {
       "type": "array",
       "items": {

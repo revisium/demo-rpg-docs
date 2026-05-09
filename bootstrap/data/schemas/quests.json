@@ -30,7 +30,7 @@
       "default": "side",
       "enum": ["tutorial", "side", "story", "endgame"]
     },
-    "level_required": { "type": "number", "default": 1 },
+    "level_required": { "type": "number", "default": 1, "minimum": 1 },
     "is_repeatable": { "type": "boolean", "default": false },
     "steps": {
       "type": "array",
@@ -39,7 +39,7 @@
         "required": ["step_number", "description", "location_id", "npc_id", "xp", "rewards"],
         "additionalProperties": false,
         "properties": {
-          "step_number": { "type": "number", "default": 0 },
+          "step_number": { "type": "number", "default": 0, "minimum": 0 },
           "description": {
             "type": "object",
             "required": ["en"],
@@ -52,7 +52,7 @@
           },
           "location_id": { "type": "string", "default": "", "foreignKey": "locations" },
           "npc_id": { "type": "string", "default": "", "foreignKey": "npcs" },
-          "xp": { "type": "number", "default": 0 },
+          "xp": { "type": "number", "default": 0, "minimum": 0 },
           "rewards": {
             "type": "array",
             "items": {
@@ -61,8 +61,8 @@
               "additionalProperties": false,
               "properties": {
                 "item_id": { "type": "string", "default": "", "foreignKey": "items" },
-                "quantity": { "type": "number", "default": 0 },
-                "bonus_xp": { "type": "number", "default": 0 }
+                "quantity": { "type": "number", "default": 0, "minimum": 0 },
+                "bonus_xp": { "type": "number", "default": 0, "minimum": 0 }
               }
             }
           }

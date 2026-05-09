@@ -36,8 +36,8 @@
     },
     "base_damage": { "type": "number", "default": 0 },
     "damage_scaling": { "type": "number", "default": 0 },
-    "cooldown": { "type": "number", "default": 0 },
-    "level_required": { "type": "number", "default": 1 },
+    "cooldown": { "type": "number", "default": 0, "minimum": 0 },
+    "level_required": { "type": "number", "default": 1, "minimum": 1 },
     "effects": {
       "type": "array",
       "items": {
@@ -46,8 +46,8 @@
         "additionalProperties": false,
         "properties": {
           "effect_id": { "type": "string", "default": "", "foreignKey": "effects" },
-          "chance": { "type": "number", "default": 0 },
-          "duration": { "type": "number", "default": 0 }
+          "chance": { "type": "number", "default": 0, "minimum": 0, "maximum": 1 },
+          "duration": { "type": "number", "default": 0, "minimum": 0 }
         }
       }
     }

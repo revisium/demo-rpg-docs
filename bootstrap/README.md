@@ -41,11 +41,12 @@ Once both are public, anyone can browse the schemas and rows in the admin UI wit
 
 Two paths — pick whichever matches your habits.
 
-### Path A — Apply via MCP (works against any Revisium host)
+### Path A — Apply via the bootstrap script (works against any Revisium host)
 
-Prerequisite: a Revisium MCP server connected to your editor (Claude Code, Cursor, etc.) authenticated against `https://cloud.revisium.io` (or your self-hosted Revisium).
+Prerequisite: Node 18+ and a Bearer token for `https://cloud.revisium.io` (or your self-hosted Revisium) exported as `REVISIUM_TOKEN`. The script talks to Revisium's HTTP API directly — no MCP server, IDE, or extra dependencies required.
 
-```
+```bash
+export REVISIUM_TOKEN=...
 node bootstrap/scripts/apply.mjs --org <your-org> --project demo-rpg-data
 node bootstrap/scripts/apply.mjs --org <your-org> --project demo-rpg-cms --source bootstrap/cms
 ```
@@ -54,9 +55,7 @@ The script:
 
 1. Reads `bootstrap/{data,cms}/schemas/*.json` and creates each table in dependency order.
 2. Reads `bootstrap/{data,cms}/seed/*.json` and inserts rows in dependency order (children after parents).
-3. Commits a `Bootstrap v1` revision.
-
-You'll be asked to confirm the commit before it lands on `master`.
+3. **Leaves the changes in the draft revision; it does NOT commit.** Open the admin UI on `cloud.revisium.io/<your-org>/<project>` and commit the draft when you're satisfied — that's where the explicit human-in-the-loop step lives.
 
 ### Path B — Apply via `revisium-cli`
 
