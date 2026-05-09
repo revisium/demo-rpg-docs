@@ -11,6 +11,13 @@
 - A few representative tables are shown with **full JSON Schema** to illustrate the conventions in context.
 - The companion CMS project (`demo-rpg-cms`) is documented separately at the end.
 
+### Related ADRs
+
+This spec is the **what**; the **why** lives in the ADRs:
+
+- [ADR-0001 — Federation with Revisium Cloud as a subgraph](../adr/ADR-0001-federation-with-revisium-cloud.md) — explains why both Revisium projects (`demo-rpg-data`, `demo-rpg-cms`) are exposed as federated subgraphs through Apollo Router rather than consumed directly. Drives the SDL/`@key` expectations on every table here.
+- [ADR-0002 — Two cloud projects: dictionary vs CMS](../adr/ADR-0002-dictionary-vs-cms-split.md) — explains the split into `demo-rpg-data` (15 dictionary tables, see below) and `demo-rpg-cms` (5 marketing tables, end of this document) and why both stay federated despite different editorial cadences.
+
 ## Conventions
 
 ### Localized string — `<LocalizedString>`
@@ -609,15 +616,22 @@ Solid arrows are direct FK fields (single or array). Dashed arrows are FKs insid
 
 ## Migration plan
 
+Schema migrations on `master`:
+
 | Migration | What it does | Demonstrates |
 |---|---|---|
 | `0001-initial-tables.json` | Create all 15 dictionary tables (CMS in a separate project's first migration). | Bulk schema bootstrap. |
 | `0002-add-monster-drop-quantity-range.json` | Add `quantity_min` and `quantity_max` to `monsters.drops[*]` (replacing a single `quantity`). | Schema evolution within an embedded array. |
 | `0003-add-item-rarity-tag-formula.json` | Add the `rarity_tag` computed field to `items`. | Adding an `x-formula` field to an existing table. |
 | `0004-add-third-locale-ch.json` | Add `ch` field to every `<LocalizedString>` instance. | Wide schema evolution; locale rollout. |
-| `0005-balance-patch-1.1` | Branch-only changes to `abilities.base_damage` and `items.rarity_multiplier` values. | Branching for live-ops without disturbing master. |
 
-Migrations 0001-0004 ship on `master`. Migration 0005 lives only on the `balance-patch-1.1` branch.
+### Balance branches (data only — no schema migrations)
+
+| Branch | What it changes | Demonstrates |
+|---|---|---|
+| `balance-patch-1.1` | Tunes `abilities.base_damage` and `items.rarity_multiplier` values for selected rows. No schema changes — only seed data. | Revisium branching for live-ops: balance tweaks without disturbing `master`. |
+
+Branch operations are not migration files. They are draft revisions on a separate branch, committed against the same `master` schema.
 
 ## Open questions
 

@@ -6,7 +6,7 @@ Claude Code skills tailored to the Branching Tales demo. A skill is an instructi
 
 ## Purpose
 
-The demo is intentionally AI-friendly. Skills here let visitors point Claude Code at this repo and get high-quality help on day one: drafting a new table, adding a computed field, designing a localisation pattern, generating seed data.
+The demo is intentionally AI-friendly. Skills here let visitors point Claude Code at this repo and get high-quality help on day one: drafting a new table, adding a computed field, designing a localization pattern, generating seed data.
 
 ## Skill format
 

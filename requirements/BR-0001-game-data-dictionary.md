@@ -103,7 +103,7 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 | Files demonstrated for portraits, icons, maps, crests | Must | Draft | [`specs/files.md`](../architecture/specs/files.md) |
 | Public read access | Must | Draft | Project setting |
 | One balance branch for branching demo | Should | Draft | <!-- TODO --> |
-| Localisation (en required; ru and ch optional) on user-facing entities | Should | Draft | [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring) |
+| Localization (en required; ru and ch optional) on user-facing entities | Should | Draft | [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring) |
 
 ## 7. Business rules and constraints
 
