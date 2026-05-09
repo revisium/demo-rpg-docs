@@ -20,4 +20,4 @@ The architecture layer of `demo-rpg-docs`. Connected overview, decisions, techni
 3. **Runtime scenarios** → if > 4 flows total, move to `runtime-flows/`; otherwise inline in [overview.md](./overview.md)
 4. **Cross-link** — every ADR references the spec it implements; every flow references the relevant ADR + spec.
 
-See [CLAUDE.md](../CLAUDE.md) for AI agent instructions.
+See [AGENTS.md](../AGENTS.md) for AI agent instructions (`CLAUDE.md` is a symlink).
