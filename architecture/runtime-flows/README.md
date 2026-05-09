@@ -16,7 +16,7 @@ Catalogue of runtime sequences for Branching Tales. Each flow is a `sequenceDiag
 
 ## When to add a flow here
 
-Per [CLAUDE.md](../../CLAUDE.md): inline up to 4 flows in [`overview.md`](../overview.md). Once a 5th flow appears or any flow exceeds ~30 lines of mermaid, move it to its own file in this directory.
+Per [AGENTS.md](../../AGENTS.md): inline up to 4 flows in [`overview.md`](../overview.md). Once a 5th flow appears or any flow exceeds ~30 lines of mermaid, move it to its own file in this directory.
 
 ## Naming
 

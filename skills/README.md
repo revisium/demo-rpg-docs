@@ -1,6 +1,6 @@
 # Skills
 
-**Navigation:** [project passport](../README.md) · [playbooks](../playbooks/README.md) · [CLAUDE.md](../CLAUDE.md)
+**Navigation:** [project passport](../README.md) · [playbooks](../playbooks/README.md) · [AGENTS.md](../AGENTS.md)
 
 Claude Code skills tailored to the Branching Tales demo. A skill is an instruction bundle (YAML frontmatter + body) that teaches an AI agent a focused capability — schema design, formula authoring, migration runs, and so on.
 
@@ -43,4 +43,4 @@ See the [Claude Code Skills docs](https://docs.claude.com/) for the full specifi
 ## Related
 
 - [playbooks/](../playbooks/README.md) — step-by-step task guides (less abstract than skills).
-- [CLAUDE.md](../CLAUDE.md) — repo-level AI agent instructions.
+- [AGENTS.md](../AGENTS.md) — repo-level AI agent instructions.
