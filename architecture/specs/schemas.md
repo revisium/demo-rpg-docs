@@ -560,7 +560,8 @@ Feature grid. Multi-row, ordered.
 | `body` | `<LocalizedString>` (markdown content per locale) |
 | `hero_image` | `<FileRef>` |
 | `published_at` | `string` (ISO 8601) |
-| `tag_ids` | FK array → `blog_tags` (planned, optional) |
+
+> Note: a `blog_tags` table and a `blog_posts.tag_ids` FK array are **not part of the v1 contract**. Tracked under [Open question 2](#open-questions) as a follow-up migration.
 
 ### 5. `blog_authors`
 
@@ -638,7 +639,7 @@ Branch operations are not migration files. They are draft revisions on a separat
 | # | Question | Status |
 |---|---|---|
 | 1 | Confirm `ch` locale code (`zh-CN` is conventional; `ch` is shorter) | Open |
-| 2 | Whether `blog_tags` ships in v1 or as a follow-up migration | Open |
+| 2 | Whether to add a `blog_tags` table and a `blog_posts.tag_ids` FK array as a follow-up migration (currently excluded from the v1 contract) | Open |
 | 3 | Whether `quests.steps[*].rewards[*]` should also support `ability_id` rewards (currently item-only) | Open |
 | 4 | Whether to add `weight_total` formula on heroes (sum of inventory weights) — would need item embedded into hero, breaking the FK pattern | Open |
 | 5 | Whether `items.modifiers[*]` should also expose a `total_modifier_value` formula | Open |
