@@ -567,7 +567,8 @@ Feature grid. Multi-row, ordered.
 ## Foreign-key graph
 
 ```mermaid
-flowchart LR
+%%{init: {"flowchart": {"defaultRenderer": "elk"}}}%%
+flowchart TB
   regions --> locations
   factions -.self.-> factions
   factions --> npcs
