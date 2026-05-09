@@ -116,7 +116,7 @@ NPCs anchor quests and locations. Categories:
 - **Trainers** (one per class)
 - **Lore-keepers** (one per region — give world-building dialogs)
 
-`npcs.title` is a localized object (e.g. `{ en: "Captain", ru: "Капитан", ch: "队长" }`) and `npcs.full_title_en` is the formula `concat(title.en, " ", name.en)` — demonstrates string concatenation across same-row fields with explicit locale.
+`npcs.title` is a localized object (e.g. `{ en: "Captain", ru: "Капитан", zh: "队长" }`) and `npcs.full_title_en` is the formula `concat(title.en, " ", name.en)` — demonstrates string concatenation across same-row fields with explicit locale.
 
 ## Localization
 
@@ -129,7 +129,7 @@ Branching Tales uses **inline localized objects** for every user-facing string. 
   "properties": {
     "en": { "type": "string", "default": "" },
     "ru": { "type": "string", "default": "" },
-    "ch": { "type": "string", "default": "" }
+    "zh": { "type": "string", "default": "" }
   },
   "additionalProperties": false
 }

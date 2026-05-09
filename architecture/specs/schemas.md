@@ -31,7 +31,7 @@ Every user-facing string is an inline object. `en` is the canonical fallback and
   "properties": {
     "en": { "type": "string", "default": "" },
     "ru": { "type": "string", "default": "" },
-    "ch": { "type": "string", "default": "" }
+    "zh": { "type": "string", "default": "" }
   },
   "additionalProperties": false
 }
@@ -390,7 +390,7 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       },
       "additionalProperties": false
     },
@@ -400,7 +400,7 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       },
       "additionalProperties": false
     },
