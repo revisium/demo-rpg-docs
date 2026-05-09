@@ -27,7 +27,7 @@ The marketing CMS (`revisium/demo-rpg-cms`) holds all editorial content surround
 |---|---|---|---|
 | Landing tables | 0 | 5 | Project view |
 | Markdown content support exercised | no | yes | `blog_posts.body` |
-| File support exercised in CMS context | no | yes | `landing_hero.bgImage`, `blog_authors.avatar` |
+| File support exercised in CMS context | no | yes | `landing_hero.bg_image`, `blog_authors.avatar`, `blog_posts.hero_image` |
 
 ## 3. Audience
 
