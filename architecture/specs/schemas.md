@@ -566,34 +566,46 @@ Feature grid. Multi-row, ordered.
 
 ## Foreign-key graph
 
+Convention: an arrow goes from the **table that holds the FK field** to the **referenced table**.
+
 ```mermaid
 %%{init: {"flowchart": {"defaultRenderer": "elk"}}}%%
 flowchart TB
-  regions --> locations
+  %% direct single FK
+  locations --> regions
+  npcs --> factions
+  npcs --> locations
+  monsters --> factions
+  items --> item_types
+  heroes --> classes
+  quests --> npcs
+  dialogs --> npcs
+
+  %% direct FK array
+  classes --> abilities
+  monsters --> abilities
+  heroes --> abilities
+  heroes --> items
+  npcs --> items
+  parties --> heroes
+
+  %% self-referencing FK array
   factions -.self.-> factions
-  factions --> npcs
-  factions --> monsters
-  locations --> npcs
-  locations --> monsters
-  locations -.via steps.-> quests
-  item_types --> items
-  stats -.via modifiers.-> items
-  effects -.via effects[].-> abilities
-  abilities --> classes
-  abilities --> heroes
-  abilities --> monsters
-  classes --> heroes
-  items --> heroes
-  items --> npcs
-  items -.via drops.-> monsters
-  items -.via rewards.-> quests
-  npcs --> quests
-  npcs --> dialogs
-  heroes --> parties
-  blog_authors --> blog_posts
+
+  %% FKs inside embedded arrays
+  items -.via modifiers.-> stats
+  abilities -.via effects.-> effects
+  heroes -.via equipment.-> items
+  monsters -.via drops.-> items
+  quests -.via steps.-> locations
+  quests -.via steps.-> npcs
+  quests -.via rewards.-> items
+
+  %% CMS
+  blog_posts --> blog_authors
 ```
 
-Solid arrows are direct FK fields. Dashed arrows are FKs inside embedded arrays.
+Solid arrows are direct FK fields (single or array). Dashed arrows are FKs inside embedded arrays. The self-loop on `factions` represents `ally_ids[]` and `enemy_ids[]`.
 
 ## Migration plan
 

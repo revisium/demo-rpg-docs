@@ -62,7 +62,7 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 
 - Player accounts and progress (no user state in this demo).
 - Real-time leaderboards.
-- Multi-language beyond en/ru pair.
+- Locales beyond `en` / `ru` / `ch` (the trio defined in [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization)).
 
 ### Assumptions
 
@@ -103,13 +103,13 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 | Files demonstrated for portraits, icons, maps, crests | Must | Draft | [`specs/files.md`](../architecture/specs/files.md) |
 | Public read access | Must | Draft | Project setting |
 | One balance branch for branching demo | Should | Draft | <!-- TODO --> |
-| Localisation (en + ru) on user-facing entities | Should | Draft | [`specs/schemas.md`](../architecture/specs/schemas.md) |
+| Localisation (en required; ru and ch optional) on user-facing entities | Should | Draft | [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring) |
 
 ## 7. Business rules and constraints
 
 - All user-facing strings use the inline localized object pattern: `{ en (required), ru, ch }`. See [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization) and [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring).
 - All visual entities must have a file field.
-- All tables that host numerical aggregation must use **embedded arrays** (not FK arrays) — formulas operate on a single row's data and cannot dereference foreign keys. See [`specs/formulas.md § Data-scope rules`](../architecture/specs/formulas.md#data-scope-rules--what-you-can-and-cannot-do).
+- Aggregation formulas that read a per-element field (`sum`, `avg`, `min`, `max` over `arr[*].field`) must run over **embedded arrays**, not FK arrays — formulas operate on a single row's data and cannot dereference foreign keys. `count()` and `length()` on FK arrays are allowed because they only read the array's length, not the referenced rows. See [`specs/formulas.md § Data-scope rules`](../architecture/specs/formulas.md#data-scope-rules--what-you-can-and-cannot-do).
 
 ## 8. Non-functional requirements
 
