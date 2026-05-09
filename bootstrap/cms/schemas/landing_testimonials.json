@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "required": ["quote", "author_name", "author_role", "avatar"],
+  "additionalProperties": false,
+  "properties": {
+    "quote": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "author_name": { "type": "string", "default": "" },
+    "author_role": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "avatar": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" }
+  }
+}

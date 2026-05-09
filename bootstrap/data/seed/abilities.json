@@ -1,0 +1,82 @@
+[
+  {
+    "rowId": "slash",
+    "data": {
+      "name": { "en": "Slash", "ru": "Рубящий удар", "ch": "" },
+      "description": { "en": "A swift sword strike.", "ru": "Стремительный удар мечом.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "school": "evocation", "kind": "active", "base_damage": 8, "damage_scaling": 2, "cooldown": 0, "level_required": 1,
+      "effects": [{ "effect_id": "bleeding", "chance": 0.15, "duration": 3 }]
+    }
+  },
+  {
+    "rowId": "shield-bash",
+    "data": {
+      "name": { "en": "Shield Bash", "ru": "Удар щитом", "ch": "" },
+      "description": { "en": "Slam the enemy with your shield.", "ru": "Удар щитом по врагу.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "school": "abjuration", "kind": "active", "base_damage": 4, "damage_scaling": 1, "cooldown": 2, "level_required": 2,
+      "effects": [{ "effect_id": "stunned", "chance": 0.4, "duration": 1 }]
+    }
+  },
+  {
+    "rowId": "fireball",
+    "data": {
+      "name": { "en": "Fireball", "ru": "Огненный шар", "ch": "" },
+      "description": { "en": "An explosion of fire.", "ru": "Взрыв пламени.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "school": "evocation", "kind": "active", "base_damage": 30, "damage_scaling": 6, "cooldown": 4, "level_required": 5,
+      "effects": []
+    }
+  },
+  {
+    "rowId": "heal-wounds",
+    "data": {
+      "name": { "en": "Heal Wounds", "ru": "Исцеление ран", "ch": "" },
+      "description": { "en": "Restore health to a target.", "ru": "Восстановить здоровье цели.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "school": "abjuration", "kind": "active", "base_damage": -20, "damage_scaling": -4, "cooldown": 1, "level_required": 1,
+      "effects": [{ "effect_id": "blessed", "chance": 0.25, "duration": 5 }]
+    }
+  },
+  {
+    "rowId": "arcane-missile",
+    "data": {
+      "name": { "en": "Arcane Missile", "ru": "Магическая стрела", "ch": "" },
+      "description": { "en": "Bolt of pure magical energy.", "ru": "Заряд чистой магической энергии.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "school": "evocation", "kind": "active", "base_damage": 12, "damage_scaling": 3, "cooldown": 1, "level_required": 1,
+      "effects": []
+    }
+  },
+  {
+    "rowId": "raise-skeleton",
+    "data": {
+      "name": { "en": "Raise Skeleton", "ru": "Поднять скелета", "ch": "" },
+      "description": { "en": "Animate a fallen foe to fight for you.", "ru": "Поднять павшего врага.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "school": "necromancy", "kind": "active", "base_damage": 0, "damage_scaling": 0, "cooldown": 5, "level_required": 7,
+      "effects": []
+    }
+  },
+  {
+    "rowId": "charm-person",
+    "data": {
+      "name": { "en": "Charm Person", "ru": "Очарование", "ch": "" },
+      "description": { "en": "Bend a humanoid to your will.", "ru": "Подчинить гуманоида своей воле.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "school": "enchantment", "kind": "active", "base_damage": 0, "damage_scaling": 0, "cooldown": 6, "level_required": 4,
+      "effects": []
+    }
+  },
+  {
+    "rowId": "summon-imp",
+    "data": {
+      "name": { "en": "Summon Imp", "ru": "Призвать беса", "ch": "" },
+      "description": { "en": "Call a minor demon to your side.", "ru": "Призвать малого демона.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "school": "conjuration", "kind": "active", "base_damage": 0, "damage_scaling": 0, "cooldown": 8, "level_required": 6,
+      "effects": []
+    }
+  }
+]

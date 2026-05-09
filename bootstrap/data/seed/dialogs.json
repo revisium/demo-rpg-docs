@@ -1,0 +1,38 @@
+[
+  {
+    "rowId": "aelric-greeting",
+    "data": {
+      "npc_id": "captain-aelric",
+      "slug": "greeting",
+      "lines": [
+        { "speaker": "npc", "text": { "en": "Hail, traveller. The Order has need of able hands.", "ru": "Привет, путник. Ордену нужны умелые руки.", "ch": "" }, "emotion": "neutral" },
+        { "speaker": "hero", "text": { "en": "What troubles you, Captain?", "ru": "Что вас беспокоит, капитан?", "ch": "" }, "emotion": "neutral" },
+        { "speaker": "npc", "text": { "en": "Goblins. Always goblins.", "ru": "Гоблины. Всегда гоблины.", "ch": "" }, "emotion": "angry" }
+      ]
+    }
+  },
+  {
+    "rowId": "thorin-quest-offer",
+    "data": {
+      "npc_id": "thane-thorin",
+      "slug": "quest_offer",
+      "lines": [
+        { "speaker": "npc", "text": { "en": "The upper halls have gone silent. Sentinels haven't reported in.", "ru": "Верхние залы погрузились в тишину.", "ch": "" }, "emotion": "sad" },
+        { "speaker": "hero", "text": { "en": "I'll investigate.", "ru": "Я разберусь.", "ch": "" }, "emotion": "neutral" }
+      ]
+    }
+  },
+  {
+    "rowId": "elenya-lore",
+    "data": {
+      "npc_id": "lady-elenya",
+      "slug": "lore_keeper",
+      "lines": [
+        { "speaker": "npc", "text": { "en": "The Sundering came in fire and silence. We elves remember.", "ru": "Раскол пришёл в огне и тишине.", "ch": "" }, "emotion": "sad" },
+        { "speaker": "hero", "text": { "en": "Tell me what you know about the Lich.", "ru": "Расскажите о Личе.", "ch": "" }, "emotion": "neutral" },
+        { "speaker": "npc", "text": { "en": "He was once a pre-Sundering archmage. Now he is something far worse.", "ru": "Он был архимагом. Ныне он что-то хуже.", "ch": "" }, "emotion": "neutral" },
+        { "speaker": "npc", "text": { "en": "Beware: he commands the dead, and the dead remember everything.", "ru": "Остерегайтесь.", "ch": "" }, "emotion": "surprised" }
+      ]
+    }
+  }
+]

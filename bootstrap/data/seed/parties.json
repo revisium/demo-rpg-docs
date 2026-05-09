@@ -1,0 +1,38 @@
+[
+  {
+    "rowId": "silver-spear",
+    "data": {
+      "name": { "en": "Silver Spear", "ru": "Серебряное копьё", "ch": "" },
+      "motto": { "en": "Honor first, victory second.", "ru": "Честь прежде всего.", "ch": "" },
+      "formation": "vanguard",
+      "hero_ids": ["garrick-the-bold", "sir-roland-dawnblade", "sister-petra"]
+    }
+  },
+  {
+    "rowId": "vale-walkers",
+    "data": {
+      "name": { "en": "Vale Walkers", "ru": "Идущие Долины", "ch": "" },
+      "motto": { "en": "Whisperwood stands eternal.", "ru": "Шепчущий Лес стоит вечно.", "ch": "" },
+      "formation": "skirmisher",
+      "hero_ids": ["lyra-of-the-vale", "magnus-the-wise"]
+    }
+  },
+  {
+    "rowId": "shadow-pact",
+    "data": {
+      "name": { "en": "Shadow Pact", "ru": "Теневой Пакт", "ch": "" },
+      "motto": { "en": "Strike from the dark.", "ru": "Удар из тьмы.", "ch": "" },
+      "formation": "skirmisher",
+      "hero_ids": ["veska-the-shadow"]
+    }
+  },
+  {
+    "rowId": "ironforge-vanguard",
+    "data": {
+      "name": { "en": "Ironforge Vanguard", "ru": "Авангард железного горна", "ch": "" },
+      "motto": { "en": "Stone-cold, iron-hard.", "ru": "Холодный как камень, твёрдый как железо.", "ch": "" },
+      "formation": "defensive",
+      "hero_ids": ["garrick-the-bold", "sir-roland-dawnblade", "sister-petra", "veska-the-shadow"]
+    }
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "required": ["order", "title", "body", "icon"],
+  "additionalProperties": false,
+  "properties": {
+    "order": { "type": "number", "default": 0 },
+    "title": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "body": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "icon": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" }
+  }
+}

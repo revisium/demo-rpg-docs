@@ -1,0 +1,42 @@
+[
+  {
+    "rowId": "verdant-marches",
+    "data": {
+      "name": { "en": "Verdant Marches", "ru": "Цветущие Марки", "ch": "" },
+      "description": { "en": "Temperate plains and woodland — the heartland of Eldoria.", "ru": "Умеренные равнины и леса — сердце Эльдории.", "ch": "" },
+      "climate": "temperate"
+    }
+  },
+  {
+    "rowId": "ironcrest-mountains",
+    "data": {
+      "name": { "en": "Ironcrest Mountains", "ru": "Железногорские горы", "ch": "" },
+      "description": { "en": "Northern alpine range, deep mines, dwarven holds of the Stoneward Brotherhood.", "ru": "Северный альпийский хребет, глубокие шахты, дворфийские крепости Камнестражей.", "ch": "" },
+      "climate": "alpine"
+    }
+  },
+  {
+    "rowId": "sundered-coast",
+    "data": {
+      "name": { "en": "Sundered Coast", "ru": "Расколотое побережье", "ch": "" },
+      "description": { "en": "Eastern littoral, broken islands, port cities and pirate confederacies.", "ru": "Восточное побережье, разломанные острова, портовые города и пиратские конфедерации.", "ch": "" },
+      "climate": "coastal"
+    }
+  },
+  {
+    "rowId": "ashen-wastes",
+    "data": {
+      "name": { "en": "Ashen Wastes", "ru": "Пепельные пустоши", "ch": "" },
+      "description": { "en": "Southern desert, scarred by the Sundering, home of the Forsaken.", "ru": "Южная пустыня, израненная Расколом, дом Отверженных.", "ch": "" },
+      "climate": "desert"
+    }
+  },
+  {
+    "rowId": "whispering-vale",
+    "data": {
+      "name": { "en": "Whispering Vale", "ru": "Шепчущая долина", "ch": "" },
+      "description": { "en": "Western primeval forest, ancient elven magic, seat of the Whisperwood Concord.", "ru": "Западный древний лес, древняя эльфийская магия, обитель Конкорда Шепчущего Леса.", "ch": "" },
+      "climate": "forest"
+    }
+  }
+]

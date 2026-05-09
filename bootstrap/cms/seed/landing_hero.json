@@ -1,0 +1,12 @@
+[
+  {
+    "rowId": "main",
+    "data": {
+      "headline": { "en": "Branching Tales", "ru": "Ветвящиеся истории", "ch": "" },
+      "subheadline": { "en": "A fantasy adventurer's guild simulator built end-to-end on Revisium.", "ru": "Симулятор гильдии приключенцев, построенный на Revisium.", "ch": "" },
+      "cta_label": { "en": "Explore the Demo", "ru": "Исследовать демо", "ch": "" },
+      "cta_url": "https://cloud.revisium.io/revisium/demo-rpg-data",
+      "bg_image": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  }
+]

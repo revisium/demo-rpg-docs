@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "required": ["name", "motto", "formation", "hero_ids", "member_count", "is_full"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "motto": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "formation": {
+      "type": "string",
+      "default": "balanced",
+      "enum": ["vanguard", "balanced", "defensive", "skirmisher"]
+    },
+    "hero_ids": {
+      "type": "array",
+      "items": { "type": "string", "default": "", "foreignKey": "heroes" }
+    },
+    "member_count": {
+      "type": "number",
+      "default": 0,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "count(hero_ids)" }
+    },
+    "is_full": {
+      "type": "boolean",
+      "default": false,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "count(hero_ids) >= 4" }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "required": ["name", "description", "climate"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "climate": {
+      "type": "string",
+      "default": "temperate",
+      "enum": ["temperate", "alpine", "coastal", "desert", "forest"]
+    }
+  }
+}

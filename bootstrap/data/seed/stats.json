@@ -1,0 +1,56 @@
+[
+  {
+    "rowId": "strength",
+    "data": {
+      "code": "strength",
+      "abbreviation": "STR",
+      "name": { "en": "Strength", "ru": "Сила", "ch": "" },
+      "description": { "en": "Physical power, melee damage, carry capacity.", "ru": "Физическая мощь, урон в ближнем бою, грузоподъёмность.", "ch": "" }
+    }
+  },
+  {
+    "rowId": "dexterity",
+    "data": {
+      "code": "dexterity",
+      "abbreviation": "DEX",
+      "name": { "en": "Dexterity", "ru": "Ловкость", "ch": "" },
+      "description": { "en": "Agility, ranged accuracy, evasion.", "ru": "Подвижность, точность стрельбы, уклонение.", "ch": "" }
+    }
+  },
+  {
+    "rowId": "intelligence",
+    "data": {
+      "code": "intelligence",
+      "abbreviation": "INT",
+      "name": { "en": "Intelligence", "ru": "Интеллект", "ch": "" },
+      "description": { "en": "Arcane power, spell damage.", "ru": "Тайная мощь, урон заклинаний.", "ch": "" }
+    }
+  },
+  {
+    "rowId": "wisdom",
+    "data": {
+      "code": "wisdom",
+      "abbreviation": "WIS",
+      "name": { "en": "Wisdom", "ru": "Мудрость", "ch": "" },
+      "description": { "en": "Divine power, perception, mental defense.", "ru": "Божественная мощь, восприятие, ментальная защита.", "ch": "" }
+    }
+  },
+  {
+    "rowId": "constitution",
+    "data": {
+      "code": "constitution",
+      "abbreviation": "CON",
+      "name": { "en": "Constitution", "ru": "Телосложение", "ch": "" },
+      "description": { "en": "Hit points, stamina, physical resilience.", "ru": "Очки здоровья, выносливость, физическая стойкость.", "ch": "" }
+    }
+  },
+  {
+    "rowId": "charisma",
+    "data": {
+      "code": "charisma",
+      "abbreviation": "CHA",
+      "name": { "en": "Charisma", "ru": "Харизма", "ch": "" },
+      "description": { "en": "Social influence, leadership, charm.", "ru": "Социальное влияние, лидерство, обаяние.", "ch": "" }
+    }
+  }
+]

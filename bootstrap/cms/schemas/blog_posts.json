@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "required": ["slug", "author_id", "title", "excerpt", "body", "hero_image", "published_at"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": { "type": "string", "default": "" },
+    "author_id": { "type": "string", "default": "", "foreignKey": "blog_authors" },
+    "title": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "excerpt": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "body": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "", "contentMediaType": "text/markdown" },
+        "ru": { "type": "string", "default": "", "contentMediaType": "text/markdown" },
+        "ch": { "type": "string", "default": "", "contentMediaType": "text/markdown" }
+      }
+    },
+    "hero_image": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
+    "published_at": { "type": "string", "default": "" }
+  }
+}

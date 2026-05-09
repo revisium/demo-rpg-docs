@@ -1,0 +1,38 @@
+[
+  {
+    "rowId": "feature-versioning",
+    "data": {
+      "order": 1,
+      "title": { "en": "Branching for Live-Ops", "ru": "Ветвление для Live-Ops", "ch": "" },
+      "body": { "en": "Tune balance on a branch without disturbing master. Switch back if it doesn't land.", "ru": "Настройка баланса на ветке без влияния на master.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "feature-formulas",
+    "data": {
+      "order": 2,
+      "title": { "en": "Computed Fields", "ru": "Вычисляемые поля", "ch": "" },
+      "body": { "en": "Aggregations, conditionals, and string concat across same-row data.", "ru": "Агрегации, условия и конкатенация на уровне строки.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "feature-files",
+    "data": {
+      "order": 3,
+      "title": { "en": "First-Class Files", "ru": "Файлы как граждане первого класса", "ch": "" },
+      "body": { "en": "Stable fileId + content hash + dimensions. Reproducible, cacheable, addressable.", "ru": "Стабильный fileId и хэш содержимого.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "feature-federation",
+    "data": {
+      "order": 4,
+      "title": { "en": "Federated GraphQL", "ru": "Федеративный GraphQL", "ch": "" },
+      "body": { "en": "Plugs into any Apollo Router topology as a subgraph alongside your business logic.", "ru": "Работает как субграф Apollo Router.", "ch": "" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  }
+]

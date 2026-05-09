@@ -1,0 +1,96 @@
+[
+  {
+    "rowId": "garrick-the-bold",
+    "data": {
+      "class_id": "warrior",
+      "name": { "en": "Garrick", "ru": "Гаррик", "ch": "" },
+      "epithet": { "en": "the Bold", "ru": "Смелый", "ch": "" },
+      "level": 12, "constitution": 18, "gold": 850,
+      "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "ability_ids": ["slash", "shield-bash"],
+      "inventory_item_ids": ["healing-potion", "iron-longsword"],
+      "equipment": [
+        { "slot": "main_hand", "item_id": "iron-longsword", "modifier": 5 },
+        { "slot": "legs", "item_id": "steel-greaves", "modifier": 3 }
+      ]
+    }
+  },
+  {
+    "rowId": "lyra-of-the-vale",
+    "data": {
+      "class_id": "ranger",
+      "name": { "en": "Lyra", "ru": "Лира", "ch": "" },
+      "epithet": { "en": "of the Vale", "ru": "из Долины", "ch": "" },
+      "level": 9, "constitution": 14, "gold": 420,
+      "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "ability_ids": ["slash", "arcane-missile"],
+      "inventory_item_ids": ["bow-of-the-vale", "healing-potion", "elven-longbow"],
+      "equipment": [
+        { "slot": "ranged", "item_id": "bow-of-the-vale", "modifier": 5 },
+        { "slot": "chest", "item_id": "cloak-of-shadows", "modifier": 8 }
+      ]
+    }
+  },
+  {
+    "rowId": "magnus-the-wise",
+    "data": {
+      "class_id": "mage",
+      "name": { "en": "Magnus", "ru": "Магнус", "ch": "" },
+      "epithet": { "en": "the Wise", "ru": "Мудрый", "ch": "" },
+      "level": 14, "constitution": 10, "gold": 1200,
+      "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "ability_ids": ["fireball", "arcane-missile", "summon-imp"],
+      "inventory_item_ids": ["fireball-scroll", "healing-potion"],
+      "equipment": [
+        { "slot": "main_hand", "item_id": "fireball-scroll", "modifier": 0 },
+        { "slot": "head", "item_id": "crown-of-solenor", "modifier": 15 }
+      ]
+    }
+  },
+  {
+    "rowId": "sister-petra",
+    "data": {
+      "class_id": "cleric",
+      "name": { "en": "Petra", "ru": "Петра", "ch": "" },
+      "epithet": { "en": "the Light", "ru": "Светоносная", "ch": "" },
+      "level": 7, "constitution": 12, "gold": 200,
+      "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "ability_ids": ["heal-wounds"],
+      "inventory_item_ids": ["healing-potion"],
+      "equipment": [{ "slot": "main_hand", "item_id": "iron-longsword", "modifier": 3 }]
+    }
+  },
+  {
+    "rowId": "veska-the-shadow",
+    "data": {
+      "class_id": "rogue",
+      "name": { "en": "Veska", "ru": "Веска", "ch": "" },
+      "epithet": { "en": "the Shadow", "ru": "Тень", "ch": "" },
+      "level": 11, "constitution": 13, "gold": 980,
+      "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "ability_ids": ["slash"],
+      "inventory_item_ids": ["cloak-of-shadows", "healing-potion"],
+      "equipment": [
+        { "slot": "chest", "item_id": "cloak-of-shadows", "modifier": 8 },
+        { "slot": "main_hand", "item_id": "iron-longsword", "modifier": 4 }
+      ]
+    }
+  },
+  {
+    "rowId": "sir-roland-dawnblade",
+    "data": {
+      "class_id": "paladin",
+      "name": { "en": "Roland", "ru": "Роланд", "ch": "" },
+      "epithet": { "en": "Dawnblade", "ru": "Клинок Зари", "ch": "" },
+      "level": 15, "constitution": 16, "gold": 1500,
+      "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "ability_ids": ["slash", "heal-wounds"],
+      "inventory_item_ids": ["iron-longsword", "healing-potion"],
+      "equipment": [
+        { "slot": "main_hand", "item_id": "iron-longsword", "modifier": 7 },
+        { "slot": "legs", "item_id": "steel-greaves", "modifier": 3 },
+        { "slot": "head", "item_id": "crown-of-solenor", "modifier": 15 }
+      ]
+    }
+  }
+]

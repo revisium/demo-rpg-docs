@@ -1,0 +1,72 @@
+[
+  {
+    "rowId": "silver-citadel",
+    "data": {
+      "region_id": "verdant-marches",
+      "name": { "en": "Silver Citadel", "ru": "Серебряная цитадель", "ch": "" },
+      "description": { "en": "Capital of the Verdant Marches and seat of the Order of the Silver Dawn.", "ru": "Столица Цветущих Марок и резиденция Ордена Серебряной Зари.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "town", "coordinates": { "x": 1200, "y": 800 }
+    }
+  },
+  {
+    "rowId": "ironforge-keep",
+    "data": {
+      "region_id": "ironcrest-mountains",
+      "name": { "en": "Ironforge Keep", "ru": "Крепость Железного Горна", "ch": "" },
+      "description": { "en": "Dwarven fortress carved into the mountainside, heart of the Stoneward Brotherhood.", "ru": "Дворфийская крепость в горе, сердце Братства Камнестражей.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "town", "coordinates": { "x": 1000, "y": 200 }
+    }
+  },
+  {
+    "rowId": "whisperwood-grove",
+    "data": {
+      "region_id": "whispering-vale",
+      "name": { "en": "Whisperwood Grove", "ru": "Шепчущая роща", "ch": "" },
+      "description": { "en": "Sacred elven grove and the Concord's primary council chamber.", "ru": "Священная эльфийская роща и главный зал совета Конкорда.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "town", "coordinates": { "x": 400, "y": 700 }
+    }
+  },
+  {
+    "rowId": "saltport",
+    "data": {
+      "region_id": "sundered-coast",
+      "name": { "en": "Saltport", "ru": "Соляная гавань", "ch": "" },
+      "description": { "en": "Largest free port on the Sundered Coast, ruled by a council of captains.", "ru": "Крупнейший вольный порт Расколотого побережья.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "town", "coordinates": { "x": 1700, "y": 900 }
+    }
+  },
+  {
+    "rowId": "ashreach-outpost",
+    "data": {
+      "region_id": "ashen-wastes",
+      "name": { "en": "Ashreach Outpost", "ru": "Застава Пепельного Предела", "ch": "" },
+      "description": { "en": "Last bastion before the deep wastes; mostly fortifications and a tavern.", "ru": "Последний оплот перед глубокими пустошами.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "village", "coordinates": { "x": 1400, "y": 1500 }
+    }
+  },
+  {
+    "rowId": "goblin-caves",
+    "data": {
+      "region_id": "verdant-marches",
+      "name": { "en": "Goblin Caves", "ru": "Гоблинские пещеры", "ch": "" },
+      "description": { "en": "A warren of caves overrun by goblin raiders, perfect for first quests.", "ru": "Сеть пещер, занятая гоблинами-налётчиками.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "dungeon", "coordinates": { "x": 1100, "y": 950 }
+    }
+  },
+  {
+    "rowId": "forsaken-tomb",
+    "data": {
+      "region_id": "ashen-wastes",
+      "name": { "en": "Forsaken Tomb", "ru": "Гробница Отверженных", "ch": "" },
+      "description": { "en": "An ancient tomb where a Lich rules over its undead court.", "ru": "Древняя гробница, где Лич правит своим нежитным двором.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "ruin", "coordinates": { "x": 1500, "y": 1700 }
+    }
+  }
+]

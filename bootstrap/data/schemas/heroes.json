@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "required": ["class_id", "name", "epithet", "level", "constitution", "gold", "portrait", "ability_ids", "inventory_item_ids", "equipment", "is_veteran", "total_equipment_modifier", "equipped_count", "display_name_en"],
+  "additionalProperties": false,
+  "properties": {
+    "class_id": { "type": "string", "default": "", "foreignKey": "classes" },
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "epithet": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "level": { "type": "number", "default": 1 },
+    "constitution": { "type": "number", "default": 10 },
+    "gold": { "type": "number", "default": 0 },
+    "portrait": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
+    "ability_ids": {
+      "type": "array",
+      "items": { "type": "string", "default": "", "foreignKey": "abilities" }
+    },
+    "inventory_item_ids": {
+      "type": "array",
+      "items": { "type": "string", "default": "", "foreignKey": "items" }
+    },
+    "equipment": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slot", "item_id", "modifier"],
+        "additionalProperties": false,
+        "properties": {
+          "slot": {
+            "type": "string",
+            "default": "main_hand",
+            "enum": ["head", "chest", "legs", "hands", "feet", "main_hand", "off_hand", "ranged"]
+          },
+          "item_id": { "type": "string", "default": "", "foreignKey": "items" },
+          "modifier": { "type": "number", "default": 0 }
+        }
+      }
+    },
+    "is_veteran": {
+      "type": "boolean",
+      "default": false,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "level >= 10" }
+    },
+    "total_equipment_modifier": {
+      "type": "number",
+      "default": 0,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "sum(equipment[*].modifier)" }
+    },
+    "equipped_count": {
+      "type": "number",
+      "default": 0,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "count(equipment)" }
+    },
+    "display_name_en": {
+      "type": "string",
+      "default": "",
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "concat(name.en, \" \", epithet.en)" }
+    }
+  }
+}

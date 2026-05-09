@@ -1,0 +1,20 @@
+[
+  {
+    "rowId": "lore-master",
+    "data": {
+      "slug": "lore-master",
+      "name": { "en": "The Lore Master", "ru": "Мастер Лора", "ch": "" },
+      "bio": { "en": "Chronicler of Eldoria, keeper of pre-Sundering history.", "ru": "Летописец Эльдории.", "ch": "" },
+      "avatar": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "guildkeeper",
+    "data": {
+      "slug": "guildkeeper",
+      "name": { "en": "The Guildkeeper", "ru": "Гильдийный писарь", "ch": "" },
+      "bio": { "en": "Tracks adventurer guild operations across Eldoria.", "ru": "Ведёт учёт гильдий Эльдории.", "ch": "" },
+      "avatar": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  }
+]

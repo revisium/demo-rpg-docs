@@ -1,0 +1,34 @@
+[
+  {
+    "rowId": "weapon",
+    "data": {
+      "name": { "en": "Weapon", "ru": "Оружие", "ch": "" },
+      "description": { "en": "Damage and offense — swords, bows, staves.", "ru": "Урон и нападение — мечи, луки, посохи.", "ch": "" },
+      "code": "weapon"
+    }
+  },
+  {
+    "rowId": "armor",
+    "data": {
+      "name": { "en": "Armor", "ru": "Броня", "ch": "" },
+      "description": { "en": "Defense and protection — helmets, breastplates, shields.", "ru": "Защита — шлемы, нагрудники, щиты.", "ch": "" },
+      "code": "armor"
+    }
+  },
+  {
+    "rowId": "potion",
+    "data": {
+      "name": { "en": "Potion", "ru": "Зелье", "ch": "" },
+      "description": { "en": "Consumable buff or restore.", "ru": "Расходное усиление или восстановление.", "ch": "" },
+      "code": "potion"
+    }
+  },
+  {
+    "rowId": "scroll",
+    "data": {
+      "name": { "en": "Scroll", "ru": "Свиток", "ch": "" },
+      "description": { "en": "One-shot spell cast.", "ru": "Одноразовое заклинание.", "ch": "" },
+      "code": "scroll"
+    }
+  }
+]

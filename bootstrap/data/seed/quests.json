@@ -1,0 +1,103 @@
+[
+  {
+    "rowId": "clear-the-goblin-camp",
+    "data": {
+      "giver_npc_id": "captain-aelric",
+      "name": { "en": "Clear the Goblin Camp", "ru": "Очистить Гоблинский лагерь", "ch": "" },
+      "description": { "en": "Goblin raiders have set up camp near Silver Citadel. Clear them out.", "ru": "Гоблины-налётчики разбили лагерь.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "tutorial", "level_required": 1, "is_repeatable": false,
+      "steps": [
+        {
+          "step_number": 1,
+          "description": { "en": "Speak with Captain Aelric for orders.", "ru": "Поговорите с Капитаном Эльриком.", "ch": "" },
+          "location_id": "silver-citadel", "npc_id": "captain-aelric", "xp": 25, "rewards": []
+        },
+        {
+          "step_number": 2,
+          "description": { "en": "Clear the Goblin Caves.", "ru": "Очистите Гоблинские пещеры.", "ch": "" },
+          "location_id": "goblin-caves", "npc_id": "captain-aelric", "xp": 100,
+          "rewards": [
+            { "item_id": "iron-longsword", "quantity": 1, "bonus_xp": 25 },
+            { "item_id": "healing-potion", "quantity": 3, "bonus_xp": 10 }
+          ]
+        },
+        {
+          "step_number": 3,
+          "description": { "en": "Return to Aelric for your reward.", "ru": "Вернитесь к Эльрику.", "ch": "" },
+          "location_id": "silver-citadel", "npc_id": "captain-aelric", "xp": 50,
+          "rewards": [{ "item_id": "healing-potion", "quantity": 5, "bonus_xp": 15 }]
+        }
+      ]
+    }
+  },
+  {
+    "rowId": "ascent-of-ironcrest",
+    "data": {
+      "giver_npc_id": "thane-thorin",
+      "name": { "en": "Ascent of Ironcrest", "ru": "Восхождение на Иронкрест", "ch": "" },
+      "description": { "en": "The Stone Sentinels of the upper halls have grown wild. Subdue them.", "ru": "Каменные стражи одичали. Усмирите их.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "story", "level_required": 8, "is_repeatable": false,
+      "steps": [
+        {
+          "step_number": 1,
+          "description": { "en": "Meet Thane Thorin in Ironforge Keep.", "ru": "Встретьтесь с Тейном Торином.", "ch": "" },
+          "location_id": "ironforge-keep", "npc_id": "thane-thorin", "xp": 75, "rewards": []
+        },
+        {
+          "step_number": 2,
+          "description": { "en": "Defeat the rampaging Stone Sentinels.", "ru": "Победите стражей.", "ch": "" },
+          "location_id": "ironforge-keep", "npc_id": "thane-thorin", "xp": 300,
+          "rewards": [
+            { "item_id": "steel-greaves", "quantity": 1, "bonus_xp": 50 },
+            { "item_id": "iron-longsword", "quantity": 1, "bonus_xp": 25 }
+          ]
+        },
+        {
+          "step_number": 3,
+          "description": { "en": "Return to Thorin with proof.", "ru": "Вернитесь к Торину.", "ch": "" },
+          "location_id": "ironforge-keep", "npc_id": "thane-thorin", "xp": 100,
+          "rewards": [
+            { "item_id": "healing-potion", "quantity": 5, "bonus_xp": 30 },
+            { "item_id": "elven-longbow", "quantity": 1, "bonus_xp": 60 }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "rowId": "the-lichs-throne",
+    "data": {
+      "giver_npc_id": "lady-elenya",
+      "name": { "en": "The Lich's Throne", "ru": "Трон Лича", "ch": "" },
+      "description": { "en": "Track the Ancient Lich to its throne and end its reign.", "ru": "Выследите Древнего Лича.", "ch": "" },
+      "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "kind": "endgame", "level_required": 15, "is_repeatable": false,
+      "steps": [
+        {
+          "step_number": 1,
+          "description": { "en": "Consult Lady Elenya about the Lich's lair.", "ru": "Посоветуйтесь с Леди Эленьей.", "ch": "" },
+          "location_id": "whisperwood-grove", "npc_id": "lady-elenya", "xp": 200,
+          "rewards": [{ "item_id": "fireball-scroll", "quantity": 3, "bonus_xp": 75 }]
+        },
+        {
+          "step_number": 2,
+          "description": { "en": "Cross the Ashen Wastes to the Forsaken Tomb.", "ru": "Пересеките Пепельные пустоши.", "ch": "" },
+          "location_id": "ashreach-outpost", "npc_id": "captain-mira", "xp": 400,
+          "rewards": [{ "item_id": "healing-potion", "quantity": 10, "bonus_xp": 50 }]
+        },
+        {
+          "step_number": 3,
+          "description": { "en": "Defeat the Ancient Lich on its throne.", "ru": "Победите Древнего Лича.", "ch": "" },
+          "location_id": "forsaken-tomb", "npc_id": "lady-elenya", "xp": 1500,
+          "rewards": [
+            { "item_id": "crown-of-solenor", "quantity": 1, "bonus_xp": 500 },
+            { "item_id": "cloak-of-shadows", "quantity": 1, "bonus_xp": 100 },
+            { "item_id": "fireball-scroll", "quantity": 5, "bonus_xp": 50 }
+          ]
+        }
+      ]
+    }
+  }
+]

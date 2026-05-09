@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "required": ["region_id", "name", "description", "map", "kind", "coordinates"],
+  "additionalProperties": false,
+  "properties": {
+    "region_id": { "type": "string", "default": "", "foreignKey": "regions" },
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "map": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
+    "kind": {
+      "type": "string",
+      "default": "town",
+      "enum": ["town", "village", "dungeon", "ruin", "wilderness"]
+    },
+    "coordinates": {
+      "type": "object",
+      "required": ["x", "y"],
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "number", "default": 0 },
+        "y": { "type": "number", "default": 0 }
+      }
+    }
+  }
+}

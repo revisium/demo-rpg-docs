@@ -1,0 +1,20 @@
+[
+  {
+    "rowId": "testimonial-1",
+    "data": {
+      "quote": { "en": "We replaced our gameplay-config admin tool with Revisium in two weeks.", "ru": "За две недели заменили админку на Revisium.", "ch": "" },
+      "author_name": "A. Game Studio Lead",
+      "author_role": { "en": "Tech Lead, mid-core mobile studio", "ru": "Техлид, мобильная студия", "ch": "" },
+      "avatar": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "testimonial-2",
+    "data": {
+      "quote": { "en": "Branching live-ops content was the missing piece.", "ru": "Ветвление live-ops контента — то, чего не хватало.", "ch": "" },
+      "author_name": "B. Live-Ops Director",
+      "author_role": { "en": "Live-Ops Director", "ru": "Директор Live-Ops", "ch": "" },
+      "avatar": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  }
+]

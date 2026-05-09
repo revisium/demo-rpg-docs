@@ -29,7 +29,12 @@ demo-rpg-docs/
 ├── requirements/            # BR-NNNN-{slug}.md + template + index
 ├── research/                # Discovery, alternatives, comparisons
 ├── skills/                  # Claude Code skills for the demo
-└── playbooks/               # Step-by-step task guides
+├── playbooks/               # Step-by-step task guides
+└── bootstrap/               # Applied JSON schemas + seed + apply script
+    ├── README.md
+    ├── data/                # demo-rpg-data: 15 tables (schemas/, seed/, order.json)
+    ├── cms/                 # demo-rpg-cms:  5 tables (schemas/, seed/, order.json)
+    └── scripts/             # apply.mjs + apply.sh
 ```
 
 ## Indices — sources of truth

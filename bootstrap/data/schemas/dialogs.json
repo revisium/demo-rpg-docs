@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "required": ["npc_id", "slug", "lines", "line_count"],
+  "additionalProperties": false,
+  "properties": {
+    "npc_id": { "type": "string", "default": "", "foreignKey": "npcs" },
+    "slug": { "type": "string", "default": "" },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["speaker", "text", "emotion"],
+        "additionalProperties": false,
+        "properties": {
+          "speaker": {
+            "type": "string",
+            "default": "npc",
+            "enum": ["npc", "hero"]
+          },
+          "text": {
+            "type": "object",
+            "required": ["en"],
+            "additionalProperties": false,
+            "properties": {
+              "en": { "type": "string", "default": "" },
+              "ru": { "type": "string", "default": "" },
+              "ch": { "type": "string", "default": "" }
+            }
+          },
+          "emotion": {
+            "type": "string",
+            "default": "neutral",
+            "enum": ["neutral", "happy", "angry", "sad", "surprised"]
+          }
+        }
+      }
+    },
+    "line_count": {
+      "type": "number",
+      "default": 0,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "count(lines)" }
+    }
+  }
+}

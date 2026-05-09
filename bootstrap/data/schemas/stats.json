@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "required": ["code", "name", "abbreviation", "description"],
+  "additionalProperties": false,
+  "properties": {
+    "code": { "type": "string", "default": "" },
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    },
+    "abbreviation": { "type": "string", "default": "" },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "ch": { "type": "string", "default": "" }
+      }
+    }
+  }
+}
