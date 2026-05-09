@@ -2,8 +2,8 @@
   {
     "rowId": "warrior",
     "data": {
-      "name": { "en": "Warrior", "ru": "Воин", "ch": "" },
-      "description": { "en": "Front-line melee fighter, master of arms.", "ru": "Боец передней линии.", "ch": "" },
+      "name": { "en": "Warrior", "ru": "Воин", "zh": "战士" },
+      "description": { "en": "Front-line melee fighter, master of arms.", "ru": "Боец передней линии.", "zh": "前线近战斗士，武器大师。" },
       "primary_stat": "strength", "base_hp": 120, "hp_per_level": 10, "mp_per_level": 2,
       "starting_ability_ids": ["slash", "shield-bash"]
     }
@@ -11,8 +11,8 @@
   {
     "rowId": "paladin",
     "data": {
-      "name": { "en": "Paladin", "ru": "Паладин", "ch": "" },
-      "description": { "en": "Holy warrior, partial divine caster.", "ru": "Святой воин, частичный божественный заклинатель.", "ch": "" },
+      "name": { "en": "Paladin", "ru": "Паладин", "zh": "圣骑士" },
+      "description": { "en": "Holy warrior, partial divine caster.", "ru": "Святой воин, частичный божественный заклинатель.", "zh": "神圣战士，部分神圣施法者。" },
       "primary_stat": "strength", "base_hp": 110, "hp_per_level": 9, "mp_per_level": 5,
       "starting_ability_ids": ["slash", "heal-wounds"]
     }
@@ -20,8 +20,8 @@
   {
     "rowId": "rogue",
     "data": {
-      "name": { "en": "Rogue", "ru": "Разбойник", "ch": "" },
-      "description": { "en": "Stealth specialist and burst-damage dealer.", "ru": "Специалист по скрытности и взрывному урону.", "ch": "" },
+      "name": { "en": "Rogue", "ru": "Разбойник", "zh": "盗贼" },
+      "description": { "en": "Stealth specialist and burst-damage dealer.", "ru": "Специалист по скрытности и взрывному урону.", "zh": "潜行专家与爆发伤害输出者。" },
       "primary_stat": "dexterity", "base_hp": 80, "hp_per_level": 6, "mp_per_level": 3,
       "starting_ability_ids": ["slash"]
     }
@@ -29,8 +29,8 @@
   {
     "rowId": "mage",
     "data": {
-      "name": { "en": "Mage", "ru": "Маг", "ch": "" },
-      "description": { "en": "Pure caster, glass cannon.", "ru": "Чистый заклинатель, стеклянная пушка.", "ch": "" },
+      "name": { "en": "Mage", "ru": "Маг", "zh": "法师" },
+      "description": { "en": "Pure caster, glass cannon.", "ru": "Чистый заклинатель, стеклянная пушка.", "zh": "纯粹的施法者，玻璃大炮。" },
       "primary_stat": "intelligence", "base_hp": 60, "hp_per_level": 4, "mp_per_level": 12,
       "starting_ability_ids": ["fireball", "arcane-missile"]
     }
@@ -38,8 +38,8 @@
   {
     "rowId": "cleric",
     "data": {
-      "name": { "en": "Cleric", "ru": "Клирик", "ch": "" },
-      "description": { "en": "Divine support and battlefield healer.", "ru": "Божественная поддержка и лекарь.", "ch": "" },
+      "name": { "en": "Cleric", "ru": "Клирик", "zh": "牧师" },
+      "description": { "en": "Divine support and battlefield healer.", "ru": "Божественная поддержка и лекарь.", "zh": "神圣辅助与战场治疗者。" },
       "primary_stat": "wisdom", "base_hp": 90, "hp_per_level": 7, "mp_per_level": 10,
       "starting_ability_ids": ["heal-wounds"]
     }
@@ -47,8 +47,8 @@
   {
     "rowId": "ranger",
     "data": {
-      "name": { "en": "Ranger", "ru": "Следопыт", "ch": "" },
-      "description": { "en": "Wilderness specialist, mixed martial and arcane.", "ru": "Специалист по дикой местности.", "ch": "" },
+      "name": { "en": "Ranger", "ru": "Следопыт", "zh": "游侠" },
+      "description": { "en": "Wilderness specialist, mixed martial and arcane.", "ru": "Специалист по дикой местности.", "zh": "荒野专家，武术与奥术结合。" },
       "primary_stat": "dexterity", "base_hp": 95, "hp_per_level": 7, "mp_per_level": 4,
       "starting_ability_ids": ["slash", "arcane-missile"]
     }

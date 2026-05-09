@@ -11,7 +11,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "epithet": {
@@ -21,7 +21,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "level": { "type": "number", "default": 1 },

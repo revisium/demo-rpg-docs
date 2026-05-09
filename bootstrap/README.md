@@ -103,7 +103,7 @@ Seed-row insertion follows the same order: every FK reference must resolve to an
 ## Conventions
 
 - Snake_case throughout. FK fields are `<target>_id`, FK arrays `<target>_ids`.
-- Localized strings are inline objects: `{ en, ru, ch }`. `en` is required; `ru` and `ch` default to `""`. **Validation note:** even though only `en` is in `required`, Revisium's runtime requires `ru` and `ch` to be present (with empty-string default) when seeding rows. The seed files include all three keys.
+- Localized strings are inline objects: `{ en, ru, zh }`. `en` is required; `ru` (Russian) and `zh` (Chinese, defaults to Simplified) default to `""`. **Validation note:** even though only `en` is in `required`, Revisium's runtime requires `ru` and `zh` to be present (with empty-string default) when seeding rows. The seed files include all three keys.
 - File fields use `{ "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" }`. Seed rows include an empty file object `{ status, fileId, url, fileName, hash, extension, mimeType, size, width, height }` — uploads happen later via `upload_file`.
 - Computed fields use `x-formula: { version: 1, expression: "…" }`. They have `readOnly: true`, a `default`, and are listed in `required`.
 
@@ -117,7 +117,7 @@ These are real Revisium constraints that influenced the spec:
 |---|---|
 | Self-referencing foreign keys are not supported | `factions.ally_ids` / `enemy_ids` were dropped from the v1 schema. A follow-up `faction_relationships` junction table will demonstrate M:N self-relations. |
 | `max()` and `min()` are scalar functions only — they do **not** accept arrays | `monsters.max_drop_quantity` was dropped from v1. `sum`, `avg`, `count` work on arrays via the `[*]` wildcard. |
-| Localized object validation requires every declared locale to be present | Seed rows always include `ru` and `ch` keys (empty-string is fine), even though `required: ["en"]`. |
+| Localized object validation requires every declared locale to be present | Seed rows always include `ru` and `zh` keys (empty-string is fine), even though `required: ["en"]`. |
 | `"format": "date-time"` is silently ignored | `blog_posts.published_at` is `string` only; format validation happens in the application layer. |
 
 These are tracked as open questions in the relevant specs and as candidates for a future `faction_relationships` migration.

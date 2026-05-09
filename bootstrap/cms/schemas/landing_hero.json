@@ -10,7 +10,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "subheadline": {
@@ -20,7 +20,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "cta_label": {
@@ -30,7 +30,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "cta_url": { "type": "string", "default": "" },

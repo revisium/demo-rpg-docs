@@ -10,7 +10,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "motto": {
@@ -20,7 +20,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "formation": {

@@ -3,9 +3,9 @@
     "rowId": "captain-aelric",
     "data": {
       "faction_id": "silver-dawn", "location_id": "silver-citadel",
-      "name": { "en": "Aelric", "ru": "Эльрик", "ch": "" },
-      "title": { "en": "Captain", "ru": "Капитан", "ch": "" },
-      "description": { "en": "Veteran captain of the Silver Dawn, recruits new heroes for the Order.", "ru": "Ветеран-капитан Серебряной Зари.", "ch": "" },
+      "name": { "en": "Aelric", "ru": "Эльрик", "zh": "艾尔瑞克" },
+      "title": { "en": "Captain", "ru": "Капитан", "zh": "队长" },
+      "description": { "en": "Veteran captain of the Silver Dawn, recruits new heroes for the Order.", "ru": "Ветеран-капитан Серебряной Зари.", "zh": "银曦教团的老兵队长，为教团招募新英雄。" },
       "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
       "role": "quest_giver", "inventory_item_ids": []
     }
@@ -14,9 +14,9 @@
     "rowId": "thane-thorin",
     "data": {
       "faction_id": "stoneward-brotherhood", "location_id": "ironforge-keep",
-      "name": { "en": "Thorin", "ru": "Торин", "ch": "" },
-      "title": { "en": "Thane", "ru": "Тейн", "ch": "" },
-      "description": { "en": "Ruling thane of Ironforge, gravelly voice and graver opinions.", "ru": "Правящий тейн Крепости.", "ch": "" },
+      "name": { "en": "Thorin", "ru": "Торин", "zh": "索林" },
+      "title": { "en": "Thane", "ru": "Тейн", "zh": "领主" },
+      "description": { "en": "Ruling thane of Ironforge, gravelly voice and graver opinions.", "ru": "Правящий тейн Крепости.", "zh": "铁炉的执政领主，沙哑的声音与更沉重的见解。" },
       "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
       "role": "quest_giver", "inventory_item_ids": []
     }
@@ -25,9 +25,9 @@
     "rowId": "lady-elenya",
     "data": {
       "faction_id": "whisperwood-concord", "location_id": "whisperwood-grove",
-      "name": { "en": "Elenya", "ru": "Эленья", "ch": "" },
-      "title": { "en": "Lady", "ru": "Леди", "ch": "" },
-      "description": { "en": "Speaker of the Concord, scholar of the pre-Sundering ages.", "ru": "Говорящая Конкорда.", "ch": "" },
+      "name": { "en": "Elenya", "ru": "Эленья", "zh": "艾莲娅" },
+      "title": { "en": "Lady", "ru": "Леди", "zh": "女士" },
+      "description": { "en": "Speaker of the Concord, scholar of the pre-Sundering ages.", "ru": "Говорящая Конкорда.", "zh": "协议的代言人，破裂前时代的学者。" },
       "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
       "role": "lore_keeper", "inventory_item_ids": []
     }
@@ -36,9 +36,9 @@
     "rowId": "merchant-bram",
     "data": {
       "faction_id": "silver-dawn", "location_id": "silver-citadel",
-      "name": { "en": "Bram", "ru": "Брам", "ch": "" },
-      "title": { "en": "Master Merchant", "ru": "Купец", "ch": "" },
-      "description": { "en": "Stocks adventurer essentials and rare imports from Saltport.", "ru": "Торгует припасами и редкими товарами.", "ch": "" },
+      "name": { "en": "Bram", "ru": "Брам", "zh": "布拉姆" },
+      "title": { "en": "Master Merchant", "ru": "Купец", "zh": "商人大师" },
+      "description": { "en": "Stocks adventurer essentials and rare imports from Saltport.", "ru": "Торгует припасами и редкими товарами.", "zh": "储备冒险者必需品与盐港的稀有进口商品。" },
       "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
       "role": "merchant", "inventory_item_ids": ["iron-longsword", "steel-greaves", "healing-potion", "elven-longbow"]
     }
@@ -47,9 +47,9 @@
     "rowId": "captain-mira",
     "data": {
       "faction_id": "silver-dawn", "location_id": "saltport",
-      "name": { "en": "Mira", "ru": "Мира", "ch": "" },
-      "title": { "en": "Captain", "ru": "Капитан", "ch": "" },
-      "description": { "en": "Captain of a coastal patrol, hires for naval-themed quests.", "ru": "Капитан прибрежного патруля.", "ch": "" },
+      "name": { "en": "Mira", "ru": "Мира", "zh": "米拉" },
+      "title": { "en": "Captain", "ru": "Капитан", "zh": "队长" },
+      "description": { "en": "Captain of a coastal patrol, hires for naval-themed quests.", "ru": "Капитан прибрежного патруля.", "zh": "沿海巡逻队长，雇佣海事主题任务。" },
       "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
       "role": "quest_giver", "inventory_item_ids": []
     }
@@ -58,9 +58,9 @@
     "rowId": "trainer-kael",
     "data": {
       "faction_id": "whisperwood-concord", "location_id": "whisperwood-grove",
-      "name": { "en": "Kael", "ru": "Каэль", "ch": "" },
-      "title": { "en": "Master", "ru": "Наставник", "ch": "" },
-      "description": { "en": "Trains rangers in scouting and ranged combat.", "ru": "Обучает следопытов.", "ch": "" },
+      "name": { "en": "Kael", "ru": "Каэль", "zh": "凯尔" },
+      "title": { "en": "Master", "ru": "Наставник", "zh": "大师" },
+      "description": { "en": "Trains rangers in scouting and ranged combat.", "ru": "Обучает следопытов.", "zh": "训练游侠的侦察与远程战斗。" },
       "portrait": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
       "role": "trainer", "inventory_item_ids": []
     }

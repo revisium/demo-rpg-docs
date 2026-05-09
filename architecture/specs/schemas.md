@@ -22,7 +22,7 @@ This spec is the **what**; the **why** lives in the ADRs:
 
 ### Localized string — `<LocalizedString>`
 
-Every user-facing string is an inline object. `en` is the canonical fallback and is required; `ru` and `ch` are optional.
+Every user-facing string is an inline object. `en` is the canonical fallback and is required; `ru` (Russian) and `zh` (Chinese, defaults to Simplified) are optional.
 
 ```json
 {
@@ -624,7 +624,7 @@ Schema migrations on `master`:
 | `0001-initial-tables.json` | Create all 15 dictionary tables (CMS in a separate project's first migration). | Bulk schema bootstrap. |
 | `0002-add-monster-drop-quantity-range.json` | Add `quantity_min` and `quantity_max` to `monsters.drops[*]` (replacing a single `quantity`). | Schema evolution within an embedded array. |
 | `0003-add-item-rarity-tag-formula.json` | Add the `rarity_tag` computed field to `items`. | Adding an `x-formula` field to an existing table. |
-| `0004-add-third-locale-ch.json` | Add `ch` field to every `<LocalizedString>` instance. | Wide schema evolution; locale rollout. |
+| `0004-add-third-locale-zh.json` | Add `zh` field to every `<LocalizedString>` instance. | Wide schema evolution; locale rollout. |
 
 ### Balance branches (data only — no schema migrations)
 
@@ -638,7 +638,7 @@ Branch operations are not migration files. They are draft revisions on a separat
 
 | # | Question | Status |
 |---|---|---|
-| 1 | Confirm `ch` locale code (`zh-CN` is conventional; `ch` is shorter) | Open |
+| 1 | Whether to split `zh` into `zh_cn` (Simplified) and `zh_tw` (Traditional) as a future migration | Open |
 | 2 | Whether to add a `blog_tags` table and a `blog_posts.tag_ids` FK array as a follow-up migration (currently excluded from the v1 contract) | Open |
 | 3 | Whether `quests.steps[*].rewards[*]` should also support `ability_id` rewards (currently item-only) | Open |
 | 4 | Whether to add `weight_total` formula on heroes (sum of inventory weights) — would need item embedded into hero, breaking the FK pattern | Open |

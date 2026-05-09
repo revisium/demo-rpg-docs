@@ -2,40 +2,40 @@
   {
     "rowId": "verdant-marches",
     "data": {
-      "name": { "en": "Verdant Marches", "ru": "Цветущие Марки", "ch": "" },
-      "description": { "en": "Temperate plains and woodland — the heartland of Eldoria.", "ru": "Умеренные равнины и леса — сердце Эльдории.", "ch": "" },
+      "name": { "en": "Verdant Marches", "ru": "Цветущие Марки", "zh": "翠野边境" },
+      "description": { "en": "Temperate plains and woodland — the heartland of Eldoria.", "ru": "Умеренные равнины и леса — сердце Эльдории.", "zh": "温和的平原与林地——艾尔多里亚的核心。" },
       "climate": "temperate"
     }
   },
   {
     "rowId": "ironcrest-mountains",
     "data": {
-      "name": { "en": "Ironcrest Mountains", "ru": "Железногорские горы", "ch": "" },
-      "description": { "en": "Northern alpine range, deep mines, dwarven holds of the Stoneward Brotherhood.", "ru": "Северный альпийский хребет, глубокие шахты, дворфийские крепости Камнестражей.", "ch": "" },
+      "name": { "en": "Ironcrest Mountains", "ru": "Железногорские горы", "zh": "铁峰山脉" },
+      "description": { "en": "Northern alpine range, deep mines, dwarven holds of the Stoneward Brotherhood.", "ru": "Северный альпийский хребет, глубокие шахты, дворфийские крепости Камнестражей.", "zh": "北部高山山脉，深邃矿井，石卫兄弟会的矮人要塞。" },
       "climate": "alpine"
     }
   },
   {
     "rowId": "sundered-coast",
     "data": {
-      "name": { "en": "Sundered Coast", "ru": "Расколотое побережье", "ch": "" },
-      "description": { "en": "Eastern littoral, broken islands, port cities and pirate confederacies.", "ru": "Восточное побережье, разломанные острова, портовые города и пиратские конфедерации.", "ch": "" },
+      "name": { "en": "Sundered Coast", "ru": "Расколотое побережье", "zh": "破碎海岸" },
+      "description": { "en": "Eastern littoral, broken islands, port cities and pirate confederacies.", "ru": "Восточное побережье, разломанные острова, портовые города и пиратские конфедерации.", "zh": "东部沿海地带，破碎群岛，港口城市与海盗联盟。" },
       "climate": "coastal"
     }
   },
   {
     "rowId": "ashen-wastes",
     "data": {
-      "name": { "en": "Ashen Wastes", "ru": "Пепельные пустоши", "ch": "" },
-      "description": { "en": "Southern desert, scarred by the Sundering, home of the Forsaken.", "ru": "Южная пустыня, израненная Расколом, дом Отверженных.", "ch": "" },
+      "name": { "en": "Ashen Wastes", "ru": "Пепельные пустоши", "zh": "灰烬荒原" },
+      "description": { "en": "Southern desert, scarred by the Sundering, home of the Forsaken.", "ru": "Южная пустыня, израненная Расколом, дом Отверженных.", "zh": "南部沙漠，被破裂摧残，被弃者的家园。" },
       "climate": "desert"
     }
   },
   {
     "rowId": "whispering-vale",
     "data": {
-      "name": { "en": "Whispering Vale", "ru": "Шепчущая долина", "ch": "" },
-      "description": { "en": "Western primeval forest, ancient elven magic, seat of the Whisperwood Concord.", "ru": "Западный древний лес, древняя эльфийская магия, обитель Конкорда Шепчущего Леса.", "ch": "" },
+      "name": { "en": "Whispering Vale", "ru": "Шепчущая долина", "zh": "低语谷" },
+      "description": { "en": "Western primeval forest, ancient elven magic, seat of the Whisperwood Concord.", "ru": "Западный древний лес, древняя эльфийская магия, обитель Конкорда Шепчущего Леса.", "zh": "西部原始森林，古老的精灵魔法，低语林协议的所在地。" },
       "climate": "forest"
     }
   }

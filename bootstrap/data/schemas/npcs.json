@@ -12,7 +12,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "title": {
@@ -22,7 +22,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "description": {
@@ -32,7 +32,7 @@
       "properties": {
         "en": { "type": "string", "default": "" },
         "ru": { "type": "string", "default": "" },
-        "ch": { "type": "string", "default": "" }
+        "zh": { "type": "string", "default": "" }
       }
     },
     "portrait": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },

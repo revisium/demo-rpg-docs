@@ -2,18 +2,18 @@
   {
     "rowId": "testimonial-1",
     "data": {
-      "quote": { "en": "We replaced our gameplay-config admin tool with Revisium in two weeks.", "ru": "За две недели заменили админку на Revisium.", "ch": "" },
+      "quote": { "en": "We replaced our gameplay-config admin tool with Revisium in two weeks.", "ru": "За две недели заменили админку на Revisium.", "zh": "我们两周内用 Revisium 替换了游戏配置管理工具。" },
       "author_name": "A. Game Studio Lead",
-      "author_role": { "en": "Tech Lead, mid-core mobile studio", "ru": "Техлид, мобильная студия", "ch": "" },
+      "author_role": { "en": "Tech Lead, mid-core mobile studio", "ru": "Техлид, мобильная студия", "zh": "技术主管，中度核心手游工作室" },
       "avatar": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
     }
   },
   {
     "rowId": "testimonial-2",
     "data": {
-      "quote": { "en": "Branching live-ops content was the missing piece.", "ru": "Ветвление live-ops контента — то, чего не хватало.", "ch": "" },
+      "quote": { "en": "Branching live-ops content was the missing piece.", "ru": "Ветвление live-ops контента — то, чего не хватало.", "zh": "分支 live-ops 内容正是我们缺失的一环。" },
       "author_name": "B. Live-Ops Director",
-      "author_role": { "en": "Live-Ops Director", "ru": "Директор Live-Ops", "ch": "" },
+      "author_role": { "en": "Live-Ops Director", "ru": "Директор Live-Ops", "zh": "Live-Ops 总监" },
       "avatar": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
     }
   }

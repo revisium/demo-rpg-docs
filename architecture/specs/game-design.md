@@ -136,7 +136,7 @@ Branching Tales uses **inline localized objects** for every user-facing string. 
 ```
 
 - `en` is the canonical fallback and is required.
-- `ru` (Russian) and `ch` (Simplified Chinese) are optional and represent reach into two large non-English developer audiences.
+- `ru` (Russian, ISO 639-1) and `zh` (Chinese, defaults to Simplified) are optional and represent reach into two large non-English developer audiences.
 - New locales are added by widening the inline object — a real schema migration that demonstrates Revisium's migration tooling.
 
 This pattern is referenced throughout schemas as **`<LocalizedString>`** to keep the docs readable. The actual JSON in `demo-rpg-backend/revisium/schemas/*.json` (once that repo is bootstrapped) inlines the full object body in every place.
@@ -174,7 +174,7 @@ The frontend exposes a "branch switcher" so visitors can compare values side by 
 - Player accounts, progress, save state. The demo is read-only.
 - Combat simulation. Damage formulas exist as data; the demo does not "run" combat.
 - Real-time leaderboards or multiplayer.
-- Localization beyond `en` / `ru` / `ch`.
+- Locales beyond `en` / `ru` / `zh`.
 - Audio assets (deferred — see [`files.md`](./files.md) open questions).
 
 ## Open Questions
@@ -184,5 +184,5 @@ The frontend exposes a "branch switcher" so visitors can compare values side by 
 | 1 | Lock proper names for the Order of the Silver Dawn leadership and Stoneward thane | Open |
 | 2 | Decide rarity tier for the Crown of Solenor (legendary?), the demo's "marquee" item | Open |
 | 3 | Number of seed quests per region (suggest 3 starter, 2 mid, 1 endgame each — totals to 30) | Open |
-| 4 | Should `ch` mean Simplified Chinese (`zh-CN`) or stay as a generic `ch` placeholder | Open |
+| 4 | Whether to split `zh` into `zh_cn` (Simplified) and `zh_tw` (Traditional) as a future migration | Open |
 | 5 | Whether to add a fourth locale (e.g. `es`) or keep three for the demo | Open |

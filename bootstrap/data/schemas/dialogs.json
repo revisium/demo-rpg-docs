@@ -24,7 +24,7 @@
             "properties": {
               "en": { "type": "string", "default": "" },
               "ru": { "type": "string", "default": "" },
-              "ch": { "type": "string", "default": "" }
+              "zh": { "type": "string", "default": "" }
             }
           },
           "emotion": {

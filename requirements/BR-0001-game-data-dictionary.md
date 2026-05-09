@@ -38,7 +38,7 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 | Tables in dictionary | 0 | 15 | Project view in admin |
 | Formula primitives demonstrated | 0 | ≥ 12 | [`specs/formulas.md § Coverage matrix`](../architecture/specs/formulas.md#coverage-matrix) |
 | File-field patterns demonstrated | 0 | ≥ 6 | [`specs/files.md`](../architecture/specs/files.md) |
-| Locales supported per `<LocalizedString>` | 1 | 3 (en, ru, ch) | [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization) |
+| Locales supported per `<LocalizedString>` | 1 | 3 (en, ru, zh) | [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization) |
 | Demo project loads in <2s for first-time visitor | n/a | <2s | Lighthouse |
 
 ## 3. Audience
@@ -62,7 +62,7 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 
 - Player accounts and progress (no user state in this demo).
 - Real-time leaderboards.
-- Locales beyond `en` / `ru` / `ch` (the trio defined in [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization)).
+- Locales beyond `en` / `ru` / `zh` (the trio defined in [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization)).
 
 ### Assumptions
 
