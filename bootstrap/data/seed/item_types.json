@@ -1,0 +1,34 @@
+[
+  {
+    "rowId": "weapon",
+    "data": {
+      "name": { "en": "Weapon", "ru": "Оружие", "zh": "武器" },
+      "description": { "en": "Damage and offense — swords, bows, staves.", "ru": "Урон и нападение — мечи, луки, посохи.", "zh": "伤害与攻击——剑、弓、法杖。" },
+      "code": "weapon"
+    }
+  },
+  {
+    "rowId": "armor",
+    "data": {
+      "name": { "en": "Armor", "ru": "Броня", "zh": "护甲" },
+      "description": { "en": "Defense and protection — helmets, breastplates, shields.", "ru": "Защита — шлемы, нагрудники, щиты.", "zh": "防御与保护——头盔、胸甲、盾牌。" },
+      "code": "armor"
+    }
+  },
+  {
+    "rowId": "potion",
+    "data": {
+      "name": { "en": "Potion", "ru": "Зелье", "zh": "药水" },
+      "description": { "en": "Consumable buff or restore.", "ru": "Расходное усиление или восстановление.", "zh": "一次性的增益或恢复。" },
+      "code": "potion"
+    }
+  },
+  {
+    "rowId": "scroll",
+    "data": {
+      "name": { "en": "Scroll", "ru": "Свиток", "zh": "卷轴" },
+      "description": { "en": "One-shot spell cast.", "ru": "Одноразовое заклинание.", "zh": "一次性法术。" },
+      "code": "scroll"
+    }
+  }
+]

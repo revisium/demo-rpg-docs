@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "required": ["code", "name", "description", "kind", "default_duration"],
+  "additionalProperties": false,
+  "properties": {
+    "code": { "type": "string", "default": "" },
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "kind": {
+      "type": "string",
+      "default": "buff",
+      "enum": ["buff", "debuff", "damage_over_time", "crowd_control"]
+    },
+    "default_duration": { "type": "number", "default": 0, "minimum": 0 }
+  }
+}

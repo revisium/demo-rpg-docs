@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "required": ["name", "description", "primary_stat", "base_hp", "hp_per_level", "mp_per_level", "starting_ability_ids"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "primary_stat": {
+      "type": "string",
+      "default": "strength",
+      "enum": ["strength", "dexterity", "intelligence", "wisdom", "constitution", "charisma"]
+    },
+    "base_hp": { "type": "number", "default": 0, "minimum": 0 },
+    "hp_per_level": { "type": "number", "default": 0, "minimum": 0 },
+    "mp_per_level": { "type": "number", "default": 0, "minimum": 0 },
+    "starting_ability_ids": {
+      "type": "array",
+      "items": { "type": "string", "default": "", "foreignKey": "abilities" }
+    }
+  }
+}

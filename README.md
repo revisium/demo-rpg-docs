@@ -102,6 +102,10 @@ Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is 
 
 - [requirements/README.md](requirements/README.md) — current BR catalogue.
 
+## Bootstrap
+
+- [bootstrap/](bootstrap/README.md) — applied schemas + seed data + apply script. Replicate the live demo in your own Revisium org with one command.
+
 ## Skills & Playbooks
 
 - [skills/](skills/README.md) — Claude Code skills tailored to this demo (schema design, formula authoring, migration runs).

@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "required": ["faction_id", "location_id", "name", "title", "description", "portrait", "role", "inventory_item_ids", "display_label_en"],
+  "additionalProperties": false,
+  "properties": {
+    "faction_id": { "type": "string", "default": "", "foreignKey": "factions" },
+    "location_id": { "type": "string", "default": "", "foreignKey": "locations" },
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "title": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "portrait": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
+    "role": {
+      "type": "string",
+      "default": "quest_giver",
+      "enum": ["quest_giver", "merchant", "trainer", "lore_keeper"]
+    },
+    "inventory_item_ids": {
+      "type": "array",
+      "items": { "type": "string", "default": "", "foreignKey": "items" }
+    },
+    "display_label_en": {
+      "type": "string",
+      "default": "",
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "concat(title.en, \" \", name.en)" }
+    }
+  }
+}

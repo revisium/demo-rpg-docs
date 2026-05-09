@@ -1,0 +1,90 @@
+[
+  {
+    "rowId": "iron-longsword",
+    "data": {
+      "type_id": "weapon",
+      "name": { "en": "Iron Longsword", "ru": "Железный длинный меч", "zh": "铁制长剑" },
+      "description": { "en": "Reliable side-arm of any standing army.", "ru": "Надёжный меч любой регулярной армии.", "zh": "任何常备军的可靠副武器。" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "rarity": "common", "rarity_multiplier": 1, "base_value": 50, "weight": 3,
+      "modifiers": [{ "stat_id": "strength", "value": 5 }]
+    }
+  },
+  {
+    "rowId": "steel-greaves",
+    "data": {
+      "type_id": "armor",
+      "name": { "en": "Steel Greaves", "ru": "Стальные поножи", "zh": "钢铁腿甲" },
+      "description": { "en": "Heavy plate covering legs from knee to ankle.", "ru": "Тяжёлые поножи от колена до щиколотки.", "zh": "覆盖膝至踝的厚重板甲。" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "rarity": "uncommon", "rarity_multiplier": 1.5, "base_value": 80, "weight": 5,
+      "modifiers": [{ "stat_id": "constitution", "value": 3 }]
+    }
+  },
+  {
+    "rowId": "healing-potion",
+    "data": {
+      "type_id": "potion",
+      "name": { "en": "Healing Potion", "ru": "Зелье исцеления", "zh": "治疗药水" },
+      "description": { "en": "Restores 50 HP on consumption.", "ru": "Восстанавливает 50 ОЗ при употреблении.", "zh": "服用时恢复 50 点生命值。" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "rarity": "common", "rarity_multiplier": 1, "base_value": 25, "weight": 1,
+      "modifiers": []
+    }
+  },
+  {
+    "rowId": "fireball-scroll",
+    "data": {
+      "type_id": "scroll",
+      "name": { "en": "Fireball Scroll", "ru": "Свиток Огненного шара", "zh": "火球术卷轴" },
+      "description": { "en": "One-shot Fireball spell from a written scroll.", "ru": "Одноразовый Огненный шар из свитка.", "zh": "来自卷轴的一次性火球术。" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "rarity": "rare", "rarity_multiplier": 2.5, "base_value": 200, "weight": 0.1,
+      "modifiers": []
+    }
+  },
+  {
+    "rowId": "bow-of-the-vale",
+    "data": {
+      "type_id": "weapon",
+      "name": { "en": "Bow of the Vale", "ru": "Лук Долины", "zh": "谷地之弓" },
+      "description": { "en": "Elven longbow imbued with whispering wind magic.", "ru": "Эльфийский длинный лук, наполненный магией ветра.", "zh": "注入低语风魔法的精灵长弓。" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "rarity": "rare", "rarity_multiplier": 2.5, "base_value": 350, "weight": 2,
+      "modifiers": [{ "stat_id": "dexterity", "value": 5 }]
+    }
+  },
+  {
+    "rowId": "cloak-of-shadows",
+    "data": {
+      "type_id": "armor",
+      "name": { "en": "Cloak of Shadows", "ru": "Плащ Теней", "zh": "暗影斗篷" },
+      "description": { "en": "Wreathes the wearer in dim, shifting darkness.", "ru": "Окутывает носящего тьмой.", "zh": "将穿戴者笼罩在昏暗的黑暗中。" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "rarity": "epic", "rarity_multiplier": 5, "base_value": 700, "weight": 1,
+      "modifiers": [{ "stat_id": "dexterity", "value": 5 }, { "stat_id": "intelligence", "value": 3 }]
+    }
+  },
+  {
+    "rowId": "crown-of-solenor",
+    "data": {
+      "type_id": "armor",
+      "name": { "en": "Crown of Solenor", "ru": "Корона Соленора", "zh": "索莱诺王冠" },
+      "description": { "en": "Marquee artefact of Eldoria — lost since the Sundering.", "ru": "Главный артефакт Эльдории — утерян со времён Раскола.", "zh": "艾尔多里亚的旗舰神器——自破裂以来失踪。" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "rarity": "legendary", "rarity_multiplier": 10, "base_value": 5000, "weight": 2,
+      "modifiers": [{ "stat_id": "wisdom", "value": 5 }, { "stat_id": "charisma", "value": 5 }, { "stat_id": "constitution", "value": 5 }]
+    }
+  },
+  {
+    "rowId": "elven-longbow",
+    "data": {
+      "type_id": "weapon",
+      "name": { "en": "Elven Longbow", "ru": "Эльфийский длинный лук", "zh": "精灵长弓" },
+      "description": { "en": "Light, accurate, and quiet.", "ru": "Лёгкий, точный, бесшумный.", "zh": "轻盈、精准、寂静。" },
+      "icon": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "rarity": "uncommon", "rarity_multiplier": 1.5, "base_value": 120, "weight": 2,
+      "modifiers": [{ "stat_id": "dexterity", "value": 3 }]
+    }
+  }
+]

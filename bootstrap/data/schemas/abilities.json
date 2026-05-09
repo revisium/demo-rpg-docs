@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "required": ["name", "description", "icon", "school", "kind", "base_damage", "damage_scaling", "cooldown", "level_required", "effects"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "icon": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
+    "school": {
+      "type": "string",
+      "default": "evocation",
+      "enum": ["abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation"]
+    },
+    "kind": {
+      "type": "string",
+      "default": "active",
+      "enum": ["active", "passive", "reaction"]
+    },
+    "base_damage": { "type": "number", "default": 0 },
+    "damage_scaling": { "type": "number", "default": 0 },
+    "cooldown": { "type": "number", "default": 0, "minimum": 0 },
+    "level_required": { "type": "number", "default": 1, "minimum": 1 },
+    "effects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["effect_id", "chance", "duration"],
+        "additionalProperties": false,
+        "properties": {
+          "effect_id": { "type": "string", "default": "", "foreignKey": "effects" },
+          "chance": { "type": "number", "default": 0, "minimum": 0, "maximum": 1 },
+          "duration": { "type": "number", "default": 0, "minimum": 0 }
+        }
+      }
+    }
+  }
+}

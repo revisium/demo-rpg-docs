@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "required": ["faction_id", "name", "description", "image", "kind", "level", "hp", "base_damage", "ability_ids", "drops", "avg_drop_chance", "drop_count"],
+  "additionalProperties": false,
+  "properties": {
+    "faction_id": { "type": "string", "default": "", "foreignKey": "factions" },
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "image": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
+    "kind": {
+      "type": "string",
+      "default": "beast",
+      "enum": ["beast", "humanoid", "undead", "aberration", "construct"]
+    },
+    "level": { "type": "number", "default": 1, "minimum": 1 },
+    "hp": { "type": "number", "default": 0, "minimum": 0 },
+    "base_damage": { "type": "number", "default": 0, "minimum": 0 },
+    "ability_ids": {
+      "type": "array",
+      "items": { "type": "string", "default": "", "foreignKey": "abilities" }
+    },
+    "drops": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item_id", "chance", "quantity_min", "quantity_max"],
+        "additionalProperties": false,
+        "properties": {
+          "item_id": { "type": "string", "default": "", "foreignKey": "items" },
+          "chance": { "type": "number", "default": 0, "minimum": 0, "maximum": 1 },
+          "quantity_min": { "type": "number", "default": 0, "minimum": 0 },
+          "quantity_max": { "type": "number", "default": 0, "minimum": 0 }
+        }
+      }
+    },
+    "avg_drop_chance": {
+      "type": "number",
+      "default": 0,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "avg(drops[*].chance)" }
+    },
+    "drop_count": {
+      "type": "number",
+      "default": 0,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "count(drops)" }
+    }
+  }
+}

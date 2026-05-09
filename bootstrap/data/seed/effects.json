@@ -1,0 +1,56 @@
+[
+  {
+    "rowId": "poison",
+    "data": {
+      "code": "poison",
+      "name": { "en": "Poison", "ru": "Яд", "zh": "中毒" },
+      "description": { "en": "Damage over time from a toxic substance.", "ru": "Урон со временем от токсичного вещества.", "zh": "由毒物造成的持续伤害。" },
+      "kind": "damage_over_time", "default_duration": 3
+    }
+  },
+  {
+    "rowId": "stunned",
+    "data": {
+      "code": "stunned",
+      "name": { "en": "Stunned", "ru": "Оглушение", "zh": "眩晕" },
+      "description": { "en": "Target cannot act for the duration.", "ru": "Цель не может действовать.", "zh": "目标在持续时间内无法行动。" },
+      "kind": "crowd_control", "default_duration": 1
+    }
+  },
+  {
+    "rowId": "blessed",
+    "data": {
+      "code": "blessed",
+      "name": { "en": "Blessed", "ru": "Благословение", "zh": "祝福" },
+      "description": { "en": "Improved attack rolls and saving throws.", "ru": "Улучшенные броски атаки и спасброски.", "zh": "提升攻击与豁免投骰。" },
+      "kind": "buff", "default_duration": 5
+    }
+  },
+  {
+    "rowId": "bleeding",
+    "data": {
+      "code": "bleeding",
+      "name": { "en": "Bleeding", "ru": "Кровотечение", "zh": "流血" },
+      "description": { "en": "Damage over time from open wounds.", "ru": "Урон со временем от открытых ран.", "zh": "由开放伤口造成的持续伤害。" },
+      "kind": "damage_over_time", "default_duration": 4
+    }
+  },
+  {
+    "rowId": "frozen",
+    "data": {
+      "code": "frozen",
+      "name": { "en": "Frozen", "ru": "Заморожен", "zh": "冰冻" },
+      "description": { "en": "Movement halved, vulnerable to fire.", "ru": "Скорость снижена вдвое, уязвимость к огню.", "zh": "移动减半，对火焰易伤。" },
+      "kind": "debuff", "default_duration": 2
+    }
+  },
+  {
+    "rowId": "shielded",
+    "data": {
+      "code": "shielded",
+      "name": { "en": "Shielded", "ru": "Защищён", "zh": "护盾" },
+      "description": { "en": "Incoming damage reduced.", "ru": "Входящий урон снижен.", "zh": "受到的伤害降低。" },
+      "kind": "buff", "default_duration": 3
+    }
+  }
+]

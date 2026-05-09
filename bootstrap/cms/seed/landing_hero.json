@@ -1,0 +1,12 @@
+[
+  {
+    "rowId": "main",
+    "data": {
+      "headline": { "en": "Branching Tales", "ru": "Ветвящиеся истории", "zh": "分支故事" },
+      "subheadline": { "en": "A fantasy adventurer's guild simulator built end-to-end on Revisium.", "ru": "Симулятор гильдии приключенцев, построенный на Revisium.", "zh": "完全基于 Revisium 构建的奇幻冒险者公会模拟器。" },
+      "cta_label": { "en": "Explore the Demo", "ru": "Исследовать демо", "zh": "探索演示" },
+      "cta_url": "/",
+      "bg_image": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  }
+]

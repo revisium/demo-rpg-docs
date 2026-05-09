@@ -1,0 +1,38 @@
+[
+  {
+    "rowId": "silver-spear",
+    "data": {
+      "name": { "en": "Silver Spear", "ru": "Серебряное копьё", "zh": "银矛" },
+      "motto": { "en": "Honor first, victory second.", "ru": "Честь прежде всего.", "zh": "荣誉为先，胜利次之。" },
+      "formation": "vanguard",
+      "hero_ids": ["garrick-the-bold", "sir-roland-dawnblade", "sister-petra"]
+    }
+  },
+  {
+    "rowId": "vale-walkers",
+    "data": {
+      "name": { "en": "Vale Walkers", "ru": "Идущие Долины", "zh": "谷地行者" },
+      "motto": { "en": "Whisperwood stands eternal.", "ru": "Шепчущий Лес стоит вечно.", "zh": "低语林永恒长存。" },
+      "formation": "skirmisher",
+      "hero_ids": ["lyra-of-the-vale", "magnus-the-wise"]
+    }
+  },
+  {
+    "rowId": "shadow-pact",
+    "data": {
+      "name": { "en": "Shadow Pact", "ru": "Теневой Пакт", "zh": "暗影盟约" },
+      "motto": { "en": "Strike from the dark.", "ru": "Удар из тьмы.", "zh": "自暗处出击。" },
+      "formation": "skirmisher",
+      "hero_ids": ["veska-the-shadow"]
+    }
+  },
+  {
+    "rowId": "ironforge-vanguard",
+    "data": {
+      "name": { "en": "Ironforge Vanguard", "ru": "Авангард железного горна", "zh": "铁炉先锋" },
+      "motto": { "en": "Stone-cold, iron-hard.", "ru": "Холодный как камень, твёрдый как железо.", "zh": "冰冷如石，坚硬如铁。" },
+      "formation": "defensive",
+      "hero_ids": ["garrick-the-bold", "sir-roland-dawnblade", "sister-petra", "veska-the-shadow"]
+    }
+  }
+]

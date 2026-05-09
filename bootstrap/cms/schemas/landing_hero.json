@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "required": ["headline", "subheadline", "cta_label", "cta_url", "bg_image"],
+  "additionalProperties": false,
+  "properties": {
+    "headline": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "subheadline": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "cta_label": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "cta_url": { "type": "string", "default": "" },
+    "bg_image": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" }
+  }
+}

@@ -38,7 +38,7 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 | Tables in dictionary | 0 | 15 | Project view in admin |
 | Formula primitives demonstrated | 0 | ≥ 12 | [`specs/formulas.md § Coverage matrix`](../architecture/specs/formulas.md#coverage-matrix) |
 | File-field patterns demonstrated | 0 | ≥ 6 | [`specs/files.md`](../architecture/specs/files.md) |
-| Locales supported per `<LocalizedString>` | 1 | 3 (en, ru, ch) | [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization) |
+| Locales supported per `<LocalizedString>` | 1 | 3 (en, ru, zh) | [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization) |
 | Demo project loads in <2s for first-time visitor | n/a | <2s | Lighthouse |
 
 ## 3. Audience
@@ -62,7 +62,7 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 
 - Player accounts and progress (no user state in this demo).
 - Real-time leaderboards.
-- Locales beyond `en` / `ru` / `ch` (the trio defined in [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization)).
+- Locales beyond `en` / `ru` / `zh` (the trio defined in [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization)).
 
 ### Assumptions
 
@@ -103,11 +103,11 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 | Files demonstrated for portraits, icons, maps, crests | Must | Draft | [`specs/files.md`](../architecture/specs/files.md) |
 | Public read access | Must | Draft | Project setting |
 | One balance branch for branching demo | Should | Draft | <!-- TODO --> |
-| Localization (en required; ru and ch optional) on user-facing entities | Should | Draft | [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring) |
+| Localization (en required; ru and zh optional) on user-facing entities | Should | Draft | [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring) |
 
 ## 7. Business rules and constraints
 
-- All user-facing strings use the inline localized object pattern: `{ en (required), ru, ch }`. See [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization) and [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring).
+- All user-facing strings use the inline localized object pattern: `{ en (required), ru, zh }`. See [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization) and [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring).
 - All visual entities must have a file field.
 - Aggregation formulas that read a per-element field (`sum`, `avg`, `min`, `max` over `arr[*].field`) must run over **embedded arrays**, not FK arrays — formulas operate on a single row's data and cannot dereference foreign keys. `count()` and `length()` on FK arrays are allowed because they only read the array's length, not the referenced rows. See [`specs/formulas.md § Data-scope rules`](../architecture/specs/formulas.md#data-scope-rules--what-you-can-and-cannot-do).
 

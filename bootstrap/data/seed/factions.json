@@ -1,0 +1,47 @@
+[
+  {
+    "rowId": "silver-dawn",
+    "data": {
+      "name": { "en": "Order of the Silver Dawn", "ru": "Орден Серебряной Зари", "zh": "银曦教团" },
+      "description": { "en": "Lawful good — paladins, oaths, light magic. Seat: Verdant Marches.", "ru": "Законопослушно-добрый орден паладинов.", "zh": "守序善良——圣骑士、誓言、光明魔法。所在地：翠野边境。" },
+      "alignment": "lawful_good",
+      "crest": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "stoneward-brotherhood",
+    "data": {
+      "name": { "en": "Stoneward Brotherhood", "ru": "Братство Камнестражей", "zh": "石卫兄弟会" },
+      "description": { "en": "Lawful neutral — dwarven clans, mining and forging.", "ru": "Законопослушно-нейтральные дворфийские кланы.", "zh": "守序中立——矮人氏族，采矿与锻造。" },
+      "alignment": "lawful_neutral",
+      "crest": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "whisperwood-concord",
+    "data": {
+      "name": { "en": "Whisperwood Concord", "ru": "Конкорд Шепчущего Леса", "zh": "低语林协议" },
+      "description": { "en": "Neutral — elven scholars, druids, ancient magic.", "ru": "Нейтральные эльфийские учёные и друиды.", "zh": "中立——精灵学者、德鲁伊、古老魔法。" },
+      "alignment": "neutral",
+      "crest": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "crimson-pact",
+    "data": {
+      "name": { "en": "Crimson Pact", "ru": "Багровый Пакт", "zh": "赤红盟约" },
+      "description": { "en": "Chaotic neutral — orc warband, raiders.", "ru": "Хаотично-нейтральные орочьи налётчики.", "zh": "混乱中立——兽人战团、袭击者。" },
+      "alignment": "chaotic_neutral",
+      "crest": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  },
+  {
+    "rowId": "forsaken",
+    "data": {
+      "name": { "en": "The Forsaken", "ru": "Отверженные", "zh": "被弃者" },
+      "description": { "en": "Chaotic evil — undead remnants of pre-Sundering kingdoms.", "ru": "Хаотично-злые останки пре-Раскольных королевств.", "zh": "混乱邪恶——破裂前王国的不死残余。" },
+      "alignment": "chaotic_evil",
+      "crest": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }
+    }
+  }
+]

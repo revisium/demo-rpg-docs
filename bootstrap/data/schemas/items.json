@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "required": ["type_id", "name", "description", "icon", "rarity", "rarity_multiplier", "base_value", "weight", "modifiers", "market_value", "rarity_tag"],
+  "additionalProperties": false,
+  "properties": {
+    "type_id": { "type": "string", "default": "", "foreignKey": "item_types" },
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "description": {
+      "type": "object",
+      "required": ["en"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "default": "" },
+        "ru": { "type": "string", "default": "" },
+        "zh": { "type": "string", "default": "" }
+      }
+    },
+    "icon": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
+    "rarity": {
+      "type": "string",
+      "default": "common",
+      "enum": ["common", "uncommon", "rare", "epic", "legendary"]
+    },
+    "rarity_multiplier": { "type": "number", "default": 1, "minimum": 0 },
+    "base_value": { "type": "number", "default": 0, "minimum": 0 },
+    "weight": { "type": "number", "default": 0, "minimum": 0 },
+    "modifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["stat_id", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "stat_id": { "type": "string", "default": "", "foreignKey": "stats" },
+          "value": { "type": "number", "default": 0 }
+        }
+      }
+    },
+    "market_value": {
+      "type": "number",
+      "default": 0,
+      "readOnly": true,
+      "x-formula": { "version": 1, "expression": "base_value * rarity_multiplier" }
+    },
+    "rarity_tag": {
+      "type": "string",
+      "default": "common-tier",
+      "readOnly": true,
+      "x-formula": {
+        "version": 1,
+        "expression": "if(rarity == \"legendary\", \"epic-tier\", if(rarity == \"epic\", \"high-tier\", \"common-tier\"))"
+      }
+    }
+  }
+}

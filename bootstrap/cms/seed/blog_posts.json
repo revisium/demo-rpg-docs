@@ -1,0 +1,34 @@
+[
+  {
+    "rowId": "welcome-to-eldoria",
+    "data": {
+      "slug": "welcome-to-eldoria",
+      "author_id": "lore-master",
+      "title": { "en": "Welcome to Eldoria", "ru": "Добро пожаловать в Эльдорию", "zh": "欢迎来到艾尔多里亚" },
+      "excerpt": { "en": "An introduction to the world of Branching Tales.", "ru": "Знакомство с миром Ветвящихся историй.", "zh": "对《分支故事》世界的介绍。" },
+      "body": {
+        "en": "## A continent reborn\n\nEldoria emerged from the **Sundering** — a magical cataclysm two centuries ago. Five regions, five factions, and one shattered crown drive every quest in the world.",
+        "ru": "## Континент возрождён\n\nЭльдория вышла из **Раскола** — магического катаклизма двухвековой давности.",
+        "zh": "## 重生的大陆\n\n艾尔多里亚自**破裂**中诞生——两个世纪前的一场魔法浩劫。五大地区、五大派系，以及一顶破碎的王冠，驱动着这个世界的每一项任务。"
+      },
+      "hero_image": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "published_at": "2026-05-09T00:00:00Z"
+    }
+  },
+  {
+    "rowId": "guild-101",
+    "data": {
+      "slug": "guild-101",
+      "author_id": "guildkeeper",
+      "title": { "en": "Guild 101: Recruiting Heroes", "ru": "Гильдия 101: Набор героев", "zh": "公会入门：招募英雄" },
+      "excerpt": { "en": "How to spot a hero, what to pay, and how to keep them alive.", "ru": "Как найти героя.", "zh": "如何识别英雄、付多少酬劳、如何让他们活着。" },
+      "body": {
+        "en": "## Class basics\n\nSix classes: Warrior, Paladin, Rogue, Mage, Cleric, Ranger. Each has different `base_hp` and starting abilities.",
+        "ru": "## Классы\n\nШесть классов.",
+        "zh": "## 职业基础\n\n六大职业：战士、圣骑士、盗贼、法师、牧师、游侠。每个职业有不同的 `base_hp` 与起始技能。"
+      },
+      "hero_image": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "published_at": "2026-05-09T00:00:00Z"
+    }
+  }
+]
