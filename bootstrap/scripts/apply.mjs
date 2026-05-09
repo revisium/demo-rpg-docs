@@ -63,7 +63,9 @@ function parseArgs(argv) {
 async function api(args, path, init = {}) {
   const url = `${args.host.replace(/\/$/, '')}/api${path}`;
   const controller = new AbortController();
-  const timeoutMs = Number(process.env.REVISIUM_HTTP_TIMEOUT_MS ?? 30000);
+  const rawTimeout = process.env.REVISIUM_HTTP_TIMEOUT_MS;
+  const parsedTimeout = rawTimeout !== undefined ? Number(rawTimeout) : NaN;
+  const timeoutMs = Number.isFinite(parsedTimeout) && parsedTimeout > 0 ? parsedTimeout : 30000;
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   let res;
   try {
