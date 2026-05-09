@@ -19,9 +19,9 @@ The demo deliberately uses every common shape: single image, gallery, vector gly
 | SVG vector icon | `items.icon`, `abilities.icon` | Sharp at any zoom |
 | SVG crest | `factions.crest` | Solid colour, alpha background |
 | Map image (large PNG) | `locations.map` | ~1920x1080 |
-| Marketing hero (CMS) | `landing_hero.bgImage` | Wide banner, optimised for SSR |
+| Marketing hero (CMS) | `landing_hero.bg_image` | Wide banner, optimised for SSR |
 | Avatar (CMS) | `blog_authors.avatar` | Circular, ~256x256 |
-| Markdown attachment | `blog_posts.heroImage` | OG-image for posts |
+| Markdown attachment | `blog_posts.hero_image` | OG-image for posts |
 
 ## File field shape
 

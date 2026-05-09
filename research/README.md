@@ -26,4 +26,4 @@ Research lives outside `architecture/` so that exploration can be messy without 
 - Comparison: Revisium vs PlayFab Title Data for live-ops.
 - Apollo Router self-host vs GraphOS for the demo.
 - Asset pipeline options for portraits / icons / maps.
-- Localisation expansion: en/ru only vs full i18n table.
+- Localization expansion: en/ru/ch trio vs full i18n table vs additional locales.
