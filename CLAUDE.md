@@ -85,6 +85,6 @@ When creating a **skill** or **playbook**:
 
 - **demo-rpg-backend** (planned) — NestJS subgraph + business logic
 - **demo-rpg-frontend** (planned) — React Router v7 SSR + MobX + Apollo Client companion app and landing
-- **[revisium/supergraph-builder](https://github.com/revisium/supergraph-builder)** — composes SDLs from `demo-rpg-backend`, `demo-rpg-data`, `demo-rpg-cms` into the supergraph served by Apollo Router
+- **[revisium/supergraph-builder](https://github.com/revisium/supergraph-builder)** — long-running service that periodically polls SDL from `demo-rpg-backend`, `demo-rpg-data`, and `demo-rpg-cms`, composes the supergraph, and serves it at an HTTP endpoint. Apollo Router fetches the composed schema with a curl sidecar and hot-reloads on change. Not a CI tool.
 
 Schemas + sample data + migrations live inside `demo-rpg-backend/revisium/` once that repo is bootstrapped, mirrored from the source-of-truth specs in [`architecture/specs/`](architecture/specs/README.md).

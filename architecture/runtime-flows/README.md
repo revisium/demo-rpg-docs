@@ -12,7 +12,7 @@ Catalogue of runtime sequences for Branching Tales. Each flow is a `sequenceDiag
 | <!-- TODO --> | Visitor reads a blog post (SSR via Apollo Router → `demo-rpg-cms` subgraph) | Planned |
 | <!-- TODO --> | Editor ships a balance patch via Revisium branching | Planned |
 | <!-- TODO --> | AI agent queries `demo-rpg-data` over MCP | Planned |
-| <!-- TODO --> | CI pipeline composes supergraph with `revisium/supergraph-builder` | Planned |
+| [schema-reconciliation.md](./schema-reconciliation.md) | Schema reconciliation: `revisium/supergraph-builder` polls subgraphs, composes supergraph, Apollo Router curl sidecar refetches and hot-reloads | Draft |
 
 ## When to add a flow here
 
