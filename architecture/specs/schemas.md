@@ -335,7 +335,7 @@ Required: `giver_npc_id`, `name`, `description`, `kind`, `level_required`, `is_r
 
 ### 13. `dialogs`
 
-NPC dialogue trees. Pure embedded-array showcase of deep nested JSON.
+NPC dialogue trees. Pure embedded-array showcase of deeply nested JSON.
 
 | Field | Type | Notes |
 |---|---|---|
