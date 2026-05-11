@@ -21,10 +21,10 @@ The demo is intentionally over-modelled to exercise every Revisium primitive: ne
 
 | Service | Dev | Production | Notes |
 |---|---|---|---|
-| Landing | <!-- pending --> | <!-- TODO --> | Public marketing site (demo-rpg-frontend) |
-| App | <!-- pending --> | <!-- TODO --> | Companion app: browse heroes, items, quests |
-| API (Apollo Router) | [demo-rpg-router.dev.revisium.io/graphql](https://demo-rpg-router.dev.revisium.io/graphql) | <!-- TODO --> | Federated GraphQL across backend + data + cms |
-| Backend subgraph | [demo-rpg-backend.dev.revisium.io](https://demo-rpg-backend.dev.revisium.io) | <!-- TODO --> | NestJS — REST (Swagger), GraphQL subgraph, MCP, OAuth |
+| Landing | planned | planned | Public marketing site (demo-rpg-frontend) |
+| App | planned | planned | Companion app: browse heroes, items, quests |
+| API (Apollo Router) | [demo-rpg-router.dev.revisium.io/graphql](https://demo-rpg-router.dev.revisium.io/graphql) | planned | Federated GraphQL across backend + data + cms |
+| Backend subgraph | [demo-rpg-backend.dev.revisium.io](https://demo-rpg-backend.dev.revisium.io) | planned | NestJS — REST (Swagger), GraphQL subgraph, MCP, OAuth |
 | Game data (Revisium) | [cloud.revisium.io/revisium/demo-rpg-data](https://cloud.revisium.io/revisium/demo-rpg-data) | same | Dictionary project — 15 tables (regions, heroes, items, …); public-read |
 | CMS (Revisium) | [cloud.revisium.io/revisium/demo-rpg-cms](https://cloud.revisium.io/revisium/demo-rpg-cms) | same | Marketing content — landing + blog tables; public-read |
 
