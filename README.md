@@ -6,7 +6,7 @@
 |---|---|
 | Codename | `demo-rpg` |
 | Name | Branching Tales |
-| Stage | Bootstrap (scaffolding) |
+| Stage | Dev stand live (federated GraphQL); frontend pending |
 | Tech owner | <!-- TODO --> |
 | Audience | DevRel — developers evaluating Revisium |
 | Goal | Showcase **every** Revisium capability in a recognizable real-world use case |
@@ -19,13 +19,14 @@ The demo is intentionally over-modelled to exercise every Revisium primitive: ne
 
 ## Service URLs
 
-| Service | Production | Notes |
-|---|---|---|
-| Landing | <!-- TODO --> | Public marketing site |
-| App | <!-- TODO --> | Companion app (browse heroes, items, quests) |
-| API (Apollo Router) | <!-- TODO --> | Federated GraphQL |
-| Game data (Revisium) | `cloud.revisium.io/revisium/demo-rpg-data` *(planned — not yet bootstrapped)* | Dictionary project |
-| CMS (Revisium) | `cloud.revisium.io/revisium/demo-rpg-cms` *(planned — not yet bootstrapped)* | Marketing content |
+| Service | Dev | Production | Notes |
+|---|---|---|---|
+| Landing | planned | planned | Public marketing site (demo-rpg-frontend) |
+| App | planned | planned | Companion app: browse heroes, items, quests |
+| API (Apollo Router) | [demo-rpg-router.dev.revisium.io/graphql](https://demo-rpg-router.dev.revisium.io/graphql) | planned | Federated GraphQL across backend + data + cms |
+| Backend subgraph | [demo-rpg-backend.dev.revisium.io](https://demo-rpg-backend.dev.revisium.io) | planned | NestJS — REST (Swagger), GraphQL subgraph, MCP, OAuth |
+| Game data (Revisium) | [cloud.revisium.io/revisium/demo-rpg-data](https://cloud.revisium.io/revisium/demo-rpg-data) | same | Dictionary project — 15 tables (regions, heroes, items, …); public-read |
+| CMS (Revisium) | [cloud.revisium.io/revisium/demo-rpg-cms](https://cloud.revisium.io/revisium/demo-rpg-cms) | same | Marketing content — landing + blog tables; public-read |
 
 ## Architecture
 
@@ -39,9 +40,11 @@ The demo is intentionally over-modelled to exercise every Revisium primitive: ne
 | Repository | Role | Stack |
 |---|---|---|
 | [demo-rpg-docs](https://github.com/revisium/demo-rpg-docs) | Project passport, ADR, specs, BR, skills, playbooks | Markdown |
-| demo-rpg-backend (planned) | NestJS subgraph (CQRS, REST, GraphQL, MCP) | NestJS, Prisma, fork of `template-nestjs-api` |
-| demo-rpg-frontend (planned) | Companion app + landing | React Router v7 SSR, MobX, Apollo Client |
-| demo-rpg-supergraph (planned) | Supergraph composition pipeline | Wraps [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) |
+| [demo-rpg-backend](https://github.com/revisium/demo-rpg-backend) | NestJS subgraph (CQRS, REST, GraphQL, MCP) — deployed to dev | NestJS 11, Prisma 7, `@hey-api/openapi-ts` client for Revisium |
+| demo-rpg-frontend *(planned)* | Companion app + landing | React Router v7 SSR, MobX, Apollo Client |
+| [revisium/infrastructure](https://github.com/revisium/infrastructure) | Helm charts + ArgoCD wiring for the dev stand | `development/demo/{backend,router,supergraph-builder}` |
+
+Supergraph composition is handled by [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) — no separate demo repo. The image runs as a sidecar to Apollo Router in the dev cluster.
 
 External dependencies: [revisium-cli](https://github.com/revisium/revisium-cli), [revisium/supergraph-builder](https://github.com/revisium/supergraph-builder), [Revisium Cloud](https://cloud.revisium.io), [Apollo Router](https://www.apollographql.com/docs/router).
 

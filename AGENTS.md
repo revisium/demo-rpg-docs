@@ -82,15 +82,17 @@ When creating a **skill** or **playbook**:
 ## Demo-specific conventions
 
 - **Game name:** Branching Tales. Codename: `demo-rpg`.
-- **Cloud projects:** `revisium/demo-rpg-data` (game dictionary) and `revisium/demo-rpg-cms` (marketing content). **Both planned — not yet bootstrapped on `cloud.revisium.io`.** Bootstrap is sequenced after schema bodies in [`architecture/specs/schemas.md`](architecture/specs/schemas.md) are complete.
+- **Cloud projects:** [`revisium/demo-rpg-data`](https://cloud.revisium.io/revisium/demo-rpg-data) (game dictionary, 15 tables) and [`revisium/demo-rpg-cms`](https://cloud.revisium.io/revisium/demo-rpg-cms) (marketing content). Both bootstrapped and public-read. Migrations live in `demo-rpg-backend/revisium/migrations.json` and are re-applied by the K8s migrations-Job on every deploy via [`revisium-cli`](https://github.com/revisium/revisium-cli).
 - **Tone:** explanatory but compact. Every doc should help an unfamiliar developer evaluate Revisium quickly.
 - **No secrets in repo.** Local `.env.example` files only.
 - **Mermaid diagrams** for all architecture and runtime flows. Use `flowchart TB` with the elk renderer for component diagrams; `sequenceDiagram` for flows.
 
 ## Related repositories
 
-- **demo-rpg-backend** (planned) — NestJS subgraph + business logic
-- **demo-rpg-frontend** (planned) — React Router v7 SSR + MobX + Apollo Client companion app and landing
+- **[demo-rpg-backend](https://github.com/revisium/demo-rpg-backend)** — NestJS subgraph + business logic. Deployed to `demo-rpg-backend.dev.revisium.io`. Reads `demo-rpg-data` via an `@hey-api/openapi-ts`-generated REST client; serves a Yoga Federation v2 GraphQL subgraph, REST (Swagger), and MCP.
+- **demo-rpg-frontend** *(planned)* — React Router v7 SSR + MobX + Apollo Client companion app and landing.
+- **[revisium/infrastructure](https://github.com/revisium/infrastructure)** — Helm charts + ArgoCD wiring for the dev stand under `development/demo/{backend,router,supergraph-builder}`.
 - **[revisium/supergraph-builder](https://github.com/revisium/supergraph-builder)** — long-running service that periodically polls SDL from `demo-rpg-backend`, `demo-rpg-data`, and `demo-rpg-cms`, composes the supergraph, and serves it at an HTTP endpoint. Apollo Router fetches the composed schema with a curl sidecar and hot-reloads on change. Not a CI tool.
+- **[revisium-cli](https://github.com/revisium/revisium-cli)** — applies migrations + bootstraps endpoints; runs both locally (via `npm run revisium:bootstrap` against `@revisium/standalone`) and in the K8s migrations-Job.
 
-Schemas + sample data + migrations live inside `demo-rpg-backend/revisium/` once that repo is bootstrapped, mirrored from the source-of-truth specs in [`architecture/specs/`](architecture/specs/README.md).
+Schemas + sample data + migrations live inside [`demo-rpg-backend/revisium/`](https://github.com/revisium/demo-rpg-backend/tree/master/revisium), mirrored from the source-of-truth specs in [`architecture/specs/`](architecture/specs/README.md).
