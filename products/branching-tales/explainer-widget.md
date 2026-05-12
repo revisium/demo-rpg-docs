@@ -2,7 +2,7 @@
 
 Component spec for the cross-cutting "How this uses Revisium" widget that appears on every catalog and detail page in `demo-rpg-frontend`.
 
-**Status:** v1 spec. Not yet implemented — first consumer will be [`pages/regions/`](./README.md#planned-page-set).
+**Status:** v1 spec. Not yet implemented — first consumer will be `pages/regions/` (see [page inventory](./page-inventory.md)).
 **Owner:** @anton-revisium
 **Last updated:** 2026-05-12
 
@@ -79,7 +79,7 @@ interface ExplainerDescriptor {
     mcp?: McpSurface;                 // optional — present only when the page has an MCP equivalent
   };
   variables: Record<string, unknown>; // JSON-serialisable; reflects the page's current state (filter/sort/locale)
-  responseSample: unknown;            // JSON-serialisable; the most recent successful response (or null pre-fetch)
+  responseSample: unknown | null;     // JSON-serialisable; the most recent successful response, or null pre-fetch
   subgraphsInUse: ReadonlyArray<'data' | 'cms' | 'backend'>;
   fieldAttribution?: ReadonlyArray<{   // optional — present only on federated pages
     path: string;                     //   e.g. "regionses.edges[*].node.likes"
