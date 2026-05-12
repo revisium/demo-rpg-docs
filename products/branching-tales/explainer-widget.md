@@ -1,6 +1,6 @@
 # Explainer Widget
 
-Component spec for the cross-cutting "How this uses Revisium" widget that appears on every catalog and detail page in `demo-rpg-frontend`.
+Component spec for the cross-cutting "How this uses Revisium" widget that appears on every catalog and detail page of the Branching Tales frontend ([`demo-rpg-frontend`](https://github.com/revisium/demo-rpg-frontend)).
 
 **Status:** v1 spec. Not yet implemented — first consumer will be `pages/regions/` (see [page inventory](./page-inventory.md)).
 **Owner:** @anton-revisium
@@ -117,7 +117,7 @@ The page ViewModel owns construction; the widget is presentational. No business 
 
 ## API surfaces
 
-The Widget exposes three tabs. Each maps to one surface in the Demo's federated stack:
+The Widget exposes three tabs. Each maps to one surface in the Branching Tales federated stack:
 
 | Surface | Source | Visible when | Notes |
 |---|---|---|---|
