@@ -16,7 +16,8 @@
 
 | Route | Page doc | Data sources | Capabilities demonstrated | Status |
 |---|---|---|---|---|
-| `/` | `pages/home/` (planned) | `cms.landing_hero`, `cms.landing_features`, `cms.landing_testimonials` | CMS-driven landing, file fields (hero bg), Apollo Federation subgraph mix | Draft |
+| `/` | `pages/home/` (planned) | `cms.landing_hero`, `cms.landing_features`, `cms.landing_testimonials`, `data.news` (Latest news widget) | CMS-driven landing carrying the [80/20 messaging](./messaging.md), Latest-news widget, file fields (hero bg), Apollo Federation subgraph mix | Draft |
+| `/about` | `pages/about/` (planned) | static page + [`messaging.md`](./messaging.md) | Long-form 80/20 narrative + architecture Mermaid diagram + "what Revisium did vs what we wrote" tables; canonical destination for "How this works" links | Draft |
 | `/regions` | `pages/regions/` (planned) | `data.regions` | Catalog, `totalCount`, pagination, enum (climate), localized strings | Draft |
 | `/regions/[id]` | `pages/regions/[id]/` (planned) | `data.regions` + `backend.RegionsNode` (federated) | **Federation enrichment** (likes / viewCount / comments owned by backend, name/climate/description owned by Revisium), single FK to nothing, file-free detail view | Draft |
 | `/heroes` | `pages/heroes/` (planned) | `data.heroes`, `data.classes`, `data.regions`, `data.factions` | Catalog with FK-resolved class/region dropdowns, formula-derived `display_name_en`, portrait file field, filter+sort+pagination | Draft |
@@ -37,8 +38,10 @@
 | `/abilities` | `pages/abilities/` (planned) | `data.abilities` | SVG icon catalog | Draft |
 | `/search` | `pages/search/` (planned) | Revisium `search_rows` across `data` + `cms` | Full-text search; results grouped by subgraph/table | Draft |
 | `/balance-patch` *(BR-0003 §9 Q2)* | `pages/balance-patch/` (planned) | `data.items` at `master:head` vs `master:draft` | **Branching preview** — revision URI swap; `get_revision_changes` diff | Draft |
-| `/blog` | `pages/blog/` (planned) | `cms.blog_posts`, `cms.blog_authors` | CMS catalog with full-text body field | Draft |
+| `/blog` | `pages/blog/` (planned) | `cms.blog_posts`, `cms.blog_authors` | CMS catalog with full-text body field; carries the long-form 80/20 essay as a pinned welcome post | Draft |
 | `/blog/[slug]` | `pages/blog/[slug]/` (planned) | `cms.blog_posts`, `cms.blog_authors` | OG-image file field, author avatar, markdown body | Draft |
+| `/news` | `pages/news/` (planned) | `data.news` (new table, [schema spec to follow](../../architecture/specs/schemas.md)) + optional `backend.NewsNode` for `likes` / `viewCount` | **Multi-key `orderBy`** (`pinned desc, published_at desc`), **time-window `where` filter** (`published_at <= now`), **enum category** (`patch / event / spotlight / release`), pinned-post pattern, cover-image file field. Carries the pinned launch post from [messaging.md §3.5](./messaging.md#35-pinned-news--launch-post) | Draft |
+| `/news/[slug]` | `pages/news/[slug]/` (planned) | `data.news` + optional federated `backend.NewsNode.likes / viewCount / comments` | Detail page; second federation reference after `/regions/[id]` | Draft |
 
 ## How this index stays accurate
 
