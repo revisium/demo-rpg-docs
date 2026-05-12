@@ -42,3 +42,4 @@ A BR describes *what the demo must achieve*, not implementation detail.
 |---|---|---|---|---|
 | BR-0001 | Game data dictionary | [BR-0001-game-data-dictionary.md](BR-0001-game-data-dictionary.md) | Draft | <!-- TODO --> |
 | BR-0002 | Marketing CMS | [BR-0002-marketing-cms.md](BR-0002-marketing-cms.md) | Draft | <!-- TODO --> |
+| BR-0003 | Frontend showcase | [BR-0003-frontend-showcase.md](BR-0003-frontend-showcase.md) | Draft | <!-- TODO --> |

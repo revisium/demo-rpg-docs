@@ -28,6 +28,8 @@ demo-rpg-docs/
 │   ├── runbook.md
 │   └── secrets.md
 ├── requirements/            # BR-NNNN-{slug}.md + template + index
+├── products/                # Per-product UX/UI docs (mirrors revisium-ux/products/*)
+│   └── branching-tales/     # demo-rpg-frontend page inventory, coverage matrix, per-page docs
 ├── research/                # Discovery, alternatives, comparisons
 ├── skills/                  # Claude Code skills for the demo
 ├── playbooks/               # Step-by-step task guides
@@ -47,6 +49,7 @@ demo-rpg-docs/
 | [`architecture/runtime-flows/README.md`](architecture/runtime-flows/README.md) | All runtime flows | When a new flow is added |
 | [`operations/README.md`](operations/README.md) | All operations docs | When a new doc is added |
 | [`requirements/README.md`](requirements/README.md) | All BRs | After every new BR |
+| [`products/branching-tales/README.md`](products/branching-tales/README.md) | Frontend UX/UI docs entry + page index | When a new page doc or product/UX artefact is added |
 | [`skills/README.md`](skills/README.md) | All skills | When a new skill is added |
 | [`playbooks/README.md`](playbooks/README.md) | All playbooks | When a new playbook is added |
 | [`README.md`](README.md) | Project passport | When repos / environments / owners change |
@@ -78,6 +81,12 @@ When creating a **skill** or **playbook**:
 - [ ] File in `skills/` or `playbooks/`
 - [ ] Row in the corresponding index README
 - [ ] Cross-link from any related spec or ADR
+
+When creating a **product/UX page doc** (under `products/branching-tales/pages/`):
+- [ ] Follow the [`revisium-ux/products/admin/pages/*`](https://github.com/revisium/revisium-ux/tree/master/products/admin/pages) shape: `Route`, `Status`, `Purpose`, `Context And Entry`, `Functional Blocks`, `Primary Actions`, `States`, `Transitions`
+- [ ] Add a `Revisium features demonstrated` block listing the matrix rows the page realises
+- [ ] Add a row to [`products/branching-tales/page-inventory.md`](products/branching-tales/page-inventory.md) (once that index exists)
+- [ ] Cross-link with [`products/branching-tales/revisium-feature-coverage.md`](products/branching-tales/revisium-feature-coverage.md) and any related BR / spec
 
 ## Demo-specific conventions
 
