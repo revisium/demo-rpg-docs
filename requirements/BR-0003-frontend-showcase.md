@@ -30,7 +30,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 | Metric | Baseline | Target | Measured by |
 |---|---|---|---|
 | Revisium primitives demonstrated on at least one page | 0 | 100% of `revisium-feature-coverage.md` rows | Manual audit of the page inventory matrix each release |
-| Pages with an `ExplainerWidget` rendered above the fold | 0 | 100% of catalog + detail pages | Visual / Steiger-style audit |
+| Pages with an `ExplainerWidget` discoverable on initial paint (above the fold on tablet/desktop; accordion header above the fold on phone) | 0 | 100% of catalog + detail pages | Visual / Steiger-style audit |
 | Mean "click-through to cloud.revisium.io" CTR from any page's explainer link | — | ≥ 10% of unique sessions reaching a catalog page | Plausible / analytics on the dev stand once added |
 | Show-HN / DevRel posts citing the demo URL | 0 | At least one with > 100 upvotes inside one calendar quarter post-launch | Public post history |
 
@@ -57,7 +57,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - CMS-driven content for the landing page (`landing_hero`, `landing_features`, `landing_testimonials`) and blog (`blog_posts`, `blog_authors`) — proving Revisium covers both dictionary and marketing-CMS use cases on the same platform.
 - An on-page hint surfacing which API surface (`GraphQL` federated, `REST` direct, or `MCP`) each example would use, with a tab to swap between them where it makes sense.
 - **Localization** — every user-facing string with a `<LocalizedString>` shape in the schema (`en` / `ru` / `zh`) is rendered through a language switcher; switching languages re-issues the GraphQL query with the appropriate sub-field selection (`name { en }` → `name { ru }`) so the Explainer Widget visibly demonstrates that localized strings are a schema feature, not a frontend translation table.
-- **Responsive layout** — every page is usable on phone, tablet, and desktop. The Explainer Widget collapses to a tappable accordion below the fold on small viewports, the JSON filter/sort panel becomes a bottom-sheet, and catalog grids reflow to a single column. No horizontal scroll except inside code-display panels.
+- **Responsive layout** — every page is usable on phone, tablet, and desktop. On small viewports the Explainer Widget collapses to a tappable accordion whose **header stays above the fold** (so the widget is still discoverable on initial paint) while the body sits below; the JSON filter/sort panel becomes a bottom-sheet; catalog grids reflow to a single column. No horizontal scroll except inside code-display panels.
 
 ### Out of scope
 
@@ -84,7 +84,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 **Acceptance:**
 
 - [ ] Given the visitor opens `/` for the first time, the homepage links to at least one page per Revisium primitive listed in [`revisium-feature-coverage.md`](../products/branching-tales/revisium-feature-coverage.md).
-- [ ] Given the visitor opens any catalog page, the **Explainer Widget** is visible above the fold and answers "what Revisium feature is on this page?" in one sentence.
+- [ ] Given the visitor opens any catalog page, the **Explainer Widget** is discoverable on initial paint (visible above the fold on tablet/desktop, with the accordion header above the fold on phone) and answers "what Revisium feature is on this page?" in one sentence.
 
 ### US-2: Engineer inspecting the actual GraphQL query
 
@@ -142,8 +142,8 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 **Acceptance:**
 
 - [ ] Given a viewport ≤ 480 px wide, every page renders without horizontal scroll (except inside code-display panels inside the Explainer Widget, which scroll inside their own scrollable region).
-- [ ] Given the same viewport, the Explainer Widget collapses to a tappable accordion below the fold; the catalog grid reflows to a single column; the JSON filter / sort panel becomes a bottom-sheet that the user can summon with a single tap.
-- [ ] Given a viewport between 481 px and 1024 px (tablet), the layout uses a two-column split — catalog grid above, Explainer Widget docked at the right.
+- [ ] Given the same viewport, the Explainer Widget collapses to a tappable accordion: its header stays above the fold (so the widget is discoverable on initial paint), its body expands below on tap. The catalog grid reflows to a single column; the JSON filter / sort panel becomes a bottom-sheet that the user can summon with a single tap.
+- [ ] Given a viewport between 481 px and 1024 px (tablet), the layout uses a two-column split — catalog grid on the left, Explainer Widget docked at the right.
 - [ ] Given a viewport ≥ 1024 px (desktop), the Explainer Widget docks as a side panel without obscuring catalog content.
 
 ### US-7: Engineer seeing Apollo Federation in action
@@ -175,7 +175,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 | Requirement | Priority | Status | Realised by |
 |---|---|---|---|
 | Every Revisium primitive in [`revisium-feature-coverage.md`](../products/branching-tales/revisium-feature-coverage.md) is demonstrated on at least one frontend page | Must | Draft | per-page docs under `products/branching-tales/pages/` |
-| Every catalog and detail page renders an `ExplainerWidget` above the fold with: query body, JSON sample, cloud.revisium.io deep link, REST + MCP equivalents | Must | Draft | `products/branching-tales/explainer-widget.md` (UX spec — to follow) |
+| Every catalog and detail page renders an `ExplainerWidget` discoverable on initial paint (above the fold on tablet/desktop; accordion header above the fold on phone with the body expanding on tap) with: query body, JSON sample, cloud.revisium.io deep link, REST + MCP equivalents | Must | Draft | `products/branching-tales/explainer-widget.md` (UX spec — to follow) |
 | Catalog pages expose a JSON filter / sort panel that shows the `where` / `orderBy` payload live as the user edits the form | Must | Draft | `products/branching-tales/pages/regions/` (reference page) + `products/branching-tales/pages/items/` |
 | One page demonstrates the `head` vs `draft` branching toggle on Revisium data | Should | Draft | `products/branching-tales/pages/balance-patch/` (planned) |
 | At least one Revisium-modeled entity has backend-federated fields (e.g. `RegionsNode.likes`, `ItemsNode.viewCount`) rendered alongside Revisium-owned fields in the same response; the page tags each rendered field with its owning subgraph | Must | Draft | `products/branching-tales/pages/regions/` (federated detail) + `demo-rpg-backend` adds `extend type` for the chosen entity |

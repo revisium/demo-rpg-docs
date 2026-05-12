@@ -17,7 +17,7 @@
 | Route | Page doc | Data sources | Capabilities demonstrated | Status |
 |---|---|---|---|---|
 | `/` | `pages/home/` (planned) | `cms.landing_hero`, `cms.landing_features`, `cms.landing_testimonials` | CMS-driven landing, file fields (hero bg), Apollo Federation subgraph mix | Draft |
-| `/regions` | `pages/regions/` (planned) | `data.regions` | Catalog, `totalCount`, pagination, enum (climate), localized strings | In delivery (page live, doc pending) |
+| `/regions` | `pages/regions/` (planned) | `data.regions` | Catalog, `totalCount`, pagination, enum (climate), localized strings | Draft |
 | `/regions/[id]` | `pages/regions/[id]/` (planned) | `data.regions` + `backend.RegionsNode` (federated) | **Federation enrichment** (likes / viewCount / comments owned by backend, name/climate/description owned by Revisium), single FK to nothing, file-free detail view | Draft |
 | `/heroes` | `pages/heroes/` (planned) | `data.heroes`, `data.classes`, `data.regions`, `data.factions` | Catalog with FK-resolved class/region dropdowns, formula-derived `display_name_en`, portrait file field, filter+sort+pagination | Draft |
 | `/heroes/[id]` | `pages/heroes/[id]/` (planned) | `data.heroes` + FKs | Single FK (`class_id`), array FKs (`ability_ids`, `inventory_item_ids`), embedded `equipment[]`, formulas (`is_veteran`, `total_equipment_modifier`, `equipped_count`), PNG portrait | Draft |

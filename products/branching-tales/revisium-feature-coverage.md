@@ -17,8 +17,8 @@
 
 | Capability | Where in the data | Demonstrated on | API surface shown | Explainer reveals | Status |
 |---|---|---|---|---|---|
-| Nested JSON objects | `regions.data.name`, `items.data.icon` | `pages/regions/` | GraphQL | The `data { name { en } description { en } }` projection — Revisium auto-generates GraphQL types from JSON Schema | Done (regions catalog) |
-| Localized strings (`en` / `ru` / `zh`) | `<LocalizedString>` convention (regions, heroes, items, blog posts, …) | every page rendering a `<LocalizedString>` field, anchored by `pages/regions/` and `pages/blog/[slug]/` | GraphQL | A **global locale toggle** re-issues the query with the locale-specific sub-field selection (`name { en }` → `name { ru }`) and the widget shows the diff in the query body; rows missing the active locale fall back to `en` and the widget calls that out. UI chrome stays in the frontend's own i18n bundle — the widget explains the boundary. | In delivery |
+| Nested JSON objects | `regions.data.name`, `items.data.icon` | `pages/regions/` | GraphQL | The `data { name { en } description { en } }` projection — Revisium auto-generates GraphQL types from JSON Schema | Draft |
+| Localized strings (`en` / `ru` / `zh`) | `<LocalizedString>` convention (regions, heroes, items, blog posts, …) | every page rendering a `<LocalizedString>` field, anchored by `pages/regions/` and `pages/blog/[slug]/` | GraphQL | A **global locale toggle** re-issues the query with the locale-specific sub-field selection (`name { en }` → `name { ru }`) and the widget shows the diff in the query body; rows missing the active locale fall back to `en` and the widget calls that out. UI chrome stays in the frontend's own i18n bundle — the widget explains the boundary. | Draft |
 | Single foreign key | `heroes.class_id → classes`, `items.type_id → item_types`, `monsters.faction_id → factions` | `pages/heroes/[id]/`, `pages/items/[id]/`, `pages/monsters/[id]/` | GraphQL | The FK column in the JSON schema + the nested object the router resolves to in the response; deep link to the target row in `cloud.revisium.io` | Draft |
 | Array foreign key | `parties.hero_ids[] → heroes`, `heroes.ability_ids[] → abilities`, `heroes.inventory_item_ids[] → items` | `pages/parties/[id]/`, `pages/heroes/[id]/` | GraphQL | The `foreignKey` annotation on an `array.items` in the JSON schema + the resolved-array response shape; "follow each FK" deep links | Draft |
 | Embedded arrays (single-level) | `quests.steps[]`, `heroes.equipment[]`, `monsters.drops[]`, `items.modifiers[]` | `pages/quests/[id]/`, `pages/heroes/[id]/`, `pages/monsters/[id]/`, `pages/items/[id]/` | GraphQL | The inline-array JSON schema definition + the way you query it without a separate table | Draft |
@@ -68,7 +68,7 @@ For file shape, see [`files.md`](../../architecture/specs/files.md).
 | `orderBy` on a single field | `items.market_value desc` | `pages/items/` | GraphQL + REST | A `Sort by` dropdown bound to a `[{ field: 'market_value', direction: 'desc' }]` JSON shape | Draft |
 | `orderBy` on multiple fields | `items.rarity asc, market_value desc` | `pages/items/` | GraphQL + REST | A sortable column header set bound to a multi-key `orderBy` JSON array; the panel renders the array live | Draft |
 | Cursor pagination (`edges` / `pageInfo`) | All catalogs | `pages/items/`, `pages/regions/` | GraphQL | `pageInfo.hasNextPage` driving a "Load more" button + the explainer showing the `after` cursor on each fetch | Draft |
-| Total count alongside paged edges | `regionses.totalCount` | `pages/regions/` | GraphQL | The "5 of 5" badge + the GraphQL `totalCount` field; widget notes the cost trade-off | Done (regions catalog) |
+| Total count alongside paged edges | `regionses.totalCount` | `pages/regions/` | GraphQL | The "5 of 5" badge + the GraphQL `totalCount` field; widget notes the cost trade-off | Draft |
 | Field selection (GraphQL projection) | Any | every page | GraphQL | The widget shows the projection used; toggling a panel includes `data { climate }` vs `data { description { en } }` to demonstrate that the response shrinks accordingly | Draft |
 
 ## 5. Full-text search
@@ -100,7 +100,7 @@ The headline story: one GraphQL type carries fields from multiple subgraphs. Rev
 
 | Capability | Demonstrated on | API surface shown | Explainer reveals | Status |
 |---|---|---|---|---|
-| GraphQL operation | Every page | GraphQL | The exact query body sent to `/graphql` | In delivery (regions live) |
+| GraphQL operation | Every page | GraphQL | The exact query body sent to `/graphql` | Draft |
 | REST equivalent | Catalog + detail pages | REST tab | The matching `GET /api/regions?…` URL on the demo-rpg-backend Swagger; same JSON keys; link to the OpenAPI page | Draft |
 | MCP equivalent | Catalog + detail pages | MCP tab | The matching MCP tool name (e.g. `list_regions`, `get_region`) + the JSON arguments; link to `demo-rpg-docs/architecture/specs/...` for the tool catalogue | Draft |
 | OpenAPI client codegen | A "See in code" tab on the home page or footer | REST | A snippet using `@hey-api/openapi-ts`-generated functions, mirroring the backend's own internal usage | Draft |
