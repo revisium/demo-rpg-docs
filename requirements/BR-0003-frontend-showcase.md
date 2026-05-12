@@ -6,7 +6,7 @@
 |---|---|
 | Owner | @anton-revisium |
 | Status | Draft |
-| Version | 1.1 |
+| Version | 1.2 |
 | Last updated | 2026-05-12 |
 
 ## 1. Context
@@ -55,6 +55,8 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - A **search** entry point that hits Revisium's full-text search across all data + CMS tables.
 - **Federation enrichment** showcase: at least one Revisium entity (e.g. `Region`, `Item`, `Hero`) has backend-contributed fields (likes counter, view counter, comments, computed-on-write rollups) federated onto the same GraphQL type via `@key` / `@external` / `@requires`. The explainer widget tags each field with the owning subgraph (`data` / `cms` / `backend`) so the visitor can see federation in action without reading SDL.
 - CMS-driven content for the landing page (`landing_hero`, `landing_features`, `landing_testimonials`) and blog (`blog_posts`, `blog_authors`) — proving Revisium covers both dictionary and marketing-CMS use cases on the same platform.
+- A **news / patch-notes** feed (new `news` table — see [schemas.md open questions](../architecture/specs/schemas.md#open-questions)) demonstrating multi-key `orderBy` with a `pinned` boolean priority, a `published_at <= now` time-window `where` filter, and enum categories (`patch / event / spotlight / release`). The pinned launch post is the canonical home for the 80/20 launch narrative — see [messaging.md §3.5](../products/branching-tales/messaging.md#35-pinned-news--launch-post).
+- A dedicated **`/about` page** carrying the long-form 80/20 story + the architecture diagram, linked from the landing's "How this works" CTA and the footer chip. Source-of-truth for the narrative lives in [`products/branching-tales/messaging.md`](../products/branching-tales/messaging.md).
 - An on-page hint surfacing which API surface (`GraphQL` federated, `REST` direct, or `MCP`) each example would use, with a tab to swap between them where it makes sense.
 - **Localization** — every user-facing string with a `<LocalizedString>` shape in the schema (`en` / `ru` / `zh`) is rendered through a language switcher; switching languages re-issues the GraphQL query with the appropriate sub-field selection (`name { en }` → `name { ru }`) so the Explainer Widget visibly demonstrates that localized strings are a schema feature, not a frontend translation table.
 - **Responsive layout** — every page is usable on phone, tablet, and desktop. On small viewports the Explainer Widget collapses to a tappable accordion whose **header stays above the fold** (so the widget is still discoverable on initial paint) while the body sits below; the JSON filter/sort panel becomes a bottom-sheet; catalog grids reflow to a single column. No horizontal scroll except inside code-display panels.
@@ -183,6 +185,8 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 | Landing page is driven from `demo-rpg-cms` (hero, features, testimonials) — no hardcoded strings beyond brand-level copy | Must | Draft | `products/branching-tales/pages/home/` (planned) |
 | Every page is SSR-rendered with no client-only fallback paths (the widget content is present in initial HTML) | Must | In delivery | demo-rpg-frontend SSR layer (already shipped) |
 | Public-read access — visitors do not need to sign in or carry an API key for any read query | Must | Done | `demo-rpg-data` + `demo-rpg-cms` configured public-read |
+| Canonical 80/20 narrative is rendered consistently across landing hero, landing feature cards, landing testimonials, `/about`, pinned news, blog welcome post, footer chip, and the GitHub README abstract — every surface pulls from the same source-of-truth, never paraphrased independently | Must | Draft | [`products/branching-tales/messaging.md`](../products/branching-tales/messaging.md); CMS seed rows + `/about` page doc + `demo-rpg-frontend/README.md` abstract land in follow-up PRs |
+| News feed (`/news`) demonstrating multi-key `orderBy` with `pinned` priority, time-window `where` filter, and enum categories — backed by a new `data.news` table | Should | Draft | new schema row in [`architecture/specs/schemas.md`](../architecture/specs/schemas.md); bootstrap entries + `pages/news/` to follow |
 | Localized content rendering — `<LocalizedString>` fields render in the active locale (`en` / `ru` / `zh`) with `en` fallback; switching locale re-issues the GraphQL query with the locale-specific sub-field selection | Must | Draft | global locale toggle + per-page query parameterisation; UI chrome strings live in a separate frontend i18n bundle |
 | Responsive layout — every page works on phone (≤ 480 px), tablet (481–1024 px), desktop (≥ 1024 px); no horizontal scroll outside designated code panels; Explainer Widget collapses to an accordion on small viewports | Must | Draft | `revisium-ux/design-system` breakpoint tokens + per-page audit |
 
@@ -217,6 +221,8 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 | 5 | Analytics: privacy-friendly (Plausible) or none at all for v1? Affects metric 3 in §2. | @anton-revisium | TBD | Open |
 | 6 | Which Revisium entity gets the first backend-federated fields? `Region` (small set, easy `likes` + `viewCount`) is the natural starting point; `Item` (large catalog, fits a `wishlisted` counter) is the next most interesting. Drives which page in `pages/` is the federation reference. | @anton-revisium | TBD | Open |
 | 7 | Backend-federated counters need durable storage (Postgres on the backend). Do we add a tiny `region_stats` / `item_stats` table and a sync job, or compute the counter on the fly from a `likes` event log? Affects schema migration story on the backend side. | @anton-revisium | TBD | Open |
+| 8 | Does the `news` table belong in `demo-rpg-data` (next to other game content) or `demo-rpg-cms` (next to blogs)? Argument for `data`: news *is* the game's runtime story, lives next to quests / monsters. Argument for `cms`: news is editorial, lives next to blog_posts and shares the `author_id` FK. The page-inventory currently assumes `data.news` — confirm or move. | @anton-revisium | TBD | Open |
+| 9 | Editorial cadence for `news` post-launch: who maintains the feed? If nobody, the demo's most prominent "Latest news" widget goes stale. Options: (a) one pinned launch post forever; (b) seed 5–10 in-world entries plus the launch post; (c) automate via a scheduled job that promotes blog posts to news. | @anton-revisium | TBD | Open |
 
 ## 10. Related artefacts
 
@@ -226,6 +232,13 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - **Roadmap / tickets**: tracked in [`demo-rpg-frontend`](https://github.com/revisium/demo-rpg-frontend) issues once page docs are merged.
 
 ## Changelog
+
+### v1.2 (2026-05-12)
+
+- Add news feed + `/about` page to scope (new ingredients for the 80/20 narrative).
+- Add a Must functional requirement: every messaging surface pulls from a single source-of-truth (`products/branching-tales/messaging.md`), never paraphrased per surface.
+- Add a Should functional requirement: news feed (`/news`) demonstrating multi-key `orderBy` with `pinned` priority, time-window `where` filter, enum categories.
+- Two new open questions: where the `news` table lives (Q8), editorial cadence post-launch (Q9).
 
 ### v1.1 (2026-05-12)
 
