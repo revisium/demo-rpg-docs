@@ -105,6 +105,11 @@ Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is 
 
 - [requirements/README.md](requirements/README.md) — current BR catalogue.
 
+## Products (UX / UI)
+
+- [products/branching-tales/](products/branching-tales/README.md) — frontend UX/UI source of truth. Mirrors the [`revisium-ux/products/admin/`](https://github.com/revisium/revisium-ux/tree/master/products/admin) layout: page inventory, page functionality reference, capability coverage matrix, per-page docs.
+- Start with [revisium-feature-coverage.md](products/branching-tales/revisium-feature-coverage.md) — maps every Revisium primitive and Apollo Federation pattern to the page that demonstrates it.
+
 ## Bootstrap
 
 - [bootstrap/](bootstrap/README.md) — applied schemas + seed data + apply script. Replicate the live demo in your own Revisium org with one command.
