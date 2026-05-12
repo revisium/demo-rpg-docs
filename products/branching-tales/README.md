@@ -19,7 +19,7 @@ Refresh this section after meaningful page, navigation, or layout changes in `de
 - [Page Inventory](./page-inventory.md) — canonical list of every route, the data it reads, and the page doc that describes it.
 - [Messaging](./messaging.md) — the canonical 80/20 narrative + the surface matrix (landing / about / news / blog / footer / README / DevRel). Every messaging surface pulls from here.
 - **Page Functionality Reference** *(planned, `page-functionality.md`)* — recurring patterns: catalog, detail, JSON filter panel.
-- **Explainer Widget Spec** *(planned, `explainer-widget.md`)* — the per-page "How this uses Revisium" widget contract.
+- [Explainer Widget Spec](./explainer-widget.md) — the per-page "How this uses Revisium" widget contract (anatomy, breakpoints, data contract, subgraph attribution, deep links, interplay, states, a11y).
 
 ## Relationship to `revisium-ux/products/admin`
 
