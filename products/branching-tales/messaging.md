@@ -51,7 +51,7 @@ Surfaces ordered from outermost (first impression) to innermost (already engaged
 | **Blog welcome post** (`/blog/welcome`) | Long-form essay version of the same story for evaluators who want depth. Links back to `/about` and the GitHub repos. | §3.6 | Planned (CMS seed pending). |
 | **Footer chip** (every page) | Permanent reminder of the stack composition. | §3.7 | Planned (component spec to follow). |
 | **demo-rpg-frontend README abstract** | First 3 paragraphs of the repo README — for GitHub-side visitors. | §3.8 | Planned (separate PR). |
-| **Explainer Widget federation disclosure** (every page that renders federated fields) | Per-page recap: shows the `extend type X @key { … }` excerpt + links the backend source. Implicit per-page reinforcement of M-2. | Already specified in [explainer-widget.md §Anatomy](./explainer-widget.md#anatomy-functional-blocks). | Spec'd, implementation pending. |
+| **Explainer Widget federation disclosure** (every page that renders federated fields) | Per-page recap: shows the `extend type X @key { … }` excerpt + links the backend source. Implicit per-page reinforcement of M-2. | Specified in the `explainer-widget.md` §Anatomy block (planned — [PR #8](https://github.com/revisium/demo-rpg-docs/pull/8)). | Spec'd, implementation pending. |
 | **Show-HN / DevRel posts** | External channel. Drafted from §3.5 and §3.6 — never written from scratch. | §3.5 + §3.6 with channel-specific intro. | Pending (post-launch). |
 
 ## 3. Draft copy
@@ -60,7 +60,7 @@ Surfaces ordered from outermost (first impression) to innermost (already engaged
 
 ### 3.1 Landing hero
 
-```
+```text
 title:    Branching Tales
 subtitle: A fantasy adventurer's guild, built end-to-end on Revisium.
           Schemas, three APIs, a federated supergraph, branching previews —
@@ -106,7 +106,7 @@ Page-spec lives under `products/branching-tales/pages/about/` (planned). Page bo
 
 ### 3.5 Pinned news — launch post
 
-```
+```text
 category: release
 pinned:   true
 title:    Branching Tales v1.0 is live
@@ -134,7 +134,7 @@ Long-form essay version of §3.5 (~2000 words) at `/blog/welcome`. Same structur
 
 Permanent, present on every page:
 
-```
+```text
 Powered by Revisium  ·  2 Revisium subgraphs + 1 NestJS subgraph
 federated by Apollo Router  ·  View architecture →
 ```
@@ -189,7 +189,7 @@ For clarity:
 - **BR**: [BR-0003 — Frontend Showcase](../../requirements/BR-0003-frontend-showcase.md) §4 scope (new bullets for news + /about), §6 functional requirement row for the messaging-surface rendering.
 - **Page inventory**: [page-inventory.md](./page-inventory.md) — `/about`, `/news`, `/news/[slug]` rows.
 - **Feature coverage matrix**: [revisium-feature-coverage.md](./revisium-feature-coverage.md) — new rows for multi-key `orderBy`, time-window `where` filter, pinned-post pattern (anchored on `/news`).
-- **Explainer Widget**: [explainer-widget.md](./explainer-widget.md) — the federation disclosure is the per-page reinforcement of M-2.
+- **Explainer Widget**: `explainer-widget.md` — planned, lands via [PR #8](https://github.com/revisium/demo-rpg-docs/pull/8). The federation disclosure block is the per-page reinforcement of M-2.
 - **Schemas spec**: [schemas.md](../../architecture/specs/schemas.md) — proposed `news` table (open question + draft section).
 
 ## Changelog
