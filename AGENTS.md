@@ -90,8 +90,8 @@ When creating a **skill** or **playbook**:
 ## Related repositories
 
 - **[demo-rpg-backend](https://github.com/revisium/demo-rpg-backend)** — NestJS subgraph + business logic. Deployed to `demo-rpg-backend.dev.revisium.io`. Reads `demo-rpg-data` via an `@hey-api/openapi-ts`-generated REST client; serves a Yoga Federation v2 GraphQL subgraph, REST (Swagger), and MCP.
-- **demo-rpg-frontend** *(planned)* — React Router v7 SSR + MobX + Apollo Client companion app and landing.
-- **[revisium/infrastructure](https://github.com/revisium/infrastructure)** — Helm charts + ArgoCD wiring for the dev stand under `development/demo/{backend,router,supergraph-builder}`.
+- **[demo-rpg-frontend](https://github.com/revisium/demo-rpg-frontend)** — React Router v7 SSR + MobX (MVVM) + `graphql-request` (typed via `graphql-codegen`) + Feature-Sliced Design (Steiger). Deployed to [demo-rpg.dev.revisium.io](https://demo-rpg.dev.revisium.io); `/graphql` is co-located under the frontend's ingress so the browser talks to the supergraph same-origin.
+- **[revisium/infrastructure](https://github.com/revisium/infrastructure)** — Helm charts + ArgoCD wiring for the dev stand under `development/demo/{backend,frontend,router,supergraph-builder}`.
 - **[revisium/supergraph-builder](https://github.com/revisium/supergraph-builder)** — long-running service that periodically polls SDL from `demo-rpg-backend`, `demo-rpg-data`, and `demo-rpg-cms`, composes the supergraph, and serves it at an HTTP endpoint. Apollo Router fetches the composed schema with a curl sidecar and hot-reloads on change. Not a CI tool.
 - **[revisium-cli](https://github.com/revisium/revisium-cli)** — applies migrations + bootstraps endpoints; runs both locally (via `npm run revisium:bootstrap` against `@revisium/standalone`) and in the K8s migrations-Job.
 
