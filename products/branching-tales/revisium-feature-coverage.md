@@ -18,11 +18,11 @@
 | Capability | Where in the data | Demonstrated on | API surface shown | Explainer reveals | Status |
 |---|---|---|---|---|---|
 | Nested JSON objects | `regions.data.name`, `items.data.icon` | `pages/regions/` | GraphQL | The `data { name { en } description { en } }` projection — Revisium auto-generates GraphQL types from JSON Schema | Done (regions catalog) |
-| Localized strings (`en` / `ru` / `zh`) | `<LocalizedString>` convention (regions, heroes, items, …) | `pages/regions/`, `pages/heroes/` | GraphQL | A language toggle re-issues the query with a different sub-field selection (`name.en` vs `name.ru`); link to schemas spec convention | In delivery |
-| Single foreign key | `heroes.region_id → regions`, `items.item_type_id → item_types` | `pages/heroes/[id]/`, `pages/items/[id]/` | GraphQL | The FK column in the JSON schema + the nested object the router resolves to in the response; deep link to the target row in `cloud.revisium.io` | Draft |
-| Array foreign key | `parties.members[] → heroes`, `factions.allies[] → factions` | `pages/parties/[id]/` | GraphQL | The `foreignKey` annotation in the schema + the resolved-array response shape; "follow each FK" deep links | Draft |
-| Embedded arrays (single-level) | `quests.steps[]`, `heroes.equipment[]` | `pages/quests/[id]/`, `pages/heroes/[id]/` | GraphQL | The inline-array JSON schema definition + the way you query it without a separate table | Draft |
-| Embedded arrays (two-level nesting) | `quests.steps[].rewards[]`, `monsters.drops[].loot[]` | `pages/quests/[id]/`, `pages/monsters/[id]/` | GraphQL | The nested array shape + the formula that reduces across both levels (`total_loot_xp`) | Draft |
+| Localized strings (`en` / `ru` / `zh`) | `<LocalizedString>` convention (regions, heroes, items, blog posts, …) | every page rendering a `<LocalizedString>` field, anchored by `pages/regions/` and `pages/blog/[slug]/` | GraphQL | A **global locale toggle** re-issues the query with the locale-specific sub-field selection (`name { en }` → `name { ru }`) and the widget shows the diff in the query body; rows missing the active locale fall back to `en` and the widget calls that out. UI chrome stays in the frontend's own i18n bundle — the widget explains the boundary. | In delivery |
+| Single foreign key | `heroes.class_id → classes`, `items.type_id → item_types`, `monsters.faction_id → factions` | `pages/heroes/[id]/`, `pages/items/[id]/`, `pages/monsters/[id]/` | GraphQL | The FK column in the JSON schema + the nested object the router resolves to in the response; deep link to the target row in `cloud.revisium.io` | Draft |
+| Array foreign key | `parties.hero_ids[] → heroes`, `heroes.ability_ids[] → abilities`, `heroes.inventory_item_ids[] → items` | `pages/parties/[id]/`, `pages/heroes/[id]/` | GraphQL | The `foreignKey` annotation on an `array.items` in the JSON schema + the resolved-array response shape; "follow each FK" deep links | Draft |
+| Embedded arrays (single-level) | `quests.steps[]`, `heroes.equipment[]`, `monsters.drops[]`, `items.modifiers[]` | `pages/quests/[id]/`, `pages/heroes/[id]/`, `pages/monsters/[id]/`, `pages/items/[id]/` | GraphQL | The inline-array JSON schema definition + the way you query it without a separate table | Draft |
+| Embedded arrays (two-level nesting) | `quests.steps[].rewards[]` | `pages/quests/[id]/` | GraphQL | The nested array shape + the formula that reduces across both levels (`total_loot_xp`) | Draft |
 | Enums | `regions.data.climate`, `items.data.rarity` | `pages/regions/`, `pages/items/` | GraphQL | The `enum` JSON Schema declaration + how it surfaces as `enum` in the federated GraphQL SDL | Draft |
 | Schema evolution / migrations | All tables (via `migrations.json`) | `pages/balance-patch/` *(planned)* | GraphQL | The `migrations.json` excerpt + `revisium-cli apply-migrations` invocation that produced the current schema; link to the operations runbook | Draft |
 
@@ -32,17 +32,16 @@ For the formula engine semantics, see [`formulas.md`](../../architecture/specs/f
 
 | Capability | Formula | Demonstrated on | API surface shown | Explainer reveals | Status |
 |---|---|---|---|---|---|
-| Scalar arithmetic | `items.market_value` | `pages/items/[id]/` | GraphQL | The formula expression + the input fields it reads + the live output value; link to formulas spec §1 | Draft |
+| Scalar arithmetic | `items.market_value` | `pages/items/[id]/` | GraphQL | The `base_value * rarity_multiplier` expression + the input fields it reads + the live output value; link to formulas spec §1 | Draft |
 | Nested conditional | `items.rarity_tag` | `pages/items/[id]/` | GraphQL | The conditional expression + the rendered tag; link to formulas spec §2 | Draft |
-| Boolean derived | `heroes.is_veteran` | `pages/heroes/[id]/` | GraphQL | The boolean expression + how a "Veteran" pill is gated on it; link to formulas spec §3 | Draft |
-| Counter on FK array | `factions.ally_count` | `pages/factions/[id]/` | GraphQL | The `length(allies)` formula + the rendered count chip | Draft |
-| Embedded array SUM (one level) | `heroes.total_equipment_modifier`, `quests.total_xp` | `pages/heroes/[id]/`, `pages/quests/[id]/` | GraphQL | The `sum(equipment[].modifier)` expression + the rendered total | Draft |
-| Embedded array SUM (two levels) | `quests.total_loot_xp` | `pages/quests/[id]/` | GraphQL | The `sum(steps[].rewards[].xp)` expression + the rendered total | Draft |
-| Embedded array AVG | `monsters.avg_drop_chance` | `pages/monsters/[id]/` | GraphQL | The `avg(drops[].chance)` expression + the rendered percentage | Draft |
-| Embedded array MAX | `monsters.max_drop_quantity` | `pages/monsters/[id]/` | GraphQL | The `max(drops[].quantity)` expression + the rendered count | Draft |
-| Length on embedded array | `parties.member_count`, `quests.step_count` | `pages/parties/[id]/`, `pages/quests/[id]/` | GraphQL | The `length(...)` formula + the rendered counter | Draft |
-| Boolean from length | `parties.is_full` | `pages/parties/[id]/` | GraphQL | The `member_count >= capacity` expression + how it gates a "Full" badge | Draft |
-| String concat | `heroes.display_name_en`, `npcs.display_label_en` | `pages/heroes/`, `pages/npcs/` | GraphQL | The `concat(...)` expression + how the precomposed string is used in the catalog | Draft |
+| Boolean derived | `heroes.is_veteran` | `pages/heroes/[id]/` | GraphQL | The `level >= 10` expression + how a "Veteran" pill is gated on it; link to formulas spec §3 | Draft |
+| Counter on FK array | `parties.member_count` | `pages/parties/[id]/` | GraphQL | The `count(hero_ids)` formula running against an array-FK field + the rendered count chip | Draft |
+| Embedded array SUM (one level) | `heroes.total_equipment_modifier`, `quests.total_xp` | `pages/heroes/[id]/`, `pages/quests/[id]/` | GraphQL | The `sum(equipment[*].modifier)` / `sum(steps[*].xp)` expressions + the rendered total | Draft |
+| Embedded array SUM (two levels) | `quests.total_loot_xp` | `pages/quests/[id]/` | GraphQL | The `sum(steps[*].rewards[*].bonus_xp)` expression + the rendered total | Draft |
+| Embedded array AVG | `monsters.avg_drop_chance` | `pages/monsters/[id]/` | GraphQL | The `avg(drops[*].chance)` expression + the rendered percentage | Draft |
+| Embedded array COUNT | `monsters.drop_count`, `quests.step_count`, `heroes.equipped_count` | `pages/monsters/[id]/`, `pages/quests/[id]/`, `pages/heroes/[id]/` | GraphQL | The `count(drops)` / `count(steps)` / `count(equipment)` expressions + the rendered counter | Draft |
+| Boolean from length | `parties.is_full` | `pages/parties/[id]/` | GraphQL | The `count(hero_ids) >= 4` expression (party capacity is the constant `4`) + how it gates a "Full" badge | Draft |
+| String concat | `heroes.display_name_en` (`concat(name.en, " ", epithet.en)`), `npcs.display_label_en` (`concat(title.en, " ", name.en)`) | `pages/heroes/`, `pages/npcs/` | GraphQL | The `concat(...)` expression + how the precomposed string is used in the catalog | Draft |
 
 ## 3. File fields
 

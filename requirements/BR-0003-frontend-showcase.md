@@ -4,9 +4,9 @@
 
 | Field | Value |
 |---|---|
-| Owner | <!-- @anton-revisium --> |
+| Owner | @anton-revisium |
 | Status | Draft |
-| Version | 1 |
+| Version | 1.1 |
 | Last updated | 2026-05-12 |
 
 ## 1. Context
@@ -56,6 +56,8 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - **Federation enrichment** showcase: at least one Revisium entity (e.g. `Region`, `Item`, `Hero`) has backend-contributed fields (likes counter, view counter, comments, computed-on-write rollups) federated onto the same GraphQL type via `@key` / `@external` / `@requires`. The explainer widget tags each field with the owning subgraph (`data` / `cms` / `backend`) so the visitor can see federation in action without reading SDL.
 - CMS-driven content for the landing page (`landing_hero`, `landing_features`, `landing_testimonials`) and blog (`blog_posts`, `blog_authors`) — proving Revisium covers both dictionary and marketing-CMS use cases on the same platform.
 - An on-page hint surfacing which API surface (`GraphQL` federated, `REST` direct, or `MCP`) each example would use, with a tab to swap between them where it makes sense.
+- **Localization** — every user-facing string with a `<LocalizedString>` shape in the schema (`en` / `ru` / `zh`) is rendered through a language switcher; switching languages re-issues the GraphQL query with the appropriate sub-field selection (`name { en }` → `name { ru }`) so the Explainer Widget visibly demonstrates that localized strings are a schema feature, not a frontend translation table.
+- **Responsive layout** — every page is usable on phone, tablet, and desktop. The Explainer Widget collapses to a tappable accordion below the fold on small viewports, the JSON filter/sort panel becomes a bottom-sheet, and catalog grids reflow to a single column. No horizontal scroll except inside code-display panels.
 
 ### Out of scope
 
@@ -118,7 +120,33 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - [ ] Given Apollo Router or any subgraph is unreachable, the catalog page renders a visible, non-stack-trace error block that names the failing service and links to status.
 - [ ] Given an empty result set (e.g. a filter that matches nothing), the page renders a clearly-labelled empty state with a "Reset filters" action.
 
-### US-5: Engineer seeing Apollo Federation in action
+### US-5: Visitor switching to another locale
+
+**As** a non-English-speaking developer (Russian or Chinese fluency),
+**I want** to switch the page to my language and see the catalog content render natively,
+**so that** I understand Revisium handles localized content as a first-class schema feature, not as a frontend i18n bolt-on.
+
+**Acceptance:**
+
+- [ ] Given any page rendering a `<LocalizedString>` field (region name, hero name, item description, blog post title), a global language toggle (`en` / `ru` / `zh`) re-issues the GraphQL query with the language-specific sub-field selection.
+- [ ] Given the Explainer Widget on that page, the displayed query body updates to show `name { ru }` after the user switches to Russian — making it obvious that locale is a *schema concern*.
+- [ ] Given a row whose non-en locale is empty, the page falls back to `en` and the widget notes which strings were fallbacks.
+- [ ] Given UI chrome (button labels, error states), those translations live in the frontend's own i18n bundle, not in the Revisium content — the widget calls out the distinction.
+
+### US-6: Visitor on a mobile phone
+
+**As** a visitor reading the demo on a phone (e.g. linked from a chat or social post),
+**I want** the page to be usable without horizontal scrolling, with the catalog and Explainer Widget both reachable,
+**so that** I don't bounce after the first card.
+
+**Acceptance:**
+
+- [ ] Given a viewport ≤ 480 px wide, every page renders without horizontal scroll (except inside code-display panels inside the Explainer Widget, which scroll inside their own scrollable region).
+- [ ] Given the same viewport, the Explainer Widget collapses to a tappable accordion below the fold; the catalog grid reflows to a single column; the JSON filter / sort panel becomes a bottom-sheet that the user can summon with a single tap.
+- [ ] Given a viewport between 481 px and 1024 px (tablet), the layout uses a two-column split — catalog grid above, Explainer Widget docked at the right.
+- [ ] Given a viewport ≥ 1024 px (desktop), the Explainer Widget docks as a side panel without obscuring catalog content.
+
+### US-7: Engineer seeing Apollo Federation in action
 
 **As** an engineer who has read about Apollo Federation in theory,
 **I want** to see one GraphQL type that visibly carries fields from two different subgraphs in the same response,
@@ -131,7 +159,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - [ ] Given the visitor expands the widget's "How does this work?" panel, the federation directives (`@key` on `RegionsNode`, `extend type RegionsNode @key(fields: "id") { likes: Int! }` on the backend side) are shown verbatim with a link to the backend's federation source.
 - [ ] Given the visitor "likes" the region (if interactive) — out of scope for v1, but the API surface is shown read-only — the explainer notes that the same field would be a mutation on the backend subgraph, not on Revisium.
 
-### US-6: AI agent imitating the pattern
+### US-8: AI agent imitating the pattern
 
 **As** an AI coding agent helping a user build their first Revisium-backed app,
 **I want** to discover, on each page, the GraphQL operation name + the REST endpoint + the MCP tool name + the cloud.revisium.io deep link,
@@ -155,6 +183,8 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 | Landing page is driven from `demo-rpg-cms` (hero, features, testimonials) — no hardcoded strings beyond brand-level copy | Must | Draft | `products/branching-tales/pages/home/` (planned) |
 | Every page is SSR-rendered with no client-only fallback paths (the widget content is present in initial HTML) | Must | In delivery | demo-rpg-frontend SSR layer (already shipped) |
 | Public-read access — visitors do not need to sign in or carry an API key for any read query | Must | Done | `demo-rpg-data` + `demo-rpg-cms` configured public-read |
+| Localized content rendering — `<LocalizedString>` fields render in the active locale (`en` / `ru` / `zh`) with `en` fallback; switching locale re-issues the GraphQL query with the locale-specific sub-field selection | Must | Draft | global locale toggle + per-page query parameterisation; UI chrome strings live in a separate frontend i18n bundle |
+| Responsive layout — every page works on phone (≤ 480 px), tablet (481–1024 px), desktop (≥ 1024 px); no horizontal scroll outside designated code panels; Explainer Widget collapses to an accordion on small viewports | Must | Draft | `revisium-ux/design-system` breakpoint tokens + per-page audit |
 
 ## 7. Business rules and constraints
 
@@ -162,7 +192,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - **No write surface** — even when Revisium would allow it, the frontend uses read endpoints only. Any "edit" affordance on a row deep-links to `cloud.revisium.io` instead.
 - **Schema is the source of truth** — page UI never invents fields. If a panel cannot be filled from the live schema, it is hidden until the schema gains the field.
 - **Public DevRel surface** — no PII, no real customer data, no telemetry that re-identifies visitors. Aggregate analytics only.
-- **English-first** — every user-facing string is at least `en`. `ru` / `zh` rendering is allowed but the en fallback must always be visible.
+- **English-first with localized fallback** — every user-facing string is at least `en`. The active locale (`en` / `ru` / `zh`) determines the rendered field on `<LocalizedString>` content; missing translations fall back to `en` and the Explainer Widget marks the field as a fallback so the visitor understands the behaviour. UI chrome (button labels, error strings) lives in the frontend i18n bundle, never inside Revisium content.
 
 ## 8. Non-functional requirements
 
@@ -171,7 +201,10 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 | Performance | SSR TTFB ≤ 500 ms p95 from EU / US (cold subgraph round-trip excluded), client bundle ≤ 250 KB gzip for the entry chunk. |
 | Availability | Demo stand uptime ≥ 99% measured monthly; Argo CD auto-syncs deployments; explicit outage banner if any subgraph reports unhealthy. |
 | Security | Read-only public endpoints; no API keys in the client bundle; no third-party scripts beyond analytics (if added later); CSP set to deny inline scripts (with the necessary SSR hash allowances). |
-| Audit | Every shipped page has a matching row in [`page-inventory.md`](../products/branching-tales/page-inventory.md) (to follow) and at least one acceptance test in `demo-rpg-frontend`. |
+| Responsiveness | Mobile-first layout — phone (≤ 480 px) usable without horizontal scroll, tablet (481–1024 px) two-column, desktop (≥ 1024 px) Explainer Widget docked as side panel. Touch targets ≥ 44×44 px. Layout shifts < 0.1 CLS p95 on initial paint. |
+| Localization | All `<LocalizedString>` content fields render via a global locale toggle (`en` / `ru` / `zh`) with `en` fallback. Locale switches re-issue the query with the appropriate sub-field selection (no client-side translation of data). UI chrome strings live in a separate frontend i18n bundle; the Explainer Widget makes the distinction explicit. |
+| Accessibility | WCAG 2.2 AA targets — semantic landmarks, focusable interactive controls, visible focus states, sufficient colour contrast, `prefers-reduced-motion` respected. Locale switcher accessible via keyboard. |
+| Audit | Every shipped page has a matching row in [`page-inventory.md`](../products/branching-tales/page-inventory.md) and at least one acceptance test in `demo-rpg-frontend`. Responsive + a11y audit per page using the `page-audit-guidelines.md` style. |
 
 ## 9. Open questions
 
@@ -193,6 +226,11 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - **Roadmap / tickets**: tracked in [`demo-rpg-frontend`](https://github.com/revisium/demo-rpg-frontend) issues once page docs are merged.
 
 ## Changelog
+
+### v1.1 (2026-05-12)
+
+- Add localization scenario (US-5), responsive layout scenario (US-6), and the corresponding scope + functional + NFR rows. Re-number federation + AI-agent scenarios to US-7 / US-8.
+- Promote @anton-revisium from a comment placeholder to the visible owner.
 
 ### v1 (2026-05-12)
 
