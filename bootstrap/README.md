@@ -130,6 +130,6 @@ These are tracked as open questions in the relevant specs and as candidates for 
 | 3 | `0003-data-media-fields` — required `regions.cover_image`, `classes.icon`, `locations.gallery[]`, and `quests.steps[].image` media fields for Admin-uploaded art | Applied in source |
 | 4 | `0004-faction-relationships` — junction table for ally/enemy after Revisium ships self-FK or as M:N | Planned |
 | 5 | `0005-quest-types` — new lookup table classifying quests | Planned |
-| 5 | `balance-patch-1.1` (branch) — tune `items.rarity_multiplier` and `abilities.base_damage` without touching `master` | Planned |
+| 6 | `balance-patch-1.1` (branch) — tune `items.rarity_multiplier` and `abilities.base_damage` without touching `master` | Planned |
 
-The `bootstrap/` directory is the source of truth for migrations 1 and 2. Migrations 3 and 4 will land here as additional schema files plus updates to the apply script.
+The `bootstrap/` directory is the source of truth for migrations 1–3. Migrations 4 and 5 will land here as additional schema files plus updates to the apply script.

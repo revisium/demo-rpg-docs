@@ -385,7 +385,7 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
 ```json
 {
   "type": "object",
-  "required": ["name", "description", "climate"],
+  "required": ["name", "description", "cover_image", "climate"],
   "properties": {
     "name": {
       "type": "object",
@@ -407,6 +407,9 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
       },
       "additionalProperties": false
     },
+    "cover_image": {
+      "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0"
+    },
     "climate": {
       "type": "string",
       "default": "temperate",
@@ -422,7 +425,7 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
 ```json
 {
   "type": "object",
-  "required": ["name", "description", "alignment"],
+  "required": ["name", "description", "crest", "alignment"],
   "properties": {
     "name": { /* <LocalizedString> */ },
     "description": { /* <LocalizedString> */ },
