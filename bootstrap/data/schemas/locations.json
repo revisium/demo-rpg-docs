@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "required": ["region_id", "name", "description", "map", "kind", "coordinates"],
+  "required": ["region_id", "name", "description", "map", "gallery", "kind", "coordinates"],
   "additionalProperties": false,
   "properties": {
     "region_id": { "type": "string", "default": "", "foreignKey": "regions" },
@@ -25,6 +25,10 @@
       }
     },
     "map": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
+    "gallery": {
+      "type": "array",
+      "items": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" }
+    },
     "kind": {
       "type": "string",
       "default": "town",

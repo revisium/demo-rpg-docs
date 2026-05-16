@@ -22,7 +22,7 @@ This spec is the **what**; the **why** lives in the ADRs:
 
 ### Localized string — `<LocalizedString>`
 
-Every user-facing string is an inline object. `en` is the canonical fallback and is required; `ru` (Russian) and `zh` (Chinese, defaults to Simplified) are optional.
+Every user-facing string is an inline object. `en` is the canonical fallback; `ru` (Russian) and `zh` (Chinese, defaults to Simplified) are declared with empty-string defaults and are present in seed rows because the current runtime does not support omitted optional object fields.
 
 ```json
 {
@@ -132,9 +132,10 @@ Top-level world geography. Self-contained — no FKs out.
 |---|---|---|
 | `name` | `<LocalizedString>` | Display name |
 | `description` | `<LocalizedString>` | World-building blurb |
+| `cover_image` | `<FileRef>` | Required region cover art, uploaded in Admin UI and used by catalog/detail pages |
 | `climate` | enum: `temperate`, `alpine`, `coastal`, `desert`, `forest` | Drives flavour, no mechanical effect |
 
-Required: `name`, `description`, `climate`.
+Required: `name`, `description`, `cover_image`, `climate`.
 
 ### 2. `locations`
 
@@ -145,11 +146,12 @@ Towns, dungeons, ruins. Each belongs to a region.
 | `region_id` | FK → `regions` | |
 | `name` | `<LocalizedString>` | |
 | `description` | `<LocalizedString>` | |
-| `map` | `<FileRef>` | Optional map illustration |
+| `map` | `<FileRef>` | Required primary map illustration |
+| `gallery` | `<FileRef>[]` | Required gallery field. Seed rows contain one placeholder image; Admin UI can add more uploaded images. |
 | `kind` | enum: `town`, `village`, `dungeon`, `ruin`, `wilderness` | |
 | `coordinates` | object `{ x: number, y: number }` | Map-relative coordinates |
 
-Required: `region_id`, `name`, `description`, `kind`, `coordinates`.
+Required: `region_id`, `name`, `description`, `map`, `gallery`, `kind`, `coordinates`.
 
 ### 3. `factions`
 
@@ -166,7 +168,7 @@ Allegiances. Demonstrates self-referencing FK arrays.
 | `ally_count` | `number`, **`x-formula`** `count(ally_ids)` | Counter on FK array |
 | `enemy_count` | `number`, **`x-formula`** `count(enemy_ids)` | Counter on FK array |
 
-Required: `name`, `description`, `alignment`.
+Required: `name`, `description`, `crest`, `alignment`.
 
 ### 4. `item_types`
 
@@ -198,7 +200,7 @@ Equipment, consumables, and unique artefacts.
 | `market_value` | `number`, **`x-formula`** `base_value * rarity_multiplier` | Scalar arithmetic |
 | `rarity_tag` | `string`, **`x-formula`** `if(rarity == "legendary", "epic-tier", if(rarity == "epic", "high-tier", "common-tier"))` | Nested conditional |
 
-Required: `type_id`, `name`, `description`, `rarity`, `rarity_multiplier`, `base_value`.
+Required: `type_id`, `name`, `description`, `icon`, `rarity`, `rarity_multiplier`, `base_value`, `weight`, `modifiers`, `market_value`, `rarity_tag`.
 
 ### 6. `abilities`
 
@@ -217,7 +219,7 @@ Spells, skills, and combat techniques.
 | `level_required` | `number` | |
 | `effects` | embedded array `{ effect_id (FK → effects), chance (number), duration (number) }` | What the ability inflicts |
 
-Required: `name`, `description`, `school`, `kind`, `base_damage`, `damage_scaling`, `level_required`.
+Required: `name`, `description`, `icon`, `school`, `kind`, `base_damage`, `damage_scaling`, `cooldown`, `level_required`, `effects`.
 
 ### 7. `classes`
 
@@ -227,13 +229,14 @@ Hero archetypes.
 |---|---|---|
 | `name` | `<LocalizedString>` | |
 | `description` | `<LocalizedString>` | |
+| `icon` | `<FileRef>` | Required class glyph used by the class catalog and hero filters |
 | `primary_stat` | enum: `strength`, `dexterity`, `intelligence`, `wisdom`, `constitution`, `charisma` | |
 | `base_hp` | `number` | |
 | `hp_per_level` | `number` | |
 | `mp_per_level` | `number` | |
 | `starting_ability_ids` | FK array → `abilities` | Granted at level 1 |
 
-Required: all except `description`.
+Required: `name`, `description`, `icon`, `primary_stat`, `base_hp`, `hp_per_level`, `mp_per_level`, `starting_ability_ids`.
 
 ### 8. `npcs`
 
@@ -251,7 +254,7 @@ Quest givers, merchants, trainers, lore-keepers.
 | `inventory_item_ids` | FK array → `items` | Merchant stock; empty for non-merchants |
 | `display_label_en` | `string`, **`x-formula`** `concat(title.en, " ", name.en)` | String concat across same-row locale fields |
 
-Required: `faction_id`, `location_id`, `name`, `title`, `role`.
+Required: `faction_id`, `location_id`, `name`, `title`, `description`, `portrait`, `role`, `inventory_item_ids`, `display_label_en`.
 
 ### 9. `monsters`
 
@@ -273,7 +276,7 @@ Enemies. Demonstrates FK array (abilities) and embedded array (drops) side by si
 | `max_drop_quantity` | `number`, **`x-formula`** `max(drops[*].quantity_max)` | Embedded array MAX over field |
 | `drop_count` | `number`, **`x-formula`** `count(drops)` | Embedded array length |
 
-Required: `faction_id`, `name`, `description`, `kind`, `level`, `hp`, `base_damage`.
+Required: `faction_id`, `name`, `description`, `image`, `kind`, `level`, `hp`, `base_damage`, `ability_ids`, `drops`, `avg_drop_chance`, `drop_count`.
 
 ### 10. `heroes`
 
@@ -296,7 +299,7 @@ The roster. The richest table — exercises both FK arrays and embedded arrays.
 | `equipped_count` | `number`, **`x-formula`** `count(equipment)` | Embedded array length |
 | `display_name_en` | `string`, **`x-formula`** `concat(name.en, " ", epithet.en)` | String concat |
 
-Required: `class_id`, `name`, `level`, `constitution`, `gold`.
+Required: `class_id`, `name`, `epithet`, `level`, `constitution`, `gold`, `portrait`, `ability_ids`, `inventory_item_ids`, `equipment`, `is_veteran`, `total_equipment_modifier`, `equipped_count`, `display_name_en`.
 
 ### 11. `parties`
 
@@ -305,13 +308,13 @@ Adventuring groups. Demonstrates FK array + count formula.
 | Field | Type | Notes |
 |---|---|---|
 | `name` | `<LocalizedString>` | |
-| `motto` | `<LocalizedString>` | Optional |
+| `motto` | `<LocalizedString>` | Required motto |
 | `formation` | enum: `vanguard`, `balanced`, `defensive`, `skirmisher` | |
 | `hero_ids` | FK array → `heroes` | |
 | `member_count` | `number`, **`x-formula`** `count(hero_ids)` | Counter on FK array |
 | `is_full` | `boolean`, **`x-formula`** `count(hero_ids) >= 4` | Counter + comparison |
 
-Required: `name`, `formation`.
+Required: `name`, `motto`, `formation`, `hero_ids`, `member_count`, `is_full`.
 
 ### 12. `quests`
 
@@ -326,12 +329,12 @@ Adventures. Uses nested embedded arrays (`steps[*].rewards[*]`) for the two-leve
 | `kind` | enum: `tutorial`, `side`, `story`, `endgame` | |
 | `level_required` | `number` | |
 | `is_repeatable` | `boolean` | |
-| `steps` | embedded array `{ step_number (number), description (<LocalizedString>), location_id (FK → locations), npc_id (FK → npcs), xp (number), rewards (embedded array { item_id (FK → items), quantity (number), bonus_xp (number) }) }` | Nested embedded |
+| `steps` | embedded array `{ step_number (number), description (<LocalizedString>), image (<FileRef>), location_id (FK → locations), npc_id (FK → npcs), xp (number), rewards (embedded array { item_id (FK → items), quantity (number), bonus_xp (number) }) }` | Nested embedded with required image per step |
 | `total_xp` | `number`, **`x-formula`** `sum(steps[*].xp)` | Embedded array SUM (one level) |
 | `total_loot_xp` | `number`, **`x-formula`** `sum(steps[*].rewards[*].bonus_xp)` | Nested embedded array SUM (two levels) |
 | `step_count` | `number`, **`x-formula`** `count(steps)` | |
 
-Required: `giver_npc_id`, `name`, `description`, `kind`, `level_required`, `is_repeatable`.
+Required: `giver_npc_id`, `name`, `description`, `map`, `kind`, `level_required`, `is_repeatable`, `steps`, `total_xp`, `total_loot_xp`, `step_count`.
 
 ### 13. `dialogs`
 
@@ -344,7 +347,7 @@ NPC dialogue trees. Pure embedded-array showcase of deeply nested JSON.
 | `lines` | embedded array `{ speaker (enum: npc, hero), text (<LocalizedString>), emotion (enum: neutral, happy, angry, sad, surprised) }` | The dialog content |
 | `line_count` | `number`, **`x-formula`** `count(lines)` | |
 
-Required: `npc_id`, `slug`.
+Required: `npc_id`, `slug`, `lines`, `line_count`.
 
 ### 14. `stats`
 
@@ -357,7 +360,7 @@ Primary stats lookup (FK target for `items.modifiers[*].stat_id`).
 | `abbreviation` | `string` | "STR", "DEX", "INT", "WIS", "CON", "CHA" |
 | `description` | `<LocalizedString>` | |
 
-Required: `code`, `name`, `abbreviation`.
+Required: `code`, `name`, `abbreviation`, `description`.
 
 ### 15. `effects`
 
@@ -371,7 +374,7 @@ Status effects (FK target for `abilities.effects[*].effect_id`).
 | `kind` | enum: `buff`, `debuff`, `damage_over_time`, `crowd_control` | |
 | `default_duration` | `number` | Turns |
 
-Required: `code`, `name`, `kind`, `default_duration`.
+Required: `code`, `name`, `description`, `kind`, `default_duration`.
 
 ## Reference JSON — three full tables
 
@@ -382,7 +385,7 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
 ```json
 {
   "type": "object",
-  "required": ["name", "description", "climate"],
+  "required": ["name", "description", "cover_image", "climate"],
   "properties": {
     "name": {
       "type": "object",
@@ -404,6 +407,9 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
       },
       "additionalProperties": false
     },
+    "cover_image": {
+      "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0"
+    },
     "climate": {
       "type": "string",
       "default": "temperate",
@@ -419,7 +425,7 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
 ```json
 {
   "type": "object",
-  "required": ["name", "description", "alignment"],
+  "required": ["name", "description", "crest", "alignment"],
   "properties": {
     "name": { /* <LocalizedString> */ },
     "description": { /* <LocalizedString> */ },
@@ -455,7 +461,7 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
 ```json
 {
   "type": "object",
-  "required": ["giver_npc_id", "name", "description", "kind", "level_required", "is_repeatable"],
+  "required": ["giver_npc_id", "name", "description", "map", "kind", "level_required", "is_repeatable", "steps", "total_xp", "total_loot_xp", "step_count"],
   "properties": {
     "giver_npc_id": { "type": "string", "default": "", "foreignKey": "npcs" },
     "name": { /* <LocalizedString> */ },
@@ -472,10 +478,11 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["step_number", "description", "location_id", "xp"],
+        "required": ["step_number", "description", "image", "location_id", "npc_id", "xp", "rewards"],
         "properties": {
           "step_number": { "type": "number", "default": 0 },
           "description": { /* <LocalizedString> */ },
+          "image": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
           "location_id": { "type": "string", "default": "", "foreignKey": "locations" },
           "npc_id": { "type": "string", "default": "", "foreignKey": "npcs" },
           "xp": { "type": "number", "default": 0 },
@@ -483,7 +490,7 @@ The conventions above are dense. Three tables in full JSON make the pattern conc
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["item_id", "quantity"],
+              "required": ["item_id", "quantity", "bonus_xp"],
               "properties": {
                 "item_id": { "type": "string", "default": "", "foreignKey": "items" },
                 "quantity": { "type": "number", "default": 0 },

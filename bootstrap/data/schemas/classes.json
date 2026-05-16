@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "required": ["name", "description", "primary_stat", "base_hp", "hp_per_level", "mp_per_level", "starting_ability_ids"],
+  "required": ["name", "description", "icon", "primary_stat", "base_hp", "hp_per_level", "mp_per_level", "starting_ability_ids"],
   "additionalProperties": false,
   "properties": {
     "name": {
@@ -23,6 +23,7 @@
         "zh": { "type": "string", "default": "" }
       }
     },
+    "icon": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
     "primary_stat": {
       "type": "string",
       "default": "strength",

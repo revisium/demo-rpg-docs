@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "required": ["name", "description", "climate"],
+  "required": ["name", "description", "cover_image", "climate"],
   "additionalProperties": false,
   "properties": {
     "name": {
@@ -22,6 +22,9 @@
         "ru": { "type": "string", "default": "" },
         "zh": { "type": "string", "default": "" }
       }
+    },
+    "cover_image": {
+      "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0"
     },
     "climate": {
       "type": "string",

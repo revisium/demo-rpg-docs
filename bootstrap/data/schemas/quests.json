@@ -36,7 +36,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["step_number", "description", "location_id", "npc_id", "xp", "rewards"],
+        "required": ["step_number", "description", "image", "location_id", "npc_id", "xp", "rewards"],
         "additionalProperties": false,
         "properties": {
           "step_number": { "type": "number", "default": 0, "minimum": 0 },
@@ -50,6 +50,7 @@
               "zh": { "type": "string", "default": "" }
             }
           },
+          "image": { "$ref": "urn:jsonschema:io:revisium:file-schema:1.0.0" },
           "location_id": { "type": "string", "default": "", "foreignKey": "locations" },
           "npc_id": { "type": "string", "default": "", "foreignKey": "npcs" },
           "xp": { "type": "number", "default": 0, "minimum": 0 },

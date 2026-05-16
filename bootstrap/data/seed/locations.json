@@ -6,6 +6,7 @@
       "name": { "en": "Silver Citadel", "ru": "Серебряная цитадель", "zh": "银曦堡" },
       "description": { "en": "Capital of the Verdant Marches and seat of the Order of the Silver Dawn.", "ru": "Столица Цветущих Марок и резиденция Ордена Серебряной Зари.", "zh": "翠野边境的首都，银曦教团的所在地。" },
       "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "gallery": [{ "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }],
       "kind": "town", "coordinates": { "x": 1200, "y": 800 }
     }
   },
@@ -16,6 +17,7 @@
       "name": { "en": "Ironforge Keep", "ru": "Крепость Железного Горна", "zh": "铁炉要塞" },
       "description": { "en": "Dwarven fortress carved into the mountainside, heart of the Stoneward Brotherhood.", "ru": "Дворфийская крепость в горе, сердце Братства Камнестражей.", "zh": "凿入山腹的矮人堡垒，石卫兄弟会的核心。" },
       "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "gallery": [{ "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }],
       "kind": "town", "coordinates": { "x": 1000, "y": 200 }
     }
   },
@@ -26,6 +28,7 @@
       "name": { "en": "Whisperwood Grove", "ru": "Шепчущая роща", "zh": "低语林" },
       "description": { "en": "Sacred elven grove and the Concord's primary council chamber.", "ru": "Священная эльфийская роща и главный зал совета Конкорда.", "zh": "神圣的精灵林地，协议的主要议事厅。" },
       "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "gallery": [{ "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }],
       "kind": "town", "coordinates": { "x": 400, "y": 700 }
     }
   },
@@ -36,6 +39,7 @@
       "name": { "en": "Saltport", "ru": "Соляная гавань", "zh": "盐港" },
       "description": { "en": "Largest free port on the Sundered Coast, ruled by a council of captains.", "ru": "Крупнейший вольный порт Расколотого побережья.", "zh": "破碎海岸最大的自由港，由船长议会统治。" },
       "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "gallery": [{ "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }],
       "kind": "town", "coordinates": { "x": 1700, "y": 900 }
     }
   },
@@ -46,6 +50,7 @@
       "name": { "en": "Ashreach Outpost", "ru": "Застава Пепельного Предела", "zh": "灰烬哨站" },
       "description": { "en": "Last bastion before the deep wastes; mostly fortifications and a tavern.", "ru": "Последний оплот перед глубокими пустошами.", "zh": "深入荒原前的最后据点；主要为工事与酒馆。" },
       "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "gallery": [{ "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }],
       "kind": "village", "coordinates": { "x": 1400, "y": 1500 }
     }
   },
@@ -56,6 +61,7 @@
       "name": { "en": "Goblin Caves", "ru": "Гоблинские пещеры", "zh": "哥布林洞穴" },
       "description": { "en": "A warren of caves overrun by goblin raiders, perfect for first quests.", "ru": "Сеть пещер, занятая гоблинами-налётчиками.", "zh": "被哥布林袭击者占据的洞穴群，新手任务的理想之地。" },
       "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "gallery": [{ "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }],
       "kind": "dungeon", "coordinates": { "x": 1100, "y": 950 }
     }
   },
@@ -66,6 +72,7 @@
       "name": { "en": "Forsaken Tomb", "ru": "Гробница Отверженных", "zh": "被弃者之墓" },
       "description": { "en": "An ancient tomb where a Lich rules over its undead court.", "ru": "Древняя гробница, где Лич правит своим нежитным двором.", "zh": "古老的墓穴，巫妖统治着不死宫廷。" },
       "map": { "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 },
+      "gallery": [{ "status": "", "fileId": "", "url": "", "fileName": "", "hash": "", "extension": "", "mimeType": "", "size": 0, "width": 0, "height": 0 }],
       "kind": "ruin", "coordinates": { "x": 1500, "y": 1700 }
     }
   }
