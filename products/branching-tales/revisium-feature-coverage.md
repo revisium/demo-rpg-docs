@@ -49,11 +49,15 @@ For file shape, see [`files.md`](../../architecture/specs/files.md).
 
 | Capability | Field | Demonstrated on | API surface shown | Explainer reveals | Status |
 |---|---|---|---|---|---|
+| Region cover image | `regions.cover_image` | `pages/regions/`, `pages/regions/[id]/` | GraphQL + REST file URL | Required Admin-uploaded file field, plus the `fileId` / `hash` / `url` triple used for imgproxy rendering | Draft |
+| File field in reference table | `classes.icon` | `pages/classes/` | GraphQL + REST file URL | Required class glyph field used by a small FK target catalog | Draft |
 | Single PNG portrait | `heroes.portrait`, `npcs.portrait` | `pages/heroes/[id]/`, `pages/npcs/[id]/` | GraphQL + REST file URL | The `file-schema:1.0.0` ref + the `fileId` / `hash` / `url` triple; link to files spec | Draft |
 | Single PNG illustration | `monsters.image` | `pages/monsters/[id]/` | GraphQL + REST file URL | Same as above for the larger asset | Draft |
 | SVG vector icon | `items.icon`, `abilities.icon` | `pages/items/`, `pages/abilities/` | GraphQL + REST file URL | Sharp-at-any-zoom rendering + the file-schema; the icon appears in the catalog grid | Draft |
 | SVG crest | `factions.crest` | `pages/factions/[id]/` | GraphQL + REST file URL | Alpha-background SVG composited on the page; the file-schema | Draft |
 | Large map image | `locations.map` | `pages/locations/[id]/` | GraphQL + REST file URL | The dimensions metadata Revisium stores (`width` / `height`) and how it informs srcset | Draft |
+| File array | `locations.gallery[]` | `pages/locations/[id]/` | GraphQL + REST file URL | Required array field whose items are `file-schema:1.0.0` objects | Draft |
+| File field inside object array | `quests.steps[].image` | `pages/quests/[id]/` | GraphQL + REST file URL | Required image nested inside each authored step object | Draft |
 | Marketing hero (CMS) | `landing_hero.bg_image` | `pages/home/` | GraphQL | The CMS-vs-data subgraph attribution + the SSR-optimised image markup | Draft |
 | Avatar (CMS) | `blog_authors.avatar` | `pages/blog/[slug]/` | GraphQL | The author panel + the file-schema | Draft |
 | Markdown attachment / OG image | `blog_posts.hero_image` | `pages/blog/[slug]/` | GraphQL | The OG-image meta tag + the original Revisium file URL | Draft |

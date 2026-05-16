@@ -14,11 +14,15 @@ The demo deliberately uses every common shape: single image, gallery, vector gly
 
 | Pattern | Field | Notes |
 |---|---|---|
+| Region cover image | `regions.cover_image` | Wide atlas/card image, uploaded in Admin UI |
+| Class glyph | `classes.icon` | SVG/PNG class glyph for class catalog and hero filters |
 | Single PNG portrait | `heroes.portrait`, `npcs.portrait` | Tall aspect ratio, ~512x768 |
 | Single PNG illustration | `monsters.image` | Square ~768x768 |
 | SVG vector icon | `items.icon`, `abilities.icon` | Sharp at any zoom |
 | SVG crest | `factions.crest` | Solid colour, alpha background |
 | Map image (large PNG) | `locations.map` | ~1920x1080 |
+| Image gallery | `locations.gallery[]` | Required array field with one or more location screenshots/atlas crops by content convention |
+| Embedded step image | `quests.steps[].image` | Required file field inside each quest step object |
 | Marketing hero (CMS) | `landing_hero.bg_image` | Wide banner, optimised for SSR |
 | Avatar (CMS) | `blog_authors.avatar` | Circular, ~256x256 |
 | Markdown attachment | `blog_posts.hero_image` | OG-image for posts |
