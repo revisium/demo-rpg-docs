@@ -24,10 +24,14 @@
 | `/heroes/[id]` | `pages/heroes/[id]/` (planned) | `data.heroes` + FKs | Single FK (`class_id`), array FKs (`ability_ids`, `inventory_item_ids`), embedded `equipment[]`, formulas (`is_veteran`, `total_equipment_modifier`, `equipped_count`), PNG portrait | Draft |
 | `/items` | `pages/items/` (planned) | `data.items`, `data.item_types`, `data.stats` | Large-catalog complex `where` filters (numeric range, FK equality, contains), multi-field `orderBy`, cursor pagination, SVG icon files | Draft |
 | `/items/[id]` | `pages/items/[id]/` (planned) | `data.items` + FKs | Single FK (`type_id`), embedded `modifiers[]`, formulas (`market_value`, `rarity_tag`), SVG icon | Draft |
+| `/item-types` | `pages/item-types/` (planned) | `data.item_types` | Supporting lookup catalog for `items.type_id`; localized labels, descriptions, and stable machine codes | Draft |
+| `/stats` | `pages/stats/` (planned) | `data.stats` | Supporting lookup catalog for `items.modifiers[*].stat_id`; localized labels plus stable abbreviations | Draft |
+| `/effects` | `pages/effects/` (planned) | `data.effects` | Supporting lookup catalog for `abilities.effects[*].effect_id`; enum `kind` and default duration | Draft |
 | `/monsters` | `pages/monsters/` (planned) | `data.monsters`, `data.factions` | Single FK (`faction_id`), embedded `drops[]`, formulas (`avg_drop_chance`, `drop_count`), illustration file field | Draft |
 | `/monsters/[id]` | `pages/monsters/[id]/` (planned) | `data.monsters` + FKs + array FK (`ability_ids`) | Same + array FK to `abilities` | Draft |
 | `/quests` | `pages/quests/` (planned) | `data.quests`, `data.npcs`, `data.locations` | Catalog with FK columns, level filter, repeatable flag | Draft |
 | `/quests/[id]` | `pages/quests/[id]/` (planned) | `data.quests` + FKs + `data.items` (loot resolution) | Embedded `steps[]` with required `steps[].image`, nested `steps[].rewards[]` (two-level), formulas (`total_xp`, `total_loot_xp`, `step_count`) | Draft |
+| `/dialogs` | `pages/dialogs/` (planned) | `data.dialogs`, `data.npcs` | NPC dialog catalog with FK to NPCs, embedded `lines[]`, localized line text, and `line_count` formula | Draft |
 | `/parties` | `pages/parties/` (planned) | `data.parties`, `data.heroes` | Catalog with FK-array column, formula counters | Draft |
 | `/parties/[id]` | `pages/parties/[id]/` (planned) | `data.parties` + array FK (`hero_ids`) | Array foreign key resolution, `count(hero_ids)`, boolean from length (`is_full`) | Draft |
 | `/factions` | `pages/factions/` (planned) | `data.factions` | Catalog with SVG crest field, alignment enum | Draft |
@@ -65,10 +69,10 @@ dropdowns:
 
 | Section family | Entry route | Sibling catalogs |
 |---|---|---|
-| Heroes | `/heroes` | Heroes, Classes, Abilities, NPCs, Parties |
-| Items | `/items` | Items, Item Types, Stats, Effects |
-| World | `/regions` | Regions, Locations, Factions |
-| Quests | `/quests` | Quests, Dialogs |
+| Heroes | `/heroes` | Heroes (`/heroes`), Classes (`/classes`), Abilities (`/abilities`), NPCs (`/npcs`), Parties (`/parties`) |
+| Items | `/items` | Items (`/items`), Item Types (`/item-types`), Stats (`/stats`), Effects (`/effects`) |
+| World | `/regions` | Regions (`/regions`), Locations (`/locations`), Factions (`/factions`) |
+| Quests | `/quests` | Quests (`/quests`), Dialogs (`/dialogs`) |
 
 Top-level items should not link to abstract hub pages until those pages become
 useful aggregators. In v1, each top-level item opens the primary catalog for its

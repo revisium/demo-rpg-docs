@@ -143,10 +143,10 @@ Section subnavigation appears on pages, not in the top nav:
 
 | Section | Entry route | Sibling links |
 |---|---|---|
-| Heroes | `/heroes` | Heroes, Classes, Abilities, NPCs, Parties |
-| Items | `/items` | Items, Item Types, Stats, Effects |
-| World | `/regions` | Regions, Locations, Factions |
-| Quests | `/quests` | Quests, Dialogs |
+| Heroes | `/heroes` | Heroes (`/heroes`), Classes (`/classes`), Abilities (`/abilities`), NPCs (`/npcs`), Parties (`/parties`) |
+| Items | `/items` | Items (`/items`), Item Types (`/item-types`), Stats (`/stats`), Effects (`/effects`) |
+| World | `/regions` | Regions (`/regions`), Locations (`/locations`), Factions (`/factions`) |
+| Quests | `/quests` | Quests (`/quests`), Dialogs (`/dialogs`) |
 
 Sibling links may point to planned/stub pages only when the page inventory marks
 the target route and the UI makes the incomplete state clear.
