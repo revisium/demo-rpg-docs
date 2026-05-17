@@ -23,7 +23,7 @@ Realises [BR-0003 §5 US-1 / US-2 / US-7 / US-8](../../requirements/BR-0003-fron
 | Search page (`/search`) | Yes — required | Shows the `searchRows` call. |
 | Branching preview page (`/balance-patch`) | Yes — required | Shows both revision URIs (`master:head` and `master:draft`) and the diff call. |
 | Blog (`/blog`, `/blog/[slug]`) | Yes — required | Shows the CMS subgraph queries. |
-| Home (`/`) | Optional | CMS-driven landing. If a section pulls live data (`landing_features`, `landing_testimonials`), a widget is rendered next to it; static brand copy is not annotated. |
+| Home (`/`) | Optional | Game database/codex entry. If a section pulls live data (`landing_features`, guide updates, or featured entities), a widget is rendered near that source-backed section; static brand copy is not annotated. |
 | Auth / 404 / 500 / error pages | No | No Revisium request to explain. |
 
 ## Anatomy (functional blocks)
@@ -155,7 +155,7 @@ All links open in a new tab with `rel="noopener"`. URLs are deterministic from t
 |---|---|
 | Filter / sort panel | The variables panel updates **live** (before the request fires) as the user edits the form, so cause and effect are visible. After the request resolves, the response sample refreshes. |
 | Pagination ("Load more") | Variables panel shows the new `after` cursor; response sample either replaces or extends the previous sample (TBD — open question). |
-| Locale toggle | The GraphQL query body in the request panel updates to show the language-specific sub-field selection (`name { en }` → `name { ru }`). Response sample re-fetches. |
+| Header language button | The GraphQL query body in the request panel updates to show the language-specific sub-field selection (`name { en }` → `name { ru }`). Response sample re-fetches. |
 | Branching toggle (on `/balance-patch`) | Variables / URI panel shows the revision URI (`master:head` vs `master:draft`); the widget renders a diff strip on top. |
 | Federated field rendering | Field-attribution chips light up next to each rendered field; header cluster reflects the multi-subgraph composition. |
 | Error / empty states | The widget reflects the page state (see [§States](#states)). |
@@ -182,7 +182,7 @@ All links open in a new tab with `rel="noopener"`. URLs are deterministic from t
 | Expanded (phone) | Tap header / swipe down | Always | Collapsed | Slide-up + caret rotates |
 | `GraphQL` tab | Tap `REST` / `MCP` tab | Surface tab exists | The chosen surface | Tab indicator slides; panels swap content |
 | Default loaded | Filter edit | Form valid | Variables panel updates synchronously, request fires after debounce | Request panel value unchanged; variables panel highlights the changed key |
-| Default loaded | Locale toggle | Different locale | Request panel + variables update synchronously; request re-fires | Sub-field selection in query body diffs visibly |
+| Default loaded | Header language button | Different locale | Request panel + variables update synchronously; request re-fires | Sub-field selection in query body diffs visibly |
 | Loaded | Route change | Always | Initial paint on the new page's widget | Unmount old widget |
 
 ## Accessibility

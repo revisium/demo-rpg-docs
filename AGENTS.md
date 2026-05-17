@@ -6,7 +6,9 @@ Instructions for AI coding agents (Claude Code, Cursor, Codex, Copilot, Gemini, 
 
 `demo-rpg-docs` is the **source of truth** for the Branching Tales demo: project passport, architecture, decisions, business requirements, skills, and playbooks. When implementing anything in `demo-rpg-backend` or `demo-rpg-frontend`, **check this repo first** for the relevant ADR, spec, or BR.
 
-This is a public DevRel artefact. Documentation is written in **English**, neutral tone, optimised for developers evaluating Revisium.
+This is a public product and DevRel artefact. Documentation is written in
+**English**, neutral tone, optimised for a demo that reads as an RPG codex first
+and exposes Revisium proof through source links and the Explainer Widget.
 
 ## Repository layout
 
@@ -91,7 +93,7 @@ When creating a **product/UX page doc** (under `products/branching-tales/pages/`
 ## Demo-specific conventions
 
 - **Game name:** Branching Tales. Codename: `demo-rpg`.
-- **Cloud projects:** [`revisium/demo-rpg-data`](https://cloud.revisium.io/revisium/demo-rpg-data) (game dictionary, 15 tables) and [`revisium/demo-rpg-cms`](https://cloud.revisium.io/revisium/demo-rpg-cms) (marketing content). Both bootstrapped and public-read. Migrations live in `demo-rpg-backend/revisium/migrations.json` and are re-applied by the K8s migrations-Job on every deploy via [`revisium-cli`](https://github.com/revisium/revisium-cli).
+- **Cloud projects:** [`revisium/demo-rpg-data`](https://cloud.revisium.io/revisium/demo-rpg-data) (game dictionary, 15 tables) and [`revisium/demo-rpg-cms`](https://cloud.revisium.io/revisium/demo-rpg-cms) (editorial/codex content). Both bootstrapped and public-read. Migrations live in `demo-rpg-backend/revisium/migrations.json` and are re-applied by the K8s migrations-Job on every deploy via [`revisium-cli`](https://github.com/revisium/revisium-cli).
 - **Tone:** explanatory but compact. Every doc should help an unfamiliar developer evaluate Revisium quickly.
 - **No secrets in repo.** Local `.env.example` files only.
 - **Mermaid diagrams** for all architecture and runtime flows. Use `flowchart TB` with the elk renderer for component diagrams; `sequenceDiagram` for flows.

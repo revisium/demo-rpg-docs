@@ -1,6 +1,9 @@
 # demo-rpg — Project Passport
 
-> Branching Tales — a fantasy adventurer's guild simulator built end-to-end on Revisium. Demonstrates JSON Schema modelling, foreign keys, file fields, computed formulas, schema evolution, branching, and a federated multi-API architecture.
+> Branching Tales — a public RPG codex and game database built end-to-end on
+> Revisium. Demonstrates JSON Schema modelling, foreign keys, file fields,
+> computed formulas, schema evolution, branching, and a federated multi-API
+> architecture.
 
 | Parameter | Value |
 |---|---|
@@ -8,12 +11,14 @@
 | Name | Branching Tales |
 | Stage | Dev stand live — federated GraphQL + SSR frontend at [demo-rpg.dev.revisium.io](https://demo-rpg.dev.revisium.io) |
 | Tech owner | <!-- TODO --> |
-| Audience | DevRel — developers evaluating Revisium |
-| Goal | Showcase **every** Revisium capability in a recognizable real-world use case |
+| Audience | Game-database visitors first; developers evaluating Revisium through the Explainer Widget and source links |
+| Goal | Showcase **every** Revisium capability through a recognizable RPG codex use case |
 
 ## Overview
 
-**Branching Tales** is a fantasy guild-management demo that uses Revisium as the system of record for game content (items, monsters, quests, parties) and for the marketing site that wraps it.
+**Branching Tales** is a fantasy RPG codex demo that uses Revisium as the
+system of record for game content (heroes, items, monsters, quests, regions,
+parties) and for the editorial content that wraps it.
 
 The demo is intentionally over-modelled to exercise every Revisium primitive: nested JSON Schema, single and array foreign keys, file fields with hash + content reference, computed fields with array aggregation and relative-path expressions, branching for balance patches, schema migrations via CLI, and three API surfaces (REST, GraphQL, MCP) federated under Apollo Router.
 
@@ -25,7 +30,7 @@ The demo is intentionally over-modelled to exercise every Revisium primitive: ne
 | API (Apollo Router) | [demo-rpg-router.dev.revisium.io/graphql](https://demo-rpg-router.dev.revisium.io/graphql) | planned | Federated GraphQL across backend + data + cms |
 | Backend subgraph | [demo-rpg-backend.dev.revisium.io](https://demo-rpg-backend.dev.revisium.io) | planned | NestJS — REST (Swagger), GraphQL subgraph, MCP, OAuth |
 | Game data (Revisium) | [cloud.revisium.io/revisium/demo-rpg-data](https://cloud.revisium.io/revisium/demo-rpg-data) | same | Dictionary project — 15 tables (regions, heroes, items, …); public-read |
-| CMS (Revisium) | [cloud.revisium.io/revisium/demo-rpg-cms](https://cloud.revisium.io/revisium/demo-rpg-cms) | same | Marketing content — landing + blog tables; public-read |
+| CMS (Revisium) | [cloud.revisium.io/revisium/demo-rpg-cms](https://cloud.revisium.io/revisium/demo-rpg-cms) | same | Editorial/codex content — home + blog/guide tables; public-read |
 
 ## Architecture
 
@@ -40,7 +45,7 @@ The demo is intentionally over-modelled to exercise every Revisium primitive: ne
 |---|---|---|
 | [demo-rpg-docs](https://github.com/revisium/demo-rpg-docs) | Project passport, ADR, specs, BR, skills, playbooks | Markdown |
 | [demo-rpg-backend](https://github.com/revisium/demo-rpg-backend) | NestJS subgraph (CQRS, REST, GraphQL, MCP) — deployed to dev | NestJS 11, Prisma 7, `@hey-api/openapi-ts` client for Revisium |
-| [demo-rpg-frontend](https://github.com/revisium/demo-rpg-frontend) | Companion app + landing — deployed to dev | React Router v7 SSR, MobX (MVVM), graphql-request + graphql-codegen, FSD (Steiger) |
+| [demo-rpg-frontend](https://github.com/revisium/demo-rpg-frontend) | Public RPG codex frontend — deployed to dev | React Router v7 SSR, MobX (MVVM), graphql-request + graphql-codegen, FSD (Steiger) |
 | [revisium/infrastructure](https://github.com/revisium/infrastructure) | Helm charts + ArgoCD wiring for the dev stand | `development/demo/{backend,frontend,router,supergraph-builder}` |
 
 Supergraph composition is handled by [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) — no separate demo repo. The image runs as a sidecar to Apollo Router in the dev cluster.
@@ -57,7 +62,7 @@ flowchart TB
   subgraph demo["Branching Tales"]
     direction TB
 
-    LAND["demo-rpg-frontend<br/>landing + app<br/>React Router v7 SSR · MobX"]
+    LAND["demo-rpg-frontend<br/>RPG codex frontend<br/>React Router v7 SSR · MobX"]
     ROUTER["Apollo Router<br/>+ supergraph-fetcher sidecar"]
     BUILDER["supergraph-builder<br/>polls subgraphs · composes<br/>serves /supergraph/branching-tales"]
     BE["demo-rpg-backend<br/>NestJS · CQRS<br/>REST · GraphQL · MCP"]
@@ -65,7 +70,7 @@ flowchart TB
     subgraph cloud["cloud.revisium.io"]
       direction TB
       DATA["demo-rpg-data<br/>game dictionary<br/>15 tables · formulas · files"]
-      CMS["demo-rpg-cms<br/>marketing content"]
+      CMS["demo-rpg-cms<br/>editorial content"]
     end
   end
 

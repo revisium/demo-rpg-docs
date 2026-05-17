@@ -6,14 +6,30 @@
 |---|---|
 | Owner | @anton-revisium |
 | Status | Draft |
-| Version | 1.2 |
-| Last updated | 2026-05-12 |
+| Version | 1.3 |
+| Last updated | 2026-05-17 |
 
 ## 1. Context
 
 The dev stand for `demo-rpg` is live: `demo-rpg-data` and `demo-rpg-cms` are bootstrapped in Revisium Cloud, the NestJS subgraph and federated Apollo Router are deployed, and the SSR React frontend ([demo-rpg.dev.revisium.io](https://demo-rpg.dev.revisium.io)) renders the first catalog page (`/regions`).
 
-The frontend's job, from this point on, is **DevRel evaluation surface**: a developer landing on the demo should be able to *see and inspect* every Revisium capability without reading documentation first — JSON Schema modelling, foreign keys, embedded arrays, file fields, computed formulas, filtering / sorting / pagination, full-text search, branching, schema evolution, the three API surfaces (REST, GraphQL, MCP), **and the Apollo Federation story** where one entity carries fields contributed by Revisium *and* by the NestJS backend on the same response (e.g. `region.likes` is owned by the backend, `region.name` is owned by `demo-rpg-data`, both arrive in one query). Each capability must be visible *as code* on the page (the actual request + JSON payload), not just as rendered UI, with the federation widget making the "which subgraph owns which field" attribution explicit.
+The frontend's user-facing job, from this point on, is a **public RPG codex /
+game database**: a visitor should be able to browse Branching Tales through
+heroes, items, monsters, regions, quests, guides, search, and related entity
+links. The demo still has a DevRel evaluation job, but that proof layer is
+secondary and explicit: the Explainer Widget, `/about`, and source links show
+how the game database is powered by Revisium.
+
+An evaluator should be able to *see and inspect* every Revisium capability
+without reading documentation first — JSON Schema modelling, foreign keys,
+embedded arrays, file fields, computed formulas, filtering / sorting /
+pagination, full-text search, branching, schema evolution, the three API
+surfaces (REST, GraphQL, MCP), **and the Apollo Federation story** where one
+entity carries fields contributed by Revisium *and* by the NestJS backend on the
+same response (e.g. `region.likes` is owned by the backend, `region.name` is
+owned by `demo-rpg-data`, both arrive in one query). Each capability must be
+visible in the Explainer Widget as code (the actual request + JSON payload), not
+as developer-dashboard chrome in the primary page layout.
 
 This BR is the umbrella for that work. Per-page contracts (functional blocks, primary actions, states) live under [`products/branching-tales/pages/`](../products/branching-tales/README.md) — mirroring the [`revisium-ux/products/admin/`](https://github.com/revisium/revisium-ux/tree/master/products/admin) house format.
 
@@ -21,7 +37,11 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 
 ### Business goals
 
-- **Cut "can Revisium do X?" evaluation time** from reading docs to clicking around in the demo (<5 min to first "yes/no" on any single capability).
+- **Make the demo credible as a real game database** before the visitor opens
+  any technical panel.
+- **Cut "can Revisium do X?" evaluation time** from reading docs to clicking
+  around in the codex and opening the Explainer Widget (<5 min to first
+  "yes/no" on any single capability).
 - **Lower the perceived barrier** of using Revisium for a real product: visitors leave understanding that the frontend, three APIs, and content management are all already-shipped pieces, not whiteboard concepts.
 - **Convert curious developers into hands-on triallists** — every Revisium capability shown on the frontend links straight to its source-of-truth at `cloud.revisium.io/revisium/{demo-rpg-data,demo-rpg-cms}` where the visitor can explore the schema, table, or row themselves.
 
@@ -29,6 +49,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 
 | Metric | Baseline | Target | Measured by |
 |---|---|---|---|
+| Game database entry points visible without dropdowns | 0 | Home, Heroes, Items, Monsters, World, Quests, Guides, Search, and language button are reachable from the header | Manual nav audit |
 | Revisium primitives demonstrated on at least one page | 0 | 100% of `revisium-feature-coverage.md` rows | Manual audit of the page inventory matrix each release |
 | Pages with an `ExplainerWidget` discoverable on initial paint (above the fold on tablet/desktop; accordion header above the fold on phone) | 0 | 100% of catalog + detail pages | Visual / Steiger-style audit |
 | Mean "click-through to cloud.revisium.io" CTR from any page's explainer link | — | ≥ 10% of unique sessions reaching a catalog page | Plausible / analytics on the dev stand once added |
@@ -38,7 +59,8 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 
 | Role | Who | Interest |
 |---|---|---|
-| Primary | Backend / platform engineer evaluating headless CMS or schema-first data platforms | Wants to see real schemas + real queries before writing a single line of integration code. |
+| Primary | Game/content visitor or evaluator opening the demo cold | Wants to browse a believable RPG codex with clear catalogs, search, media, and related entities. |
+| Primary | Backend / platform engineer evaluating headless CMS or schema-first data platforms | Wants to see real schemas + real queries after opening the Explainer Widget, before writing a single line of integration code. |
 | Primary | Tech lead deciding whether a small team can ship a content-heavy app on Revisium | Wants to see the operational story: federated APIs, file pipeline, branching, schema migration. |
 | Secondary | DevRel / sales engineer demoing Revisium to a prospect | Wants a stable, polished URL to click through during a 5-minute live demo without preparing slides. |
 | Secondary | AI agent (Claude Code, Cursor, etc.) reasoning about Revisium for a user | Wants discoverable, machine-readable hints: each page exposes the GraphQL query / REST endpoint / cloud.revisium.io deep link so an agent can imitate the pattern. |
@@ -47,18 +69,39 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 
 ### In scope
 
+- A no-dropdown top navigation for the public codex: Home, Heroes, Items,
+  Monsters, World, Quests, Guides, Search, and a header language button.
+- Section subnavigation on catalog/detail pages for sibling catalogs, for
+  example Heroes / Classes / Abilities / NPCs / Parties inside the character
+  family.
 - Catalog pages for every dictionary table that demonstrates a distinct capability (regions, heroes, items, monsters, quests, parties, factions, npcs, locations — full list in [`revisium-feature-coverage.md`](../products/branching-tales/revisium-feature-coverage.md)).
-- Detail pages for entities where foreign-key resolution / embedded arrays / computed fields are the load-bearing story (hero detail, item detail, quest detail, party detail, monster detail).
+- Detail pages for entities where foreign-key resolution / embedded arrays /
+  computed fields are the load-bearing story (hero detail, item detail, quest
+  detail, party detail, monster detail). Relationships are rendered as
+  game-facing related-entity sections such as "Dropped by", "Used by", and
+  "Quest rewards", with the underlying FK/array/formula proof left to the
+  Explainer Widget.
 - A uniform per-page **Explainer Widget** (own UX spec to follow) that shows: the actual query/REST request the page is making, a JSON sample of the response, and a deep link into `cloud.revisium.io/revisium/{demo-rpg-data|demo-rpg-cms}` at the relevant table / row / schema.
 - A live **JSON filter / sort panel** on catalog pages: visitor edits filters/sorts in a form, the panel renders the corresponding `where` / `orderBy` JSON in real time, and the page re-fetches.
 - A **branching preview** UX: a toggle that switches the page between `master:head` and `master:draft` (with a visible explanation that this is Revisium's per-revision data view) — demonstrated on at least one page where draft data exists.
 - A **search** entry point that hits Revisium's full-text search across all data + CMS tables.
 - **Federation enrichment** showcase: at least one Revisium entity (e.g. `Region`, `Item`, `Hero`) has backend-contributed fields (likes counter, view counter, comments, computed-on-write rollups) federated onto the same GraphQL type via `@key` / `@external` / `@requires`. The explainer widget tags each field with the owning subgraph (`data` / `cms` / `backend`) so the visitor can see federation in action without reading SDL.
-- CMS-driven content for the landing page (`landing_hero`, `landing_features`, `landing_testimonials`) and blog (`blog_posts`, `blog_authors`) — proving Revisium covers both dictionary and marketing-CMS use cases on the same platform.
-- A **news / patch-notes** feed (new `news` table — see [schemas.md open questions](../architecture/specs/schemas.md#open-questions)) demonstrating multi-key `orderBy` with a `pinned` boolean priority, a `published_at <= now` time-window `where` filter, and enum categories (`patch / event / spotlight / release`). The pinned launch post is the canonical home for the 80/20 launch narrative — see [messaging.md §3.5](../products/branching-tales/messaging.md#35-pinned-news--launch-post).
-- A dedicated **`/about` page** carrying the long-form 80/20 story + the architecture diagram, linked from the landing's "How this works" CTA and the footer chip. Source-of-truth for the narrative lives in [`products/branching-tales/messaging.md`](../products/branching-tales/messaging.md).
+- CMS-driven content for the codex home (`landing_hero`, `landing_features`)
+  and guides/blog (`blog_posts`, `blog_authors`) — proving Revisium covers both
+  dictionary and editorial use cases on the same platform. `landing_testimonials`
+  may be repurposed or omitted from the public codex UI if it reads as generic
+  marketing.
+- A **news / patch-notes** feed remains optional and blocked until a real
+  `news` table is added. The current bootstrap has `blog_posts`, not `news`, so
+  the frontend must not present `/news` as live data until the source exists.
+- A dedicated **`/about` page** carrying the long-form 80/20 story + the architecture diagram, linked from the home page's source/story CTA and the footer chip. Source-of-truth for the narrative lives in [`products/branching-tales/messaging.md`](../products/branching-tales/messaging.md).
 - An on-page hint surfacing which API surface (`GraphQL` federated, `REST` direct, or `MCP`) each example would use, with a tab to swap between them where it makes sense.
-- **Localization** — every user-facing string with a `<LocalizedString>` shape in the schema (`en` / `ru` / `zh`) is rendered through a language switcher; switching languages re-issues the GraphQL query with the appropriate sub-field selection (`name { en }` → `name { ru }`) so the Explainer Widget visibly demonstrates that localized strings are a schema feature, not a frontend translation table.
+- **Localization** — every user-facing string with a `<LocalizedString>` shape
+  in the schema (`en` / `ru` / `zh`) is rendered through a header language
+  button/switcher; switching languages re-issues the GraphQL query with the
+  appropriate sub-field selection (`name { en }` → `name { ru }`) so the
+  Explainer Widget visibly demonstrates that localized strings are a schema
+  feature, not a frontend translation table.
 - **Responsive layout** — every page is usable on phone, tablet, and desktop. On small viewports the Explainer Widget collapses to a tappable accordion whose **header stays above the fold** (so the widget is still discoverable on initial paint) while the body sits below; the JSON filter/sort panel becomes a bottom-sheet; catalog grids reflow to a single column. No horizontal scroll except inside code-display panels.
 
 ### Out of scope
@@ -85,6 +128,14 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 
 **Acceptance:**
 
+- [ ] Given the visitor opens `/` for the first time, the homepage reads as an
+      RPG codex/database entry with search, featured catalogs, featured
+      entities, latest guides/updates, and links to Heroes, Items, Monsters,
+      World, Quests, Guides, and Search.
+- [ ] Given the visitor uses the header, the top navigation uses direct links
+      without dropdowns.
+- [ ] Given the visitor opens a catalog family, sibling catalogs are available
+      through section subnavigation on the page.
 - [ ] Given the visitor opens `/` for the first time, the homepage links to at least one page per Revisium primitive listed in [`revisium-feature-coverage.md`](../products/branching-tales/revisium-feature-coverage.md).
 - [ ] Given the visitor opens any catalog page, the **Explainer Widget** is discoverable on initial paint (visible above the fold on tablet/desktop, with the accordion header above the fold on phone) and answers "what Revisium feature is on this page?" in one sentence.
 
@@ -130,7 +181,11 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 
 **Acceptance:**
 
-- [ ] Given any page rendering a `<LocalizedString>` field (region name, hero name, item description, blog post title), a global language toggle (`en` / `ru` / `zh`) re-issues the GraphQL query with the language-specific sub-field selection.
+- [ ] Given any page rendering a `<LocalizedString>` field (region name, hero
+      name, item description, blog post title), the header language button shows
+      the active language (`EN`, `RU`, `ZH`) and opens a switcher.
+- [ ] Given the visitor switches language, the page re-issues the GraphQL query
+      with the language-specific sub-field selection.
 - [ ] Given the Explainer Widget on that page, the displayed query body updates to show `name { ru }` after the user switches to Russian — making it obvious that locale is a *schema concern*.
 - [ ] Given a row whose non-en locale is empty, the page falls back to `en` and the widget notes which strings were fallbacks.
 - [ ] Given UI chrome (button labels, error states), those translations live in the frontend's own i18n bundle, not in the Revisium content — the widget calls out the distinction.
@@ -182,12 +237,12 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 | One page demonstrates the `head` vs `draft` branching toggle on Revisium data | Should | Draft | `products/branching-tales/pages/balance-patch/` (planned) |
 | At least one Revisium-modeled entity has backend-federated fields (e.g. `RegionsNode.likes`, `ItemsNode.viewCount`) rendered alongside Revisium-owned fields in the same response; the page tags each rendered field with its owning subgraph | Must | Draft | `products/branching-tales/pages/regions/` (federated detail) + `demo-rpg-backend` adds `extend type` for the chosen entity |
 | A global search bar uses Revisium's full-text search across `demo-rpg-data` + `demo-rpg-cms` tables | Should | Draft | `products/branching-tales/pages/search/` (planned) |
-| Landing page is driven from `demo-rpg-cms` (hero, features, testimonials) — no hardcoded strings beyond brand-level copy | Must | Draft | `products/branching-tales/pages/home/` (planned) |
+| Home page is a game database/codex entry driven from `demo-rpg-cms` where available (hero/features) and current game data catalogs where implemented; Revisium/80-20 proof is secondary through Explainer Widget and `/about` | Must | Draft | `products/branching-tales/pages/home/` (planned) |
 | Every page is SSR-rendered with no client-only fallback paths (the widget content is present in initial HTML) | Must | In delivery | demo-rpg-frontend SSR layer (already shipped) |
 | Public-read access — visitors do not need to sign in or carry an API key for any read query | Must | Done | `demo-rpg-data` + `demo-rpg-cms` configured public-read |
-| Canonical 80/20 narrative is rendered consistently across landing hero, landing feature cards, landing testimonials, `/about`, pinned news, blog welcome post, footer chip, and the GitHub README abstract — every surface pulls from the same source-of-truth, never paraphrased independently | Must | Draft | [`products/branching-tales/messaging.md`](../products/branching-tales/messaging.md); CMS seed rows + `/about` page doc + `demo-rpg-frontend/README.md` abstract land in follow-up PRs |
-| News feed (`/news`) demonstrating multi-key `orderBy` with `pinned` priority, time-window `where` filter, and enum categories — backed by a new `data.news` table | Should | Draft | new schema row in [`architecture/specs/schemas.md`](../architecture/specs/schemas.md); bootstrap entries + `pages/news/` to follow |
-| Localized content rendering — `<LocalizedString>` fields render in the active locale (`en` / `ru` / `zh`) with `en` fallback; switching locale re-issues the GraphQL query with the locale-specific sub-field selection | Must | Draft | global locale toggle + per-page query parameterisation; UI chrome strings live in a separate frontend i18n bundle |
+| Canonical codex-first framing and 80/20 narrative are rendered consistently across home, `/about`, guides/blog, footer/source references, the GitHub README abstract, and Explainer Widget summaries — every surface pulls from the same source-of-truth, never paraphrased independently | Must | Draft | [`products/branching-tales/messaging.md`](../products/branching-tales/messaging.md); CMS seed rows + `/about` page doc + `demo-rpg-frontend/README.md` abstract land in follow-up PRs |
+| News feed (`/news`) demonstrating multi-key `orderBy` with `pinned` priority, time-window `where` filter, and enum categories | Should | Blocked | Requires a confirmed `news` table in `demo-rpg-data` or `demo-rpg-cms`; current bootstrap has `blog_posts` only |
+| Localized content rendering — `<LocalizedString>` fields render in the active locale (`en` / `ru` / `zh`) with `en` fallback; switching locale through the header language button re-issues the GraphQL query with the locale-specific sub-field selection | Must | Draft | header language button/switcher + per-page query parameterisation; UI chrome strings live in a separate frontend i18n bundle |
 | Responsive layout — every page works on phone (≤ 480 px), tablet (481–1024 px), desktop (≥ 1024 px); no horizontal scroll outside designated code panels; Explainer Widget collapses to an accordion on small viewports | Must | Draft | `revisium-ux/design-system` breakpoint tokens + per-page audit |
 
 ## 7. Business rules and constraints
@@ -195,7 +250,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - **Same-origin** — `/graphql` is served under `demo-rpg.dev.revisium.io` so the browser only makes same-origin requests (Apollo Router CORS stays at its default). Implemented in `revisium/infrastructure#101`.
 - **No write surface** — even when Revisium would allow it, the frontend uses read endpoints only. Any "edit" affordance on a row deep-links to `cloud.revisium.io` instead.
 - **Schema is the source of truth** — page UI never invents fields. If a panel cannot be filled from the live schema, it is hidden until the schema gains the field.
-- **Public DevRel surface** — no PII, no real customer data, no telemetry that re-identifies visitors. Aggregate analytics only.
+- **Public codex surface** — no PII, no real customer data, no telemetry that re-identifies visitors. Aggregate analytics only.
 - **English-first with localized fallback** — every user-facing string is at least `en`. The active locale (`en` / `ru` / `zh`) determines the rendered field on `<LocalizedString>` content; missing translations fall back to `en` and the Explainer Widget marks the field as a fallback so the visitor understands the behaviour. UI chrome (button labels, error strings) lives in the frontend i18n bundle, never inside Revisium content.
 
 ## 8. Non-functional requirements
@@ -206,7 +261,7 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 | Availability | Demo stand uptime ≥ 99% measured monthly; Argo CD auto-syncs deployments; explicit outage banner if any subgraph reports unhealthy. |
 | Security | Read-only public endpoints; no API keys in the client bundle; no third-party scripts beyond analytics (if added later); CSP set to deny inline scripts (with the necessary SSR hash allowances). |
 | Responsiveness | Mobile-first layout — phone (≤ 480 px) usable without horizontal scroll, tablet (481–1024 px) two-column, desktop (≥ 1024 px) Explainer Widget docked as side panel. Touch targets ≥ 44×44 px. Layout shifts < 0.1 CLS p95 on initial paint. |
-| Localization | All `<LocalizedString>` content fields render via a global locale toggle (`en` / `ru` / `zh`) with `en` fallback. Locale switches re-issue the query with the appropriate sub-field selection (no client-side translation of data). UI chrome strings live in a separate frontend i18n bundle; the Explainer Widget makes the distinction explicit. |
+| Localization | All `<LocalizedString>` content fields render via the header language button/switcher (`EN` / `RU` / `ZH`) with `en` fallback. Locale switches re-issue the query with the appropriate sub-field selection (no client-side translation of data). UI chrome strings live in a separate frontend i18n bundle; the Explainer Widget makes the distinction explicit. |
 | Accessibility | WCAG 2.2 AA targets — semantic landmarks, focusable interactive controls, visible focus states, sufficient colour contrast, `prefers-reduced-motion` respected. Locale switcher accessible via keyboard. |
 | Audit | Every shipped page has a matching row in [`page-inventory.md`](../products/branching-tales/page-inventory.md) and at least one acceptance test in `demo-rpg-frontend`. Responsive + a11y audit per page using the `page-audit-guidelines.md` style. |
 
@@ -214,14 +269,14 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 
 | # | Question | Owner | Due | Status |
 |---|---|---|---|---|
-| 1 | Do we adopt the `revisium-ux` design system tokens verbatim, or do we re-tone Branching Tales to match a fantasy / game atmosphere while keeping the structural primitives? | @anton-revisium | TBD | Open |
+| 1 | Do we adopt the `revisium-ux` design system tokens verbatim, or do we re-tone Branching Tales to match a game database / RPG codex while keeping the structural primitives? | @anton-revisium | TBD | Open |
 | 2 | Which page hosts the branching toggle — a dedicated `/balance-patch` page or a banner on `/items` that toggles between drafted balance changes and the live values? | @anton-revisium | TBD | Open |
 | 3 | Do we ship a minimal in-page MCP playground (paste-a-prompt → invokes a backend MCP tool over WebSockets), or just link out to the MCP tool list? Front-loads UX work vs. simply linking. | @anton-revisium | TBD | Open |
 | 4 | Should the explainer widget surface the OpenAPI operation ID directly (e.g. `getRegions`) as well as the GraphQL operation name? | @anton-revisium | TBD | Open |
 | 5 | Analytics: privacy-friendly (Plausible) or none at all for v1? Affects metric 3 in §2. | @anton-revisium | TBD | Open |
 | 6 | Which Revisium entity gets the first backend-federated fields? `Region` (small set, easy `likes` + `viewCount`) is the natural starting point; `Item` (large catalog, fits a `wishlisted` counter) is the next most interesting. Drives which page in `pages/` is the federation reference. | @anton-revisium | TBD | Open |
 | 7 | Backend-federated counters need durable storage (Postgres on the backend). Do we add a tiny `region_stats` / `item_stats` table and a sync job, or compute the counter on the fly from a `likes` event log? Affects schema migration story on the backend side. | @anton-revisium | TBD | Open |
-| 8 | Does the `news` table belong in `demo-rpg-data` (next to other game content) or `demo-rpg-cms` (next to blogs)? Argument for `data`: news *is* the game's runtime story, lives next to quests / monsters. Argument for `cms`: news is editorial, lives next to blog_posts and shares the `author_id` FK. The page-inventory currently assumes `data.news` — confirm or move. | @anton-revisium | TBD | Open |
+| 8 | Does the future `news` table belong in `demo-rpg-data` (next to other game content) or `demo-rpg-cms` (next to blogs)? Argument for `data`: news is the game's runtime story, lives next to quests / monsters. Argument for `cms`: news is editorial, lives next to `blog_posts` and shares the `author_id` FK. The page inventory must stay blocked until this is confirmed. | @anton-revisium | TBD | Open |
 | 9 | Editorial cadence for `news` post-launch: who maintains the feed? If nobody, the demo's most prominent "Latest news" widget goes stale. Options: (a) one pinned launch post forever; (b) seed 5–10 in-world entries plus the launch post; (c) automate via a scheduled job that promotes blog posts to news. | @anton-revisium | TBD | Open |
 
 ## 10. Related artefacts
@@ -232,6 +287,14 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 - **Roadmap / tickets**: tracked in [`demo-rpg-frontend`](https://github.com/revisium/demo-rpg-frontend) issues once page docs are merged.
 
 ## Changelog
+
+### v1.3 (2026-05-17)
+
+- Reframe the public frontend as an RPG codex/game database first, with
+  Revisium proof shown through the Explainer Widget, `/about`, and source links.
+- Add no-dropdown header navigation and section-subnav direction.
+- Clarify the header language button/switcher requirement.
+- Mark `/news` blocked until a real news table exists.
 
 ### v1.2 (2026-05-12)
 
