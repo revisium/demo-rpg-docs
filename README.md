@@ -52,6 +52,24 @@ Supergraph composition is handled by [`revisium/supergraph-builder`](https://git
 
 External dependencies: [revisium-cli](https://github.com/revisium/revisium-cli), [revisium/supergraph-builder](https://github.com/revisium/supergraph-builder), [Revisium Cloud](https://cloud.revisium.io), [Apollo Router](https://www.apollographql.com/docs/router).
 
+## Source Of Truth Boundaries
+
+| Area | Canonical repo/path | Other repos may contain |
+|---|---|---|
+| Project identity, goals, public architecture, ADRs, and BRs | `demo-rpg-docs/` | Links and short summaries |
+| Game design and data/CMS schema intent | `demo-rpg-docs/architecture/specs/` | Applied/generated artifacts |
+| Portable Revisium seed snapshot | `demo-rpg-docs/bootstrap/` | References to the bootstrap workflow |
+| Applied Revisium migrations, OpenAPI, and backend data client | `demo-rpg-backend/revisium/`, `demo-rpg-backend/src/__generated__/demo-rpg-data/` | Links to the artifact and regeneration command |
+| Frontend route behavior, page specs, layout, and implementation status | `demo-rpg-frontend/docs/product/` | Product-level route scope and capability links |
+| Frontend architecture, review gates, and agent workflows | `demo-rpg-frontend/docs/`, `demo-rpg-frontend/REVIEW.md`, `demo-rpg-frontend/.agents/` | Links only |
+| Backend runtime patterns, review gates, and agent rules | `demo-rpg-backend/AGENTS.md`, `demo-rpg-backend/REVIEW.md`, `demo-rpg-backend/docs/` | Links only |
+| Deployment manifests, real environment values, and cluster operations | `revisium/infrastructure` | Public summaries with no secrets |
+| Public operations overview and sanitized runbooks | `demo-rpg-docs/operations/` | Links to private infrastructure details where needed |
+
+When a change crosses a boundary, update the canonical file first and keep the
+other repo as a pointer. Do not copy a second implementation contract into
+`demo-rpg-docs` when the target repo already owns it.
+
 ## Architecture Overview
 
 ```mermaid
@@ -96,7 +114,8 @@ flowchart TB
 
 [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) is a **long-running service** that periodically polls each subgraph's GraphQL endpoint, composes the merged supergraph schema, and exposes it at an HTTP endpoint. Apollo Router runs a curl sidecar that polls that endpoint, writes the supergraph to a shared volume, and lets the router hot-reload — no CI step, no pushed deployment. Add a subgraph or change a schema and the supergraph reconciles within one polling interval.
 
-Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is open for read-only exploration.
+Both cloud projects are bootstrapped and available for read-only exploration in
+`cloud.revisium.io`.
 
 ## Operations
 
@@ -111,7 +130,7 @@ Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is 
 
 ## Products (UX / UI)
 
-- [products/branching-tales/](products/branching-tales/README.md) — frontend UX/UI source of truth. Mirrors the [`revisium-ux/products/admin/`](https://github.com/revisium/revisium-ux/tree/master/products/admin) layout: page inventory, page functionality reference, capability coverage matrix, per-page docs.
+- [products/branching-tales/](products/branching-tales/README.md) — product scope, messaging, and Revisium capability coverage for the public frontend. Exact route/page implementation contracts live in `demo-rpg-frontend/docs/product/`.
 - Start with [revisium-feature-coverage.md](products/branching-tales/revisium-feature-coverage.md) — maps every Revisium primitive and Apollo Federation pattern to the page that demonstrates it.
 
 ## Bootstrap

@@ -4,7 +4,12 @@ Instructions for AI coding agents (Claude Code, Cursor, Codex, Copilot, Gemini, 
 
 ## Repository purpose
 
-`demo-rpg-docs` is the **source of truth** for the Branching Tales demo: project passport, architecture, decisions, business requirements, skills, and playbooks. When implementing anything in `demo-rpg-backend` or `demo-rpg-frontend`, **check this repo first** for the relevant ADR, spec, or BR.
+`demo-rpg-docs` is the **source of truth** for the Branching Tales demo's
+project identity, public architecture, decisions, business requirements,
+schema intent, capability coverage, messaging, and portable bootstrap data.
+When implementing anything in `demo-rpg-backend` or `demo-rpg-frontend`, check
+this repo first for the relevant ADR, spec, BR, or product capability, then use
+the implementation repo's own docs for exact code contracts.
 
 This is a public product and DevRel artefact. Documentation is written in
 **English**, neutral tone, optimised for a demo that reads as an RPG codex first
@@ -31,7 +36,7 @@ demo-rpg-docs/
 │   └── secrets.md
 ├── requirements/            # BR-NNNN-{slug}.md + template + index
 ├── products/                # Per-product UX/UI docs (mirrors revisium-ux/products/*)
-│   └── branching-tales/     # demo-rpg-frontend page inventory, coverage matrix, per-page docs
+│   └── branching-tales/     # frontend product scope, coverage matrix, messaging
 ├── research/                # Discovery, alternatives, comparisons
 ├── skills/                  # Claude Code skills for the demo
 ├── playbooks/               # Step-by-step task guides
@@ -51,7 +56,7 @@ demo-rpg-docs/
 | [`architecture/runtime-flows/README.md`](architecture/runtime-flows/README.md) | All runtime flows | When a new flow is added |
 | [`operations/README.md`](operations/README.md) | All operations docs | When a new doc is added |
 | [`requirements/README.md`](requirements/README.md) | All BRs | After every new BR |
-| [`products/branching-tales/README.md`](products/branching-tales/README.md) | Frontend UX/UI docs entry + page index | When a new page doc or product/UX artefact is added |
+| [`products/branching-tales/README.md`](products/branching-tales/README.md) | Frontend product scope, capability coverage, messaging | When a product-level UX artefact is added |
 | [`skills/README.md`](skills/README.md) | All skills | When a new skill is added |
 | [`playbooks/README.md`](playbooks/README.md) | All playbooks | When a new playbook is added |
 | [`README.md`](README.md) | Project passport | When repos / environments / owners change |
@@ -84,16 +89,16 @@ When creating a **skill** or **playbook**:
 - [ ] Row in the corresponding index README
 - [ ] Cross-link from any related spec or ADR
 
-When creating a **product/UX page doc** (under `products/branching-tales/pages/`):
-- [ ] Follow the [`revisium-ux/products/admin/pages/*`](https://github.com/revisium/revisium-ux/tree/master/products/admin/pages) shape: `Route`, `Status`, `Purpose`, `Context And Entry`, `Functional Blocks`, `Primary Actions`, `States`, `Transitions`
-- [ ] Add a `Revisium features demonstrated` block listing the matrix rows the page realises
-- [ ] Add a row to [`products/branching-tales/page-inventory.md`](products/branching-tales/page-inventory.md) (once that index exists)
-- [ ] Cross-link with [`products/branching-tales/revisium-feature-coverage.md`](products/branching-tales/revisium-feature-coverage.md) and any related BR / spec
+When changing **frontend page behaviour**:
+- [ ] Update the exact implementation contract in `demo-rpg-frontend/docs/product/` first.
+- [ ] Update [`products/branching-tales/revisium-feature-coverage.md`](products/branching-tales/revisium-feature-coverage.md) only when the product capability coverage changes.
+- [ ] Update [`products/branching-tales/page-inventory.md`](products/branching-tales/page-inventory.md) only when the product-level route scope changes.
+- [ ] Keep `demo-rpg-docs` as product scope, not a duplicate frontend implementation contract.
 
 ## Demo-specific conventions
 
 - **Game name:** Branching Tales. Codename: `demo-rpg`.
-- **Cloud projects:** [`revisium/demo-rpg-data`](https://cloud.revisium.io/revisium/demo-rpg-data) (game dictionary, 15 tables) and [`revisium/demo-rpg-cms`](https://cloud.revisium.io/revisium/demo-rpg-cms) (editorial/codex content). Both bootstrapped and public-read. Migrations live in `demo-rpg-backend/revisium/migrations.json` and are re-applied by the K8s migrations-Job on every deploy via [`revisium-cli`](https://github.com/revisium/revisium-cli).
+- **Cloud projects:** [`revisium/demo-rpg-data`](https://cloud.revisium.io/revisium/demo-rpg-data) (game dictionary, 15 tables) and [`revisium/demo-rpg-cms`](https://cloud.revisium.io/revisium/demo-rpg-cms) (editorial/codex content). Both bootstrapped and public-read. Schema intent lives in `architecture/specs/`; portable seed data lives in `bootstrap/`; applied migrations and generated OpenAPI/client artifacts live in `demo-rpg-backend`.
 - **Tone:** explanatory but compact. Every doc should help an unfamiliar developer evaluate Revisium quickly.
 - **No secrets in repo.** Local `.env.example` files only.
 - **Mermaid diagrams** for all architecture and runtime flows. Use `flowchart TB` with the elk renderer for component diagrams; `sequenceDiagram` for flows.
@@ -106,4 +111,4 @@ When creating a **product/UX page doc** (under `products/branching-tales/pages/`
 - **[revisium/supergraph-builder](https://github.com/revisium/supergraph-builder)** — long-running service that periodically polls SDL from `demo-rpg-backend`, `demo-rpg-data`, and `demo-rpg-cms`, composes the supergraph, and serves it at an HTTP endpoint. Apollo Router fetches the composed schema with a curl sidecar and hot-reloads on change. Not a CI tool.
 - **[revisium-cli](https://github.com/revisium/revisium-cli)** — applies migrations + bootstraps endpoints; runs both locally (via `npm run revisium:bootstrap` against `@revisium/standalone`) and in the K8s migrations-Job.
 
-Schemas + sample data + migrations live inside [`demo-rpg-backend/revisium/`](https://github.com/revisium/demo-rpg-backend/tree/master/revisium), mirrored from the source-of-truth specs in [`architecture/specs/`](architecture/specs/README.md).
+Schema intent and data conventions live in [`architecture/specs/`](architecture/specs/README.md). The portable seed snapshot lives in [`bootstrap/`](bootstrap/README.md). Applied migrations, OpenAPI, and generated backend client artifacts live in [`demo-rpg-backend/revisium/`](https://github.com/revisium/demo-rpg-backend/tree/master/revisium) and are regenerated from the backend workflow.

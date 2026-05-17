@@ -1,28 +1,52 @@
 # Deploy
 
-> Status: Draft scaffolding.
+Public deployment procedure summary for Branching Tales. Real manifests,
+secrets, image tags, Argo CD apps, and environment values live in
+`revisium/infrastructure`.
 
-Procedures for deploying the Branching Tales demo.
+## Boundary
 
-## Bootstrap a fresh environment
+| Topic | Canonical owner |
+|---|---|
+| Frontend build/deploy workflow | `demo-rpg-frontend` |
+| Backend build/deploy/migration workflow | `demo-rpg-backend` |
+| Helm values, ingress, Argo CD, cluster secrets | `revisium/infrastructure` |
+| Public architecture and sanitized runbook summary | `demo-rpg-docs/operations/` |
 
-<!-- TODO step-by-step:
-1. Create both cloud.revisium.io projects (revisium/demo-rpg-data, revisium/demo-rpg-cms).
-2. Apply schemas via `revisium-cli apply` from demo-rpg-backend/revisium/.
-3. Seed sample data via revisium-cli.
-4. Deploy demo-rpg-backend (Apollo Router + NestJS subgraph).
-5. Deploy demo-rpg-frontend.
-6. Compose supergraph; verify.
--->
+## Fresh Environment Order
 
-## Ship a change
+1. Create or select the Revisium data project (`demo-rpg-data`) and CMS project
+   (`demo-rpg-cms`).
+2. Apply schema/data using the canonical artifact for the target workflow:
+   - portable demo copy: `demo-rpg-docs/bootstrap/`;
+   - backend runtime project: `demo-rpg-backend/revisium/migrations.json`.
+3. Regenerate OpenAPI and generated clients through the backend workflow.
+4. Deploy backend and run Prisma/Revisium migrations.
+5. Deploy supergraph-builder and Apollo Router with the three subgraph URLs.
+6. Deploy frontend with same-origin `/graphql` routed to Apollo Router.
+7. Smoke test `/`, `/regions`, `/regions/[id]`, backend health, router
+   GraphQL, and both Revisium OpenAPI endpoints.
 
-<!-- TODO -->
+## Ship A Change
+
+| Change type | Required owner action |
+|---|---|
+| Product copy, BR, ADR, capability scope | Update `demo-rpg-docs` first. |
+| Frontend route behaviour, layout, page status | Update `demo-rpg-frontend/docs/` and code together. |
+| Data schema/runtime API | Update schema intent in `demo-rpg-docs`, then backend migrations/OpenAPI/generated client. |
+| Backend runtime behaviour | Update `demo-rpg-backend` docs/code/tests. |
+| Cluster wiring | Update `revisium/infrastructure`; keep public docs sanitized. |
 
 ## Rollback
 
-<!-- TODO. Note: data rollback is via Revisium branching/revisions; code rollback is via redeploy of previous tag. -->
+- Data rollback: use Revisium revisions/branches in the affected project.
+- Backend/frontend rollback: redeploy the previous image/tag through the
+  infrastructure workflow.
+- Supergraph rollback: router keeps the previous good supergraph when
+  composition fails; investigate builder health before changing code.
 
 ## Decommission
 
-<!-- TODO -->
+Remove public DNS/ingress first, then stop router/frontend/backend workloads,
+then archive Revisium projects only after confirming no public references still
+depend on them.

@@ -1,6 +1,7 @@
 # File Fields — Branching Tales
 
-> Status: Draft scaffolding. Filled in next session.
+> Status: v1 scope. Field list and file value shape are current; detailed art
+> production rules remain open.
 
 Catalogue of every file field in `demo-rpg-data` and `demo-rpg-cms`. Each entry showcases a different file-usage pattern.
 

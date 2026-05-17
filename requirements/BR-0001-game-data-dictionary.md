@@ -7,21 +7,24 @@
 | Owner | <!-- TODO --> |
 | Status | Draft |
 | Version | 1 |
-| Last updated | 2026-05-08 |
+| Last updated | 2026-05-17 |
 
 ## 1. Context
 
-The game-data dictionary is the heart of the Branching Tales demo. It will be the Revisium project (`revisium/demo-rpg-data`, **planned — not yet bootstrapped on `cloud.revisium.io`**) that holds every world entity — items, monsters, heroes, quests, factions — and feeds both the federated GraphQL API and the frontend companion app. It must showcase **every** Revisium capability that a serious team would care about (FK arrays, files, computed formulas, branching, schema migrations, MCP access).
+The game-data dictionary is the heart of the Branching Tales demo. It is the
+Revisium project (`revisium/demo-rpg-data`) that holds world entities — items,
+monsters, heroes, quests, factions — and feeds both the federated GraphQL API
+and the frontend companion app. It must showcase **every** Revisium capability
+that a serious team would care about (FK arrays, files, computed formulas,
+branching, schema migrations, MCP access).
 
 ### Bootstrap dependencies
 
-Acceptance criteria below presume:
+Acceptance criteria below presume the current source-of-truth split:
 
-1. JSON Schema bodies in [`specs/schemas.md`](../architecture/specs/schemas.md) are filled in (currently only the table catalogue and feature-coverage matrix are concrete; per-table schema bodies are still `TODO`).
-2. `revisium/demo-rpg-data` is created on `cloud.revisium.io` from those schemas.
-3. `demo-rpg-backend/revisium/schemas/` is materialised from the same source-of-truth specs.
-
-Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not testable.
+1. Schema intent lives in [`specs/schemas.md`](../architecture/specs/schemas.md).
+2. Portable schemas/seed rows live in [`../bootstrap/`](../bootstrap/README.md).
+3. Runtime migrations/OpenAPI/generated client live in `demo-rpg-backend`.
 
 ## 2. Goals & metrics
 
@@ -35,9 +38,9 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 
 | Metric | Baseline | Target | Measured by |
 |---|---|---|---|
-| Tables in dictionary | 0 | 15 | Project view in admin |
-| Formula primitives demonstrated | 0 | ≥ 12 | [`specs/formulas.md § Coverage matrix`](../architecture/specs/formulas.md#coverage-matrix) |
-| File-field patterns demonstrated | 0 | ≥ 6 | [`specs/files.md`](../architecture/specs/files.md) |
+| Tables in dictionary | 15 | 15 | Project view in admin |
+| Formula primitives demonstrated | ≥ 12 | ≥ 12 | [`specs/formulas.md § Coverage matrix`](../architecture/specs/formulas.md#coverage-matrix) |
+| File-field patterns demonstrated | ≥ 6 | ≥ 6 | [`specs/files.md`](../architecture/specs/files.md) |
 | Locales supported per `<LocalizedString>` | 1 | 3 (en, ru, zh) | [`specs/game-design.md § Localization`](../architecture/specs/game-design.md#localization) |
 | Demo project loads in <2s for first-time visitor | n/a | <2s | Lighthouse |
 
@@ -92,16 +95,16 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 
 **Acceptance:**
 
-- [ ] `revisium-cli apply` from `demo-rpg-backend/revisium/schemas/` produces an equivalent project.
+- [ ] Applying `demo-rpg-docs/bootstrap/data/` or the backend migration artifact produces an equivalent project.
 
 ## 6. Functional requirements
 
 | Requirement | Priority | Status | Realised by |
 |---|---|---|---|
-| 15 tables exist with documented schemas | Must | Draft | [`specs/schemas.md`](../architecture/specs/schemas.md) |
-| Every formula primitive is exercised | Must | Draft | [`specs/formulas.md`](../architecture/specs/formulas.md) |
-| Files demonstrated for portraits, icons, maps, crests | Must | Draft | [`specs/files.md`](../architecture/specs/files.md) |
-| Public read access | Must | Draft | Project setting |
+| 15 tables exist with documented schemas | Must | Done | [`specs/schemas.md`](../architecture/specs/schemas.md) + `demo-rpg-data` |
+| Every formula primitive is exercised | Must | Done | [`specs/formulas.md`](../architecture/specs/formulas.md) |
+| Files demonstrated for portraits, icons, maps, crests | Must | Done | [`specs/files.md`](../architecture/specs/files.md) |
+| Public read access | Must | Done | Project setting |
 | One balance branch for branching demo | Should | Draft | <!-- TODO --> |
 | Localization (en required; ru and zh optional) on user-facing entities | Should | Draft | [`specs/schemas.md § Localized string`](../architecture/specs/schemas.md#localized-string-localizedstring) |
 
@@ -127,8 +130,7 @@ Until step 1 is complete, US-1 and US-2 below are aspirational and the BR is not
 | 1 | Final list of factions and regions for `game-design.md` | | | Open |
 | 2 | Whether to include audio file demo | | | Open |
 | 3 | AI-generated vs commissioned art for seed | | | Open |
-| 4 | Schema bodies in `specs/schemas.md` are still TODO — block on completion before bootstrapping cloud project | | | Open |
-| 5 | Order of bootstrap: cloud project first or `demo-rpg-backend/revisium/schemas/` first? Single source-of-truth choice needed | | | Open |
+| 4 | Whether future schema migrations should start from `demo-rpg-docs/bootstrap/`, backend runtime migrations, or cloud Admin UI workflow for each change type | | | Open |
 
 ## 10. Related artefacts
 

@@ -31,7 +31,10 @@ owned by `demo-rpg-data`, both arrive in one query). Each capability must be
 visible in the Explainer Widget as code (the actual request + JSON payload), not
 as developer-dashboard chrome in the primary page layout.
 
-This BR is the umbrella for that work. Per-page contracts (functional blocks, primary actions, states) live under [`products/branching-tales/pages/`](../products/branching-tales/README.md) — mirroring the [`revisium-ux/products/admin/`](https://github.com/revisium/revisium-ux/tree/master/products/admin) house format.
+This BR is the umbrella for that work. Product scope, capability coverage, and
+messaging live in `demo-rpg-docs/products/branching-tales/`. Exact per-page
+contracts (functional blocks, primary actions, states, data contracts, and
+implementation status) live in `demo-rpg-frontend/docs/product/pages/`.
 
 ## 2. Goals & metrics
 
@@ -231,13 +234,13 @@ This BR is the umbrella for that work. Per-page contracts (functional blocks, pr
 
 | Requirement | Priority | Status | Realised by |
 |---|---|---|---|
-| Every Revisium primitive in [`revisium-feature-coverage.md`](../products/branching-tales/revisium-feature-coverage.md) is demonstrated on at least one frontend page | Must | Draft | per-page docs under `products/branching-tales/pages/` |
-| Every catalog and detail page renders an `ExplainerWidget` discoverable on initial paint (above the fold on tablet/desktop; accordion header above the fold on phone with the body expanding on tap) with: query body, JSON sample, cloud.revisium.io deep link, REST + MCP equivalents | Must | Draft | `products/branching-tales/explainer-widget.md` (UX spec — to follow) |
-| Catalog pages expose a JSON filter / sort panel that shows the `where` / `orderBy` payload live as the user edits the form | Must | Draft | `products/branching-tales/pages/regions/` (reference page) + `products/branching-tales/pages/items/` |
-| One page demonstrates the `head` vs `draft` branching toggle on Revisium data | Should | Draft | `products/branching-tales/pages/balance-patch/` (planned) |
-| At least one Revisium-modeled entity has backend-federated fields (e.g. `RegionsNode.likes`, `ItemsNode.viewCount`) rendered alongside Revisium-owned fields in the same response; the page tags each rendered field with its owning subgraph | Must | Draft | `products/branching-tales/pages/regions/` (federated detail) + `demo-rpg-backend` adds `extend type` for the chosen entity |
-| A global search bar uses Revisium's full-text search across `demo-rpg-data` + `demo-rpg-cms` tables | Should | Draft | `products/branching-tales/pages/search/` (planned) |
-| Home page is a game database/codex entry driven from `demo-rpg-cms` where available (hero/features) and current game data catalogs where implemented; Revisium/80-20 proof is secondary through Explainer Widget and `/about` | Must | Draft | `products/branching-tales/pages/home/` (planned) |
+| Every Revisium primitive in [`revisium-feature-coverage.md`](../products/branching-tales/revisium-feature-coverage.md) is demonstrated on at least one frontend page | Must | Draft | `demo-rpg-frontend/docs/product/pages/` |
+| Every catalog and detail page renders an `ExplainerWidget` with query body, JSON sample, cloud.revisium.io deep link, and verified REST/MCP equivalents where they exist | Must | Draft | Product scope: `products/branching-tales/explainer-widget.md`; implementation contract: `demo-rpg-frontend/docs/product/explainer-widget.md` |
+| Catalog pages expose a JSON filter / sort panel that shows the `where` / `orderBy` payload live as the user edits the form | Must | Draft | `demo-rpg-frontend/docs/product/pages/regions/` (reference page) + `items/` |
+| One page demonstrates the `head` vs `draft` branching toggle on Revisium data | Should | Draft | `demo-rpg-frontend/docs/product/pages/balance-patch/` |
+| At least one Revisium-modeled entity has backend-federated fields (e.g. `RegionsNode.likes`, `ItemsNode.viewCount`) rendered alongside Revisium-owned fields in the same response; the page tags each rendered field with its owning subgraph | Must | Draft | `demo-rpg-frontend/docs/product/pages/regions-id/` + `demo-rpg-backend` federation extension |
+| A global search bar uses Revisium's full-text search across `demo-rpg-data` + `demo-rpg-cms` tables | Should | Draft | `demo-rpg-frontend/docs/product/pages/search/` |
+| Home page is a game database/codex entry driven from `demo-rpg-cms` where available (hero/features) and current game data catalogs where implemented; Revisium/80-20 proof is secondary through Explainer Widget and `/about` | Must | Draft | `demo-rpg-frontend/docs/product/pages/home/` |
 | Every page is SSR-rendered with no client-only fallback paths (the widget content is present in initial HTML) | Must | In delivery | demo-rpg-frontend SSR layer (already shipped) |
 | Public-read access — visitors do not need to sign in or carry an API key for any read query | Must | Done | `demo-rpg-data` + `demo-rpg-cms` configured public-read |
 | Canonical codex-first framing and 80/20 narrative are rendered consistently across home, `/about`, guides/blog, footer/source references, the GitHub README abstract, and Explainer Widget summaries — every surface pulls from the same source-of-truth, never paraphrased independently | Must | Draft | [`products/branching-tales/messaging.md`](../products/branching-tales/messaging.md); CMS seed rows + `/about` page doc + `demo-rpg-frontend/README.md` abstract land in follow-up PRs |

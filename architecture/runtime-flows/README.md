@@ -8,11 +8,11 @@ Catalogue of runtime sequences for Branching Tales. Each flow is a `sequenceDiag
 
 | Flow | Description | Status |
 |---|---|---|
-| <!-- TODO --> | Visitor browses heroes (read path through Apollo Router) | Planned |
-| <!-- TODO --> | Visitor reads a blog post (SSR via Apollo Router → `demo-rpg-cms` subgraph) | Planned |
-| <!-- TODO --> | Editor ships a balance patch via Revisium branching | Planned |
-| <!-- TODO --> | AI agent queries `demo-rpg-data` over MCP | Planned |
-| [schema-reconciliation.md](./schema-reconciliation.md) | Schema reconciliation: `revisium/supergraph-builder` polls subgraphs, composes supergraph, Apollo Router curl sidecar refetches and hot-reloads | Draft |
+| [overview.md § Visitor Reads Game Data](../overview.md#visitor-reads-game-data) | Catalog/detail read path through Apollo Router | Current |
+| [overview.md § Visitor Reads CMS Content](../overview.md#visitor-reads-cms-content) | SSR/content read path through Apollo Router and `demo-rpg-cms` | Current |
+| Balance patch preview | `head` vs `draft` revision toggle and diff call | Planned |
+| AI agent MCP query | MCP access to demo data/backend tools | Planned |
+| [schema-reconciliation.md](./schema-reconciliation.md) | Schema reconciliation: `revisium/supergraph-builder` polls subgraphs, composes supergraph, Apollo Router curl sidecar refetches and hot-reloads | Current |
 
 ## When to add a flow here
 

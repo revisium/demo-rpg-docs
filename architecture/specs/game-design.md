@@ -139,7 +139,10 @@ Branching Tales uses **inline localized objects** for every user-facing string. 
 - `ru` (Russian, ISO 639-1) and `zh` (Chinese, defaults to Simplified) are optional and represent reach into two large non-English developer audiences.
 - New locales are added by widening the inline object — a real schema migration that demonstrates Revisium's migration tooling.
 
-This pattern is referenced throughout schemas as **`<LocalizedString>`** to keep the docs readable. The actual JSON in `demo-rpg-backend/revisium/schemas/*.json` (once that repo is bootstrapped) inlines the full object body in every place.
+This pattern is referenced throughout schemas as **`<LocalizedString>`** to keep
+the docs readable. The actual JSON in
+`demo-rpg-backend/revisium/schemas/*.json` inlines the full object body in every
+place.
 
 Every entity that displays to a player has at least one localized string. Internal identifiers, enum codes, and FK strings remain plain `string`.
 

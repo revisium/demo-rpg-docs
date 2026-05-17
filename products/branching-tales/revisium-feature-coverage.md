@@ -1,6 +1,6 @@
 # Revisium Feature Coverage — Branching Tales
 
-> Status: v1 scope, derived from [BR-0003 — Frontend Showcase](../../requirements/BR-0003-frontend-showcase.md). Every row maps a Revisium (or Apollo Federation) capability to the frontend page that demonstrates it. A row is **In delivery** when there is an open page doc under [`pages/`](./README.md#planned-page-set) tracking it, **Done** when the page is shipped *and* the Explainer Widget surfaces the capability to the visitor.
+> Status: v1 product scope, derived from [BR-0003 — Frontend Showcase](../../requirements/BR-0003-frontend-showcase.md). Every row maps a Revisium (or Apollo Federation) capability to the frontend page that demonstrates it. Implementation status lives in `demo-rpg-frontend/docs/product/page-inventory.md`; a capability is **Done** only when the page is shipped and the Explainer Widget surfaces the capability to the visitor.
 
 **Navigation:** [products README](./README.md) · [BR-0003](../../requirements/BR-0003-frontend-showcase.md) · [schemas spec](../../architecture/specs/schemas.md) · [formulas spec](../../architecture/specs/formulas.md) · [files spec](../../architecture/specs/files.md)
 
@@ -8,7 +8,9 @@
 
 - **Capability** — the Revisium / federation feature being shown.
 - **Where in the data** — concrete table.field on which the capability is observable. Lets the reader cross-check with [schemas](../../architecture/specs/schemas.md) / [formulas](../../architecture/specs/formulas.md) / [files](../../architecture/specs/files.md).
-- **Demonstrated on** — the canonical frontend page that owns this row. Other pages may use the same capability incidentally; the canonical page is the one whose Explainer Widget calls it out.
+- **Demonstrated on** — the frontend page/spec id that owns this row. Exact
+  page specs live in `demo-rpg-frontend/docs/product/pages/`; other pages may
+  use the same capability incidentally.
 - **API surface shown** — GraphQL is always available; this column flags pages that also surface the REST and/or MCP equivalent in the widget tabs.
 - **Explainer reveals** — what the Explainer Widget shows on that page, beyond rendered UI: the query/REST/MCP snippet, JSON sample, subgraph attribution, `cloud.revisium.io` deep link, etc.
 - **Status** — Draft (scope only) / In delivery (page doc opened) / Done (live + explainer asserts it).
@@ -124,7 +126,7 @@ The headline story: one GraphQL type carries fields from multiple subgraphs. Rev
 ## Status legend
 
 - **Done** — page is shipped, Explainer Widget asserts the capability to the visitor.
-- **In delivery** — page doc exists under `pages/`; implementation underway in `demo-rpg-frontend`.
+- **In delivery** — implementation underway in `demo-rpg-frontend`.
 - **Draft** — listed here only; no page doc yet.
 
 Every row gains a `Done` only after both the rendered UI *and* the Explainer Widget call out the capability — UI without an explainer doesn't count toward BR-0003's success metric.

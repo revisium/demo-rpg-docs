@@ -2,11 +2,16 @@
 
 **Navigation:** [project passport](../README.md) · [skills](../skills/README.md) · [operations](../operations/README.md)
 
-Step-by-step guides for common contributor tasks on the Branching Tales demo.
+Planned step-by-step guides for common contributor tasks on the Branching Tales
+demo. Active frontend implementation playbooks live in
+`demo-rpg-frontend/docs/playbooks/`.
 
 ## Purpose
 
-Playbooks are explicit, ordered instructions. A new contributor or AI agent should be able to follow one end-to-end without prior context. They sit alongside [skills](../skills/README.md): a skill teaches *how to think*, a playbook teaches *what to do*.
+Playbooks are explicit, ordered instructions. A new contributor or AI agent
+should be able to follow one end-to-end without prior context. This folder is
+for product/data-level demo workflows. Do not duplicate frontend page
+implementation workflows here.
 
 ## Conventions
 
@@ -18,6 +23,7 @@ Playbooks are explicit, ordered instructions. A new contributor or AI agent shou
 
 | Playbook | Outcome | Time |
 |---|---|---|
+| [Bootstrap a new Revisium demo project](bootstrap-new-demo-project.md) | A new demo receives the same docs/backend/frontend boundary model and bootstrap prompt | 1-2 sessions |
 | <!-- TODO bootstrap-fresh-environment --> | A fresh demo running locally end-to-end | ~30 min |
 | <!-- TODO add-new-table --> | A new table in `demo-rpg-data` with schema, sample data, frontend wiring | ~45 min |
 | <!-- TODO ship-balance-patch --> | A balance change shipped via Revisium branching | ~20 min |

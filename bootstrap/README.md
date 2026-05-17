@@ -1,6 +1,13 @@
 # Bootstrap
 
-Source-controlled JSON Schemas and seed data for both Revisium projects behind Branching Tales. Anyone can apply these to their own Revisium org and get the full dataset that powers the public demo.
+Portable JSON Schemas and seed data for both Revisium projects behind Branching
+Tales. Anyone can apply these to their own Revisium org and get the same
+dataset shape that powers the public demo.
+
+For source-of-truth boundaries, see
+[README § Source Of Truth Boundaries](../README.md#source-of-truth-boundaries).
+This directory is the portable seed snapshot. The backend runtime's applied
+migrations, OpenAPI spec, and generated client live in `demo-rpg-backend`.
 
 ```
 bootstrap/
@@ -32,10 +39,11 @@ bootstrap/
 
 | Project | URL | State |
 |---|---|---|
-| `demo-rpg-data` | `https://cloud.revisium.io/revisium/demo-rpg-data` | committed v1; public access pending org-owner approval |
+| `demo-rpg-data` | `https://cloud.revisium.io/revisium/demo-rpg-data` | committed v1; public read |
 | `demo-rpg-cms` | `https://cloud.revisium.io/revisium/demo-rpg-cms` | committed v1; public |
 
-Once both are public, anyone can browse the schemas and rows in the admin UI without an account.
+Anyone can browse the public read endpoints without an API key. Write operations
+still require an authenticated user or API key.
 
 ## Bootstrap from scratch
 
@@ -127,9 +135,11 @@ These are tracked as open questions in the relevant specs and as candidates for 
 |---|---|---|
 | 1 | `0001-initial-tables` — all 15 dictionary tables | Applied |
 | 2 | `0002-cms-tables` — 5 CMS tables in the separate project | Applied |
-| 3 | `0003-data-media-fields` — required `regions.cover_image`, `classes.icon`, `locations.gallery[]`, and `quests.steps[].image` media fields for Admin-uploaded art | Applied in source |
+| 3 | `0003-data-media-fields` — required `regions.cover_image`, `classes.icon`, `locations.gallery[]`, and `quests.steps[].image` media fields for Admin-uploaded art | Applied |
 | 4 | `0004-faction-relationships` — junction table for ally/enemy after Revisium ships self-FK or as M:N | Planned |
 | 5 | `0005-quest-types` — new lookup table classifying quests | Planned |
 | 6 | `balance-patch-1.1` (branch) — tune `items.rarity_multiplier` and `abilities.base_damage` without touching `master` | Planned |
 
-The `bootstrap/` directory is the source of truth for migrations 1–3. Migrations 4 and 5 will land here as additional schema files plus updates to the apply script.
+`bootstrap/` remains a copyable snapshot for demos and fresh orgs. The backend
+runtime applies its canonical migration artifact from
+`demo-rpg-backend/revisium/migrations.json`.

@@ -2,11 +2,15 @@
 
 **Navigation:** [project passport](../README.md) · [playbooks](../playbooks/README.md) · [AGENTS.md](../AGENTS.md)
 
-Claude Code skills tailored to the Branching Tales demo. A skill is an instruction bundle (YAML frontmatter + body) that teaches an AI agent a focused capability — schema design, formula authoring, migration runs, and so on.
+Planned demo-level skills for schema, formula, migration, and seed-data work.
+Active frontend agent workflows live in `demo-rpg-frontend/.agents/`.
 
 ## Purpose
 
-The demo is intentionally AI-friendly. Skills here let visitors point Claude Code at this repo and get high-quality help on day one: drafting a new table, adding a computed field, designing a localization pattern, generating seed data.
+The demo is intentionally AI-friendly. This folder is reserved for
+product/data-level skills that operate on `demo-rpg-docs` specs and bootstrap
+data. Do not put frontend implementation review workflows here; those belong in
+`demo-rpg-frontend/.agents/`.
 
 ## Skill format
 
@@ -31,7 +35,7 @@ See the [Claude Code Skills docs](https://docs.claude.com/) for the full specifi
 - Skills are scoped to *this demo*. General-purpose skills belong in a public skills repo.
 - Each skill links to the spec it operates on.
 
-## Index
+## Planned Index
 
 | Skill | Purpose | Operates on |
 |---|---|---|

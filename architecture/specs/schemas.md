@@ -1,6 +1,6 @@
 # Schemas — Branching Tales
 
-> Status: Spec for v1. Field-level catalogue and conventions live here. Full JSON Schema bodies (one file per table) live in `demo-rpg-backend/revisium/schemas/*.json` once that repo is bootstrapped, and are kept in sync with this document.
+> Status: Spec for v1. Field-level catalogue and conventions live here. Full JSON Schema bodies (one file per table) live in `demo-rpg-backend/revisium/schemas/*.json` and are kept in sync with this document.
 
 **Navigation:** [project passport](../../README.md) · [overview](../overview.md) · [game design](./game-design.md) · [formulas](./formulas.md) · [files](./files.md)
 
@@ -378,7 +378,9 @@ Required: `code`, `name`, `description`, `kind`, `default_duration`.
 
 ## Reference JSON — three full tables
 
-The conventions above are dense. Three tables in full JSON make the pattern concrete. The remaining 12 dictionary tables follow the same patterns; full JSON for all 15 lives in `demo-rpg-backend/revisium/schemas/*.json` once bootstrapped.
+The conventions above are dense. Three tables in full JSON make the pattern
+concrete. The remaining 12 dictionary tables follow the same patterns; full JSON
+for all 15 lives in `demo-rpg-backend/revisium/schemas/*.json`.
 
 ### `regions.json`
 

@@ -7,7 +7,7 @@
 | Owner | <!-- TODO --> |
 | Status | Draft |
 | Version | 1 |
-| Last updated | 2026-05-08 |
+| Last updated | 2026-05-17 |
 
 ## 1. Context
 
@@ -51,7 +51,8 @@ The marketing CMS (`revisium/demo-rpg-cms`) holds all editorial content surround
 
 ### Assumptions
 
-- Frontend is React Router v7 SSR + MobX + Apollo Client; CMS reads happen on the server during SSR via Apollo Router.
+- Frontend is React Router v7 SSR + MobX + `graphql-request`; CMS reads go
+  through Apollo Router as part of the federated graph.
 
 ## 5. User scenarios
 
@@ -79,11 +80,11 @@ The marketing CMS (`revisium/demo-rpg-cms`) holds all editorial content surround
 
 | Requirement | Priority | Status | Realised by |
 |---|---|---|---|
-| 5 CMS tables with documented schemas | Must | Draft | [`specs/schemas.md`](../architecture/specs/schemas.md) |
-| Markdown content type | Must | Draft | `blog_posts.body` |
-| File fields for hero images and avatars | Must | Draft | [`specs/files.md`](../architecture/specs/files.md) |
-| CMS federated under Apollo Router as a subgraph | Must | Draft | [ADR-0001](../architecture/adr/ADR-0001-federation-with-revisium-cloud.md), [ADR-0002](../architecture/adr/ADR-0002-dictionary-vs-cms-split.md) |
-| Public read access | Must | Draft | Project setting |
+| 5 CMS tables with documented schemas | Must | Done | [`specs/schemas.md`](../architecture/specs/schemas.md) |
+| Markdown content type | Must | Done | `blog_posts.body` |
+| File fields for hero images and avatars | Must | Done | [`specs/files.md`](../architecture/specs/files.md) |
+| CMS federated under Apollo Router as a subgraph | Must | Done | [ADR-0001](../architecture/adr/ADR-0001-federation-with-revisium-cloud.md), [ADR-0002](../architecture/adr/ADR-0002-dictionary-vs-cms-split.md) |
+| Public read access | Must | Done | Project setting |
 
 ## 7. Business rules and constraints
 

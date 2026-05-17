@@ -1,6 +1,7 @@
 # Runtime Flow — Schema Reconciliation
 
-> Status: Draft scaffolding. Sequence diagram body filled in once supergraph-builder env wiring is finalised.
+> Status: Current public flow. Concrete intervals and private service names live
+> in `revisium/infrastructure`.
 
 **Navigation:** [project passport](../../README.md) · [overview](../overview.md) · [ADR-0001](../adr/ADR-0001-federation-with-revisium-cloud.md) · [runtime flows index](./README.md)
 
@@ -18,8 +19,6 @@ How a schema change in any subgraph reaches a running Apollo Router without CI, 
 
 ## Sequence
 
-<!-- TODO: replace with concrete intervals and endpoint paths once env wiring is finalised. -->
-
 ```mermaid
 sequenceDiagram
   participant BE as demo-rpg-backend
@@ -29,7 +28,7 @@ sequenceDiagram
   participant SC as router curl sidecar
   participant AR as Apollo Router
 
-  loop every POLL_INTERVAL_S
+  loop builder polling interval
     SB->>BE: GET /graphql (introspection / SDL)
     SB->>DATA: GET /endpoint/.../graphql (SDL)
     SB->>CMS: GET /endpoint/.../graphql (SDL)
@@ -37,7 +36,7 @@ sequenceDiagram
     Note over SB: on failure, retain last good supergraph
   end
 
-  loop every router fetchInterval
+  loop router sidecar polling interval
     SC->>SB: GET /supergraph/branching-tales
     SC->>SC: write /app/supergraph.graphql
     AR-->>SC: hot-reload via file watcher
@@ -57,8 +56,8 @@ sequenceDiagram
 
 | Knob | Where | Effect |
 |---|---|---|
-| `POLL_INTERVAL_S` | `supergraph-builder` env | How quickly subgraph changes are detected. |
-| `fetchInterval` | router curl sidecar | How quickly composed-supergraph changes reach the router. |
+| Builder polling interval | `supergraph-builder` env | How quickly subgraph changes are detected. |
+| Router sidecar polling interval | router curl sidecar | How quickly composed-supergraph changes reach the router. |
 | `SUBGRAPH_*` env vars | `supergraph-builder` | The subgraph endpoint registry. Adding a subgraph = adding an env var + restart. |
 
 ## Why this beats CI composition
@@ -71,6 +70,5 @@ sequenceDiagram
 
 | # | Question | Status |
 |---|---|---|
-| 1 | Concrete `POLL_INTERVAL_S` for the demo (60s? 30s?) | Open |
-| 2 | Whether to expose `supergraph-builder` health endpoint publicly for the demo | Open |
-| 3 | How to surface composition errors in the demo UI for visitors | Open |
+| 1 | Whether to expose `supergraph-builder` health endpoint publicly for the demo | Open |
+| 2 | How to surface composition errors in the demo UI for visitors | Open |

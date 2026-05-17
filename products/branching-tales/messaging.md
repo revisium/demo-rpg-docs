@@ -95,7 +95,7 @@ Surfaces ordered from first impression to already-engaged proof:
 | **News/updates** (`/news`) | Optional patch-notes feed once the `news` table is confirmed. Must stay blocked until the data source exists. | §4.5 | Blocked. |
 | **Footer/source chip** | Small source/architecture entry point, not a repeating marketing banner. | §4.7 | Planned. |
 | **demo-rpg-frontend README abstract** | First paragraphs of the repo README for GitHub-side visitors. | §4.8 | Planned. |
-| **Explainer Widget** | Per-page proof: request, variables, response sample, source links, API surfaces, and subgraph ownership. | [Explainer Widget Spec](./explainer-widget.md) | Spec'd, implementation pending. |
+| **Explainer Widget** | Per-page proof: request, variables, response sample, source links, API surfaces, and subgraph ownership. | [Explainer Widget Spec](./explainer-widget.md) + `demo-rpg-frontend/docs/product/explainer-widget.md` | Product spec here; implementation contract/code in frontend. |
 | **Show-HN / DevRel posts** | External channel. Drafted from the guide/news copy with a channel-specific intro. | §4.5 + §4.6 | Pending. |
 
 ## 4. Draft Copy
@@ -148,8 +148,8 @@ Section subnavigation appears on pages, not in the top nav:
 | World | `/regions` | Regions (`/regions`), Locations (`/locations`), Factions (`/factions`) |
 | Quests | `/quests` | Quests (`/quests`), Dialogs (`/dialogs`) |
 
-Sibling links may point to planned/stub pages only when the page inventory marks
-the target route and the UI makes the incomplete state clear.
+Sibling links may point to planned/stub pages only when the frontend page
+inventory marks the target route and the UI makes the incomplete state clear.
 
 ### 4.3 Revisium Proof Cards
 
@@ -166,8 +166,8 @@ the Explainer Widget summary area.
 
 ### 4.4 `/about` Page
 
-Page-spec lives under `products/branching-tales/pages/about/` (planned). Page
-body composes from this doc:
+Page-spec lives under `demo-rpg-frontend/docs/product/pages/about/`. Page body
+composes from this doc:
 
 1. Hero block: explain that the codex is backed by Revisium.
 2. Mermaid architecture diagram: copy the diagram from `architecture/overview.md`
