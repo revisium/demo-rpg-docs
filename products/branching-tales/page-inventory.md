@@ -16,11 +16,11 @@
 
 | Route | Page doc | Data sources | Capabilities demonstrated | Status |
 |---|---|---|---|---|
-| `/` | `pages/home/` (planned) | `cms.landing_hero`, `cms.landing_features`, `cms.landing_testimonials`, `data.news` (Latest news widget) | CMS-driven landing carrying the [80/20 messaging](./messaging.md), Latest-news widget, file fields (hero bg), Apollo Federation subgraph mix | Draft |
-| `/about` | `pages/about/` (planned) | static page + [`messaging.md`](./messaging.md) | Long-form 80/20 narrative + architecture Mermaid diagram + "what Revisium did vs what we wrote" tables; canonical destination for "How this works" links | Draft |
+| `/` | `pages/home/` (planned) | `cms.landing_hero`, `cms.landing_features`, optional `cms.blog_posts`, game data previews as implemented | Game database/codex home: global search, featured catalogs, latest guides/updates, featured entities, world preview, optional Explainer Widget for live sections | Draft |
+| `/about` | `pages/about/` (planned) | static page + [`messaging.md`](./messaging.md) | Long-form 80/20 narrative + architecture Mermaid diagram + "what Revisium did vs what we wrote" tables; canonical destination for technical source-story links | Draft |
 | `/regions` | `pages/regions/` (planned) | `data.regions` | Catalog, `totalCount`, pagination, enum (climate), localized strings, required cover image file | Draft |
 | `/regions/[id]` | `pages/regions/[id]/` (planned) | `data.regions` + `backend.RegionsNode` (federated) | **Federation enrichment** (likes / viewCount / comments owned by backend, name/climate/description/cover image owned by Revisium), single FK to nothing, cover image detail view | Draft |
-| `/heroes` | `pages/heroes/` (planned) | `data.heroes`, `data.classes`, `data.regions`, `data.factions` | Catalog with FK-resolved class/region dropdowns, formula-derived `display_name_en`, portrait file field, filter+sort+pagination | Draft |
+| `/heroes` | `pages/heroes/` (planned) | `data.heroes`, `data.classes`, `data.regions`, `data.factions` | Catalog with FK-resolved class/region filters, formula-derived `display_name_en`, portrait file field, filter+sort+pagination | Draft |
 | `/heroes/[id]` | `pages/heroes/[id]/` (planned) | `data.heroes` + FKs | Single FK (`class_id`), array FKs (`ability_ids`, `inventory_item_ids`), embedded `equipment[]`, formulas (`is_veteran`, `total_equipment_modifier`, `equipped_count`), PNG portrait | Draft |
 | `/items` | `pages/items/` (planned) | `data.items`, `data.item_types`, `data.stats` | Large-catalog complex `where` filters (numeric range, FK equality, contains), multi-field `orderBy`, cursor pagination, SVG icon files | Draft |
 | `/items/[id]` | `pages/items/[id]/` (planned) | `data.items` + FKs | Single FK (`type_id`), embedded `modifiers[]`, formulas (`market_value`, `rarity_tag`), SVG icon | Draft |
@@ -39,10 +39,40 @@
 | `/abilities` | `pages/abilities/` (planned) | `data.abilities` | SVG icon catalog | Draft |
 | `/search` | `pages/search/` (planned) | Revisium `search_rows` across `data` + `cms` | Full-text search; results grouped by subgraph/table | Draft |
 | `/balance-patch` *(BR-0003 §9 Q2)* | `pages/balance-patch/` (planned) | `data.items` at `master:head` vs `master:draft` | **Branching preview** — revision URI swap; `get_revision_changes` diff | Draft |
-| `/blog` | `pages/blog/` (planned) | `cms.blog_posts`, `cms.blog_authors` | CMS catalog with full-text body field; carries the long-form 80/20 essay as a pinned welcome post | Draft |
-| `/blog/[slug]` | `pages/blog/[slug]/` (planned) | `cms.blog_posts`, `cms.blog_authors` | OG-image file field, author avatar, markdown body | Draft |
-| `/news` | `pages/news/` (planned) | `data.news` (new table, [schema spec to follow](../../architecture/specs/schemas.md)) + optional `backend.NewsNode` for `likes` / `viewCount` | **Multi-key `orderBy`** (`pinned desc, published_at desc`), **time-window `where` filter** (`published_at <= now`), **enum category** (`patch / event / spotlight / release`), pinned-post pattern, cover-image file field. Carries the pinned launch post from [messaging.md §3.5](./messaging.md#35-pinned-news--launch-post) | Draft |
-| `/news/[slug]` | `pages/news/[slug]/` (planned) | `data.news` + optional federated `backend.NewsNode.likes / viewCount / comments` | Detail page; second federation reference after `/regions/[id]` | Draft |
+| `/blog` | `pages/blog/` (planned) | `cms.blog_posts`, `cms.blog_authors` | Guides/articles catalog in the public nav; can carry the long-form 80/20 essay and game-world guides until a dedicated news table exists | Draft |
+| `/blog/[slug]` | `pages/blog/[slug]/` (planned) | `cms.blog_posts`, `cms.blog_authors` | Guide/article detail with hero image, author avatar, and markdown body | Draft |
+| `/news` | `pages/news/` (planned) | **Blocked:** no confirmed `news` table yet. Candidate: future `data.news` or `cms.news` + optional `backend.NewsNode` for `likes` / `viewCount` | Future patch-notes/news feed demonstrating **multi-key `orderBy`**, **time-window `where`**, enum category, pinned-first pattern, and cover-image file field | Blocked |
+| `/news/[slug]` | `pages/news/[slug]/` (planned) | **Blocked:** same as `/news` | Future news detail; possible second federation reference after `/regions/[id]` | Blocked |
+
+## Navigation Model
+
+V1 top navigation uses direct links and no dropdowns:
+
+| Header item | Target | Notes |
+|---|---|---|
+| Home | `/` | Codex/database entry. |
+| Heroes | `/heroes` | Character-family entry route. |
+| Items | `/items` | Item-family entry route. |
+| Monsters | `/monsters` | Bestiary entry route. |
+| World | `/regions` | World-family entry route. |
+| Quests | `/quests` | Quest-family entry route. |
+| Guides | `/blog` | Editorial/guides route backed by `blog_posts`. |
+| Search | `/search` | Global search across game data and CMS. |
+| Language | n/a | Header button showing `EN`, `RU`, or `ZH`; opens the language switcher. |
+
+Section subnavigation appears inside catalog/detail pages rather than in header
+dropdowns:
+
+| Section family | Entry route | Sibling catalogs |
+|---|---|---|
+| Heroes | `/heroes` | Heroes, Classes, Abilities, NPCs, Parties |
+| Items | `/items` | Items, Item Types, Stats, Effects |
+| World | `/regions` | Regions, Locations, Factions |
+| Quests | `/quests` | Quests, Dialogs |
+
+Top-level items should not link to abstract hub pages until those pages become
+useful aggregators. In v1, each top-level item opens the primary catalog for its
+family.
 
 ## How this index stays accurate
 

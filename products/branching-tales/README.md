@@ -2,6 +2,12 @@
 
 UX/UI source of truth for `demo-rpg-frontend`.
 
+The public product surface is a game database / RPG codex. Visitors should be
+able to browse Branching Tales as game content first: heroes, items, monsters,
+regions, quests, guides, search results, and related entities. Revisium remains
+the technical proof layer exposed through the Explainer Widget, source links,
+and the `/about` narrative.
+
 Status: scaffolding — capability matrix landed, per-page docs to follow.
 
 Source snapshot:
@@ -17,7 +23,9 @@ Refresh this section after meaningful page, navigation, or layout changes in `de
 - [Revisium Feature Coverage Matrix](./revisium-feature-coverage.md) — every Revisium primitive mapped to the page that demonstrates it. **Read this first** — it scopes the whole frontend.
 - [BR-0003 — Frontend Showcase](../../requirements/BR-0003-frontend-showcase.md) — the umbrella business requirement (the *why*).
 - [Page Inventory](./page-inventory.md) — canonical list of every route, the data it reads, and the page doc that describes it.
-- [Messaging](./messaging.md) — the canonical 80/20 narrative + the surface matrix (landing / about / news / blog / footer / README / DevRel). Every messaging surface pulls from here.
+- [Messaging](./messaging.md) — the canonical codex-first framing plus the
+  80/20 proof narrative for `/about`, guides, footer/source references, README,
+  and DevRel copy. Every messaging surface pulls from here.
 - **Page Functionality Reference** *(planned, `page-functionality.md`)* — recurring patterns: catalog, detail, JSON filter panel.
 - [Explainer Widget Spec](./explainer-widget.md) — the per-page "How this uses Revisium" widget contract (anatomy, breakpoints, data contract, subgraph attribution, deep links, interplay, states, a11y).
 
@@ -27,9 +35,18 @@ This section mirrors the [`revisium-ux/products/admin/`](https://github.com/revi
 
 What's different here:
 
-- The audience is **public DevRel evaluators**, not internal admin users. Tone leans explanatory; the Explainer Widget exists *because* the audience is evaluating, not operating.
-- Pages exist primarily to demonstrate Revisium capabilities, not to perform business work. Every page doc carries a `Revisium features demonstrated` block — see the coverage matrix.
-- Design system tokens are reused from `revisium-ux/design-system`; tone is calmer than a typical game site, leaning into the "Revisium is a precise tool for structured data" positioning. The fantasy flavour is in the content (region names, hero classes), not in the chrome.
+- The primary visitor experience is **game database browsing**, not internal
+  administration. Tone is concise and content-led; the Explainer Widget exists
+  because evaluators still need proof of how each page is powered.
+- Pages must be useful as catalogs and detail pages even before the technical
+  panel is opened. Every page doc still carries a `Revisium features
+  demonstrated` block — see the coverage matrix.
+- Design system tokens are reused from `revisium-ux/design-system`, but the
+  product shape follows RPG codex/database references. Fantasy flavour appears
+  in content, imagery, metadata, and related-entity sections; Revisium proof
+  appears in the Explainer Widget and source links.
+- V1 top navigation uses direct links, not dropdowns. Section families expose
+  sibling catalogs through on-page subnavigation.
 
 ## Conventions
 
