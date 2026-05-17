@@ -1,128 +1,96 @@
-# demo-rpg — Project Passport
+# demo-rpg - Branching Tales
 
-> Branching Tales — a public RPG codex and game database built end-to-end on
-> Revisium. Demonstrates JSON Schema modelling, foreign keys, file fields,
-> computed formulas, schema evolution, branching, and a federated multi-API
-> architecture.
+Branching Tales is a public RPG codex demo for Revisium.
 
-| Parameter | Value |
-|---|---|
-| Codename | `demo-rpg` |
-| Name | Branching Tales |
-| Stage | Dev stand live — federated GraphQL + SSR frontend at [demo-rpg.dev.revisium.io](https://demo-rpg.dev.revisium.io) |
-| Tech owner | <!-- TODO --> |
-| Audience | Game-database visitors first; developers evaluating Revisium through the Explainer Widget and source links |
-| Goal | Showcase **every** Revisium capability through a recognizable RPG codex use case |
+Visitors browse game content first: regions, heroes, items, monsters, quests,
+guides, and search. The technical proof is visible through the Explainer Widget:
+the page query, response sample, source rows, and API surfaces.
 
-## Overview
+## Live Surfaces
 
-**Branching Tales** is a fantasy RPG codex demo that uses Revisium as the
-system of record for game content (heroes, items, monsters, quests, regions,
-parties) and for the editorial content that wraps it.
+| Surface | URL |
+| --- | --- |
+| Frontend | <https://demo-rpg.dev.revisium.io> |
+| Apollo Router | <https://demo-rpg-router.dev.revisium.io/graphql> |
+| Backend | <https://demo-rpg-backend.dev.revisium.io> |
+| Game data | <https://cloud.revisium.io/revisium/demo-rpg-data> |
+| CMS | <https://cloud.revisium.io/revisium/demo-rpg-cms> |
 
-The demo is intentionally over-modelled to exercise every Revisium primitive: nested JSON Schema, single and array foreign keys, file fields with hash + content reference, computed fields with array aggregation and relative-path expressions, branching for balance patches, schema migrations via CLI, and three API surfaces (REST, GraphQL, MCP) federated under Apollo Router.
+## What This Repo Owns
 
-## Service URLs
+This repo is the lightweight public passport for the demo. It owns only:
 
-| Service | Dev | Production | Notes |
-|---|---|---|---|
-| Landing + App | [demo-rpg.dev.revisium.io](https://demo-rpg.dev.revisium.io) | planned | React Router v7 SSR; `/graphql` co-located via ingress so the browser talks to the supergraph same-origin |
-| API (Apollo Router) | [demo-rpg-router.dev.revisium.io/graphql](https://demo-rpg-router.dev.revisium.io/graphql) | planned | Federated GraphQL across backend + data + cms |
-| Backend subgraph | [demo-rpg-backend.dev.revisium.io](https://demo-rpg-backend.dev.revisium.io) | planned | NestJS — REST (Swagger), GraphQL subgraph, MCP, OAuth |
-| Game data (Revisium) | [cloud.revisium.io/revisium/demo-rpg-data](https://cloud.revisium.io/revisium/demo-rpg-data) | same | Dictionary project — 15 tables (regions, heroes, items, …); public-read |
-| CMS (Revisium) | [cloud.revisium.io/revisium/demo-rpg-cms](https://cloud.revisium.io/revisium/demo-rpg-cms) | same | Editorial/codex content — home + blog/guide tables; public-read |
+- this project summary;
+- [architecture.md](architecture.md) - public component boundaries;
+- [product.md](product.md) - visitor story and Revisium proof map;
+- [bootstrap/](bootstrap/README.md) - copyable seed snapshot;
+- [PROMPT.md](PROMPT.md) - prompt for starting the next demo.
 
-## Architecture
+It does not own implementation contracts.
 
-- **Overview** — [architecture/overview.md](architecture/overview.md)
-- **Decisions (ADR)** — [architecture/adr/README.md](architecture/adr/README.md)
-- **Specs** — [architecture/specs/README.md](architecture/specs/README.md)
-- **Runtime flows** — [architecture/runtime-flows/README.md](architecture/runtime-flows/README.md)
+## Source Of Truth Boundaries
+
+- Project identity and public summary: `demo-rpg-docs/README.md`.
+- Public architecture summary: `demo-rpg-docs/architecture.md`.
+- Product story and capability proof map: `demo-rpg-docs/product.md`.
+- Portable seed snapshot: `demo-rpg-docs/bootstrap/`.
+- Applied migrations, OpenAPI, generated clients, and full schemas:
+  `demo-rpg-backend/revisium/` plus the generated backend client.
+- Backend runtime behavior, MCP, REST, GraphQL, and tests:
+  `demo-rpg-backend/`.
+- Frontend routes, page specs, layout, and implementation status:
+  `demo-rpg-frontend/docs/product/`.
+- Frontend architecture and review gates:
+  `demo-rpg-frontend/docs/`, `REVIEW.md`, and `.agents/`.
+- Deployment, secrets, Argo CD, Helm values, and cluster runbooks:
+  `revisium/infrastructure`.
+
+When a change crosses a boundary, update the canonical owner first. This repo
+should link to implementation truth instead of copying it.
 
 ## Repositories
 
-| Repository | Role | Stack |
-|---|---|---|
-| [demo-rpg-docs](https://github.com/revisium/demo-rpg-docs) | Project passport, ADR, specs, BR, skills, playbooks | Markdown |
-| [demo-rpg-backend](https://github.com/revisium/demo-rpg-backend) | NestJS subgraph (CQRS, REST, GraphQL, MCP) — deployed to dev | NestJS 11, Prisma 7, `@hey-api/openapi-ts` client for Revisium |
-| [demo-rpg-frontend](https://github.com/revisium/demo-rpg-frontend) | Public RPG codex frontend — deployed to dev | React Router v7 SSR, MobX (MVVM), graphql-request + graphql-codegen, FSD (Steiger) |
-| [revisium/infrastructure](https://github.com/revisium/infrastructure) | Helm charts + ArgoCD wiring for the dev stand | `development/demo/{backend,frontend,router,supergraph-builder}` |
+- `demo-rpg-docs`: public passport, product story, bootstrap prompt.
+- `demo-rpg-backend`: NestJS subgraph, generated Revisium client, runtime API.
+- `demo-rpg-frontend`: SSR codex frontend and page implementation contracts.
+- `revisium/infrastructure`: real deployment wiring.
+- `revisium/supergraph-builder`: polls subgraph SDL and serves the composed
+  supergraph.
 
-Supergraph composition is handled by [`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) — no separate demo repo. The image runs as a sidecar to Apollo Router in the dev cluster.
+## Short Architecture
 
-External dependencies: [revisium-cli](https://github.com/revisium/revisium-cli), [revisium/supergraph-builder](https://github.com/revisium/supergraph-builder), [Revisium Cloud](https://cloud.revisium.io), [Apollo Router](https://www.apollographql.com/docs/router).
-
-## Architecture Overview
-
-```mermaid
-%%{init: {"flowchart": {"defaultRenderer": "elk"}}}%%
-flowchart TB
-  U(["Developer / Visitor"])
-
-  subgraph demo["Branching Tales"]
-    direction TB
-
-    LAND["demo-rpg-frontend<br/>RPG codex frontend<br/>React Router v7 SSR · MobX"]
-    ROUTER["Apollo Router<br/>+ supergraph-fetcher sidecar"]
-    BUILDER["supergraph-builder<br/>polls subgraphs · composes<br/>serves /supergraph/branching-tales"]
-    BE["demo-rpg-backend<br/>NestJS · CQRS<br/>REST · GraphQL · MCP"]
-
-    subgraph cloud["cloud.revisium.io"]
-      direction TB
-      DATA["demo-rpg-data<br/>game dictionary<br/>15 tables · formulas · files"]
-      CMS["demo-rpg-cms<br/>editorial content"]
-    end
-  end
-
-  U --> LAND
-  LAND --> ROUTER
-  ROUTER --> BE
-  ROUTER --> DATA
-  ROUTER --> CMS
-  BUILDER -.->|polls SDL| BE
-  BUILDER -.->|polls SDL| DATA
-  BUILDER -.->|polls SDL| CMS
-  ROUTER -.->|sidecar polls<br/>composed supergraph| BUILDER
-
-  classDef container fill:#1168bd,stroke:#0b4884,color:#fff
-  classDef external fill:#999,stroke:#666,color:#fff
-  classDef person fill:#08427b,stroke:#052a52,color:#fff
-  class LAND,ROUTER,BE,BUILDER container
-  class DATA,CMS external
-  class U person
+```text
+browser
+  -> demo-rpg-frontend
+  -> Apollo Router
+  -> demo-rpg-backend
+  -> demo-rpg-data / demo-rpg-cms on Revisium Cloud
 ```
 
-**In short:** the frontend (React Router v7 SSR + MobX MVVM + graphql-request) talks to Apollo Router. The router federates **three** subgraphs — a NestJS subgraph (`demo-rpg-backend`) plus the two Revisium-managed subgraphs (`demo-rpg-data`, `demo-rpg-cms`). `/graphql` is co-located under the frontend's ingress host so the browser only ever makes same-origin calls.
+The browser talks to same-origin `/graphql` through the frontend host. Apollo
+Router federates one NestJS subgraph with two Revisium Cloud subgraphs.
+`supergraph-builder` keeps the composed schema fresh by polling subgraph SDL.
 
-[`revisium/supergraph-builder`](https://github.com/revisium/supergraph-builder) is a **long-running service** that periodically polls each subgraph's GraphQL endpoint, composes the merged supergraph schema, and exposes it at an HTTP endpoint. Apollo Router runs a curl sidecar that polls that endpoint, writes the supergraph to a shared volume, and lets the router hot-reload — no CI step, no pushed deployment. Add a subgraph or change a schema and the supergraph reconciles within one polling interval.
+See [architecture.md](architecture.md) for the public version. Use
+`revisium/infrastructure` for real deployment details.
 
-Once both cloud projects are bootstrapped, everything in `cloud.revisium.io` is open for read-only exploration.
+## Product
 
-## Operations
+The demo should feel like a real game database before it feels like a DevRel
+page. Revisium proof appears through source links and the Explainer Widget, not
+as the first visual layer.
 
-- [Overview](operations/overview.md) — deployment, secrets, observability
-- [Deploy](operations/deploy.md) — release procedures
-- [Runbook](operations/runbook.md) — reactive procedures
-- [Secrets](operations/secrets.md) — registry and rotation
-
-## Business Requirements
-
-- [requirements/README.md](requirements/README.md) — current BR catalogue.
-
-## Products (UX / UI)
-
-- [products/branching-tales/](products/branching-tales/README.md) — frontend UX/UI source of truth. Mirrors the [`revisium-ux/products/admin/`](https://github.com/revisium/revisium-ux/tree/master/products/admin) layout: page inventory, page functionality reference, capability coverage matrix, per-page docs.
-- Start with [revisium-feature-coverage.md](products/branching-tales/revisium-feature-coverage.md) — maps every Revisium primitive and Apollo Federation pattern to the page that demonstrates it.
+See [product.md](product.md).
 
 ## Bootstrap
 
-- [bootstrap/](bootstrap/README.md) — applied schemas + seed data + apply script. Replicate the live demo in your own Revisium org with one command.
+`bootstrap/` contains portable JSON schemas, seed rows, and an apply script for
+fresh Revisium projects.
 
-## Skills & Playbooks
+Runtime migrations and generated artifacts are backend-owned. Use
+`demo-rpg-backend/revisium/` when working on the running application.
 
-- [skills/](skills/README.md) — Claude Code skills tailored to this demo (schema design, formula authoring, migration runs).
-- [playbooks/](playbooks/README.md) — step-by-step guides for common tasks (bootstrap a fresh environment, add a new table, ship a balance patch).
+## Next Demo
 
-## Research
-
-- [research/](research/README.md) — discovery notes, comparisons, design alternatives.
+Use [PROMPT.md](PROMPT.md) as the copyable prompt for starting another demo with
+the same boundaries but a different domain.
