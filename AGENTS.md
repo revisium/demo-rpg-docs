@@ -1,114 +1,53 @@
 # AGENTS.md
 
-Instructions for AI coding agents (Claude Code, Cursor, Codex, Copilot, Gemini, etc.) working in `demo-rpg-docs`. `CLAUDE.md` is a symlink to this file so Claude Code's default loader still works.
+Instructions for agents working in `demo-rpg-docs`.
 
-## Repository purpose
+This repo is intentionally small. Keep it as a public demo passport, not as a
+second backend/frontend/infrastructure docs tree.
 
-`demo-rpg-docs` is the **source of truth** for the Branching Tales demo's
-project identity, public architecture, decisions, business requirements,
-schema intent, capability coverage, messaging, and portable bootstrap data.
-When implementing anything in `demo-rpg-backend` or `demo-rpg-frontend`, check
-this repo first for the relevant ADR, spec, BR, or product capability, then use
-the implementation repo's own docs for exact code contracts.
+## Read First
 
-This is a public product and DevRel artefact. Documentation is written in
-**English**, neutral tone, optimised for a demo that reads as an RPG codex first
-and exposes Revisium proof through source links and the Explainer Widget.
+1. [README.md](README.md) - project summary and source-of-truth boundaries.
+2. [product.md](product.md) - visitor story and capability proof map.
+3. [architecture.md](architecture.md) - public component boundaries.
+4. [bootstrap/README.md](bootstrap/README.md) - portable seed snapshot.
+5. [PROMPT.md](PROMPT.md) - reusable prompt for the next demo.
 
-## Repository layout
+## Ownership Rules
 
+- Full schemas, migrations, OpenAPI, and generated clients live in
+  `demo-rpg-backend`.
+- Exact routes, page specs, layout, responsive rules, and implementation status
+  live in `demo-rpg-frontend/docs/product`.
+- Real deployment, secrets, Helm values, Argo CD apps, and runbooks live in
+  `revisium/infrastructure`.
+- This repo may summarize those areas, but must not duplicate their contracts.
+
+Do not recreate `operations/`, `requirements/`, `architecture/specs/`,
+`architecture/adr/`, `skills/`, `research/`, or long playbook trees here unless
+the user explicitly asks for that heavier structure again.
+
+## Writing Rules
+
+- Write in English.
+- Prefer one short page over many nested pages.
+- Link to canonical implementation repos instead of copying details.
+- Keep demo copy product-facing: RPG codex first, Revisium proof second.
+- No secret names, secret values, cluster commands, or private operational
+  details.
+- If a document grows beyond a few screens, cut it or move the detailed contract
+  to the owning implementation repo.
+
+## Verification
+
+Before handoff:
+
+```bash
+git diff --check
+rg -n "operations/|requirements/|products/branching-tales" . \
+  -g '*.md' -g '!AGENTS.md'
+rg -n "architecture/specs|architecture/adr|BR-000|ADR-" . \
+  -g '*.md' -g '!AGENTS.md'
 ```
-demo-rpg-docs/
-├── README.md                # Project passport
-├── AGENTS.md                # This file (cross-tool agent instructions)
-├── CLAUDE.md                # Symlink → AGENTS.md (Claude Code compatibility)
-├── architecture/
-│   ├── README.md
-│   ├── overview.md          # Connected architecture story
-│   ├── adr/                 # ADR-NNNN-{slug}.md + index
-│   ├── specs/               # Game design, schemas, formulas, files
-│   └── runtime-flows/       # Sequence diagrams (federation, queries)
-├── operations/
-│   ├── README.md
-│   ├── overview.md
-│   ├── deploy.md
-│   ├── runbook.md
-│   └── secrets.md
-├── requirements/            # BR-NNNN-{slug}.md + template + index
-├── products/                # Per-product UX/UI docs (mirrors revisium-ux/products/*)
-│   └── branching-tales/     # frontend product scope, coverage matrix, messaging
-├── research/                # Discovery, alternatives, comparisons
-├── skills/                  # Claude Code skills for the demo
-├── playbooks/               # Step-by-step task guides
-└── bootstrap/               # Applied JSON schemas + seed + apply script
-    ├── README.md
-    ├── data/                # demo-rpg-data: 15 tables (schemas/, seed/, order.json)
-    ├── cms/                 # demo-rpg-cms:  5 tables (schemas/, seed/, order.json)
-    └── scripts/             # apply.mjs + apply.sh
-```
 
-## Indices — sources of truth
-
-| Index | Contains | Update rule |
-|---|---|---|
-| [`architecture/adr/README.md`](architecture/adr/README.md) | All ADRs | After every new ADR — row in table |
-| [`architecture/specs/README.md`](architecture/specs/README.md) | All specs with statuses | When a spec is created or versioned |
-| [`architecture/runtime-flows/README.md`](architecture/runtime-flows/README.md) | All runtime flows | When a new flow is added |
-| [`operations/README.md`](operations/README.md) | All operations docs | When a new doc is added |
-| [`requirements/README.md`](requirements/README.md) | All BRs | After every new BR |
-| [`products/branching-tales/README.md`](products/branching-tales/README.md) | Frontend product scope, capability coverage, messaging | When a product-level UX artefact is added |
-| [`skills/README.md`](skills/README.md) | All skills | When a new skill is added |
-| [`playbooks/README.md`](playbooks/README.md) | All playbooks | When a new playbook is added |
-| [`README.md`](README.md) | Project passport | When repos / environments / owners change |
-
-**Do not duplicate indices.** Subfolder READMEs link to indices; they do not restate them.
-
-## Checklists for changes
-
-When creating an **ADR**:
-- [ ] File from [`architecture/adr/template.md`](architecture/adr/template.md)
-- [ ] Row in [`architecture/adr/README.md`](architecture/adr/README.md)
-- [ ] Link from [`architecture/overview.md`](architecture/overview.md) if the decision shapes the top-level architecture
-
-When creating a **spec**:
-- [ ] File in `architecture/specs/`, named `{component}-v{N}.spec.md` or `{topic}.md` for evergreen specs
-- [ ] Row in [`architecture/specs/README.md`](architecture/specs/README.md)
-- [ ] Cross-link with related ADR
-
-When creating a **BR**:
-- [ ] File from [`requirements/template.md`](requirements/template.md)
-- [ ] Row in [`requirements/README.md`](requirements/README.md)
-- [ ] Cross-link with related ADR / spec
-
-When creating a **runtime flow**:
-- [ ] Inline in [`architecture/overview.md`](architecture/overview.md) if ≤ 4 flows total
-- [ ] Otherwise standalone file in `architecture/runtime-flows/` with row in the index
-
-When creating a **skill** or **playbook**:
-- [ ] File in `skills/` or `playbooks/`
-- [ ] Row in the corresponding index README
-- [ ] Cross-link from any related spec or ADR
-
-When changing **frontend page behaviour**:
-- [ ] Update the exact implementation contract in `demo-rpg-frontend/docs/product/` first.
-- [ ] Update [`products/branching-tales/revisium-feature-coverage.md`](products/branching-tales/revisium-feature-coverage.md) only when the product capability coverage changes.
-- [ ] Update [`products/branching-tales/page-inventory.md`](products/branching-tales/page-inventory.md) only when the product-level route scope changes.
-- [ ] Keep `demo-rpg-docs` as product scope, not a duplicate frontend implementation contract.
-
-## Demo-specific conventions
-
-- **Game name:** Branching Tales. Codename: `demo-rpg`.
-- **Cloud projects:** [`revisium/demo-rpg-data`](https://cloud.revisium.io/revisium/demo-rpg-data) (game dictionary, 15 tables) and [`revisium/demo-rpg-cms`](https://cloud.revisium.io/revisium/demo-rpg-cms) (editorial/codex content). Both bootstrapped and public-read. Schema intent lives in `architecture/specs/`; portable seed data lives in `bootstrap/`; applied migrations and generated OpenAPI/client artifacts live in `demo-rpg-backend`.
-- **Tone:** explanatory but compact. Every doc should help an unfamiliar developer evaluate Revisium quickly.
-- **No secrets in repo.** Local `.env.example` files only.
-- **Mermaid diagrams** for all architecture and runtime flows. Use `flowchart TB` with the elk renderer for component diagrams; `sequenceDiagram` for flows.
-
-## Related repositories
-
-- **[demo-rpg-backend](https://github.com/revisium/demo-rpg-backend)** — NestJS subgraph + business logic. Deployed to `demo-rpg-backend.dev.revisium.io`. Reads `demo-rpg-data` via an `@hey-api/openapi-ts`-generated REST client; serves a Yoga Federation v2 GraphQL subgraph, REST (Swagger), and MCP.
-- **[demo-rpg-frontend](https://github.com/revisium/demo-rpg-frontend)** — React Router v7 SSR + MobX (MVVM) + `graphql-request` (typed via `graphql-codegen`) + Feature-Sliced Design (Steiger). Deployed to [demo-rpg.dev.revisium.io](https://demo-rpg.dev.revisium.io); `/graphql` is co-located under the frontend's ingress so the browser talks to the supergraph same-origin.
-- **[revisium/infrastructure](https://github.com/revisium/infrastructure)** — Helm charts + ArgoCD wiring for the dev stand under `development/demo/{backend,frontend,router,supergraph-builder}`.
-- **[revisium/supergraph-builder](https://github.com/revisium/supergraph-builder)** — long-running service that periodically polls SDL from `demo-rpg-backend`, `demo-rpg-data`, and `demo-rpg-cms`, composes the supergraph, and serves it at an HTTP endpoint. Apollo Router fetches the composed schema with a curl sidecar and hot-reloads on change. Not a CI tool.
-- **[revisium-cli](https://github.com/revisium/revisium-cli)** — applies migrations + bootstraps endpoints; runs both locally (via `npm run revisium:bootstrap` against `@revisium/standalone`) and in the K8s migrations-Job.
-
-Schema intent and data conventions live in [`architecture/specs/`](architecture/specs/README.md). The portable seed snapshot lives in [`bootstrap/`](bootstrap/README.md). Applied migrations, OpenAPI, and generated backend client artifacts live in [`demo-rpg-backend/revisium/`](https://github.com/revisium/demo-rpg-backend/tree/master/revisium) and are regenerated from the backend workflow.
+The second command should return no stale links.
